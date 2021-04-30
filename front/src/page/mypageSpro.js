@@ -52,7 +52,7 @@ class MypageSp extends React.Component {
   };
   
     getData = async () => {
-        const data = await axios.get(
+        const dataS = await axios.get(
           "http://localhost:8080/students/studentInfo",
         { 
           headers:{
@@ -60,7 +60,7 @@ class MypageSp extends React.Component {
           },
         }
         )
-        this.setState(data.data);
+        this.setState(dataS.data.data);
     }
 
     componentDidMount() {

@@ -80,7 +80,7 @@ const PostboxListST = () => {
                   },
                 }}
               >
-                <Cardbutton>{element.receiver.name}님이 보낸 신청입니다.</Cardbutton>
+                <Cardbutton>{element.receiver.name}님에게 보낸 신청입니다.</Cardbutton>
               </Link>
             </Cardelement>
             <Cardelement>기간:</Cardelement>

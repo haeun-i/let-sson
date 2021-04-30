@@ -68,7 +68,7 @@ const PostboxListRS = () => {
             <Cardelement>
               <Link
                 to={{
-                  pathname: "/postboxdetail",
+                  pathname: "/postboxdetailT",
                   state: {
                     name: element.sender.name,
                     university : element.sender.university,

@@ -35,6 +35,7 @@ const MyName = ({
   pay,
   intro,
   goal,
+  tel,
 }) => {
   const { state, dispatch } = useContext(SidebarContextS);
 
@@ -75,6 +76,7 @@ const MyName = ({
             age,
             intro,
             goal,
+            tel,
           },
         }}
       >
@@ -121,7 +123,8 @@ const InfoCardS = () => {
           pay={whoname.pay}
           intro={whoname.intro}
           goal={whoname.goal}
-        />
+          tel={whoname.tel}
+                  />
       ))}
     </span>
   );
