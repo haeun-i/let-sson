@@ -244,21 +244,5 @@ public class TeacherController {
         return ResponseEntity.ok().build();
 
     }
-
-
-    @PutMapping("/resetPassword")
-    @ApiOperation(value = "resetPassword", tags = "선생님 비밀 번호 수정")
-    public ResponseEntity<? extends BasicResponse> resetTeacherPassword(@RequestParam("tel") String tel, @RequestParam("password") String password) {
-        Teacher existingTeacher = this.teacherRepository.findByTel(tel);
-        existingTeacher.setPassword(passwordEncoder.encode(password));
-
-        Teacher saveTeacher = this.teacherRepository.save(existingTeacher);
-        if (saveTeacher == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorResponse("비밀번호 수정 실패"));
-
-        }
-        return ResponseEntity.ok().body(new CommonResponse<Teacher>(saveTeacher));
-
-    }
+    
 }

@@ -54,8 +54,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("존재하지 않는 사용자입니다."));
         }
-
-
     }
 
     @GetMapping("/findPassword")
@@ -77,6 +75,45 @@ public class UserController {
         else return false;
 
     }
+    @PutMapping("/resetPassword")
+    @ApiOperation(value="resetPassword",tags="비밀 번호 수정")
+    public ResponseEntity<? extends BasicResponse> resetStudentPassword(@RequestParam("tel") String tel, @RequestParam("password")String password)
+    {
+        if(studentRepository.findByTel(tel) != null)
+        {
+            Student existingStudent = this.studentRepository.findByTel(tel);
+            existingStudent.setPassword(passwordEncoder.encode(password));
+
+            Student saveStudent =  this.studentRepository.save(existingStudent);
+            if(saveStudent == null)
+            {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(new ErrorResponse("비밀번호 수정 실패"));
+
+            }
+            return ResponseEntity.ok().body(new CommonResponse<Student>(saveStudent));
+        }
+        else if(teacherRepository.findByTel(tel) != null) {
+            Teacher existingTeacher = this.teacherRepository.findByTel(tel);
+            existingTeacher.setPassword(passwordEncoder.encode(password));
+
+            Teacher saveTeacher = this.teacherRepository.save(existingTeacher);
+            if (saveTeacher == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(new ErrorResponse("비밀번호 수정 실패"));
+
+            }
+            return ResponseEntity.ok().body(new CommonResponse<Teacher>(saveTeacher));
+
+        }
+
+        else
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("존재하지 않는 핸드폰 번호 비밀번호 수정 실패"));
+        }
+    }
+
 
 
 
