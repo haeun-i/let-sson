@@ -4,8 +4,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -33,6 +37,10 @@ public class TtoSMatching {
 
     @Column(name="state")
     private String state;
+
+    @Column(name="create_date")
+    @UpdateTimestamp
+    private LocalDateTime create_date;
 
 
 

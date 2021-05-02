@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Api(value="학생 포스트 박스 API")
@@ -51,6 +54,7 @@ public class StudentPostboxController {
                     .sender(senderStudent)
                     .receiver(receiverTeacher)
                     .state("신청서 제출")
+                    .create_date(LocalDateTime.now(ZoneId.of("Asia/Seoul")))
                     .build();
             stoTRepository.save(stuSendProfile);
             String message = "신청자: " + senderTel + " 신청대상: " + receiverTel;
@@ -168,23 +172,39 @@ public class StudentPostboxController {
         System.out.println("sender: " + student.getId());
 
         double totalGrade = (teacher.getEdStNum()* teacher.getRate() + grade);
-
         StoTMatching stoTMatching = stoTRepository.findBySenderAndReceiver(student,teacher);
         TtoSMatching ttoSMatching = ttoSRepository.findBySenderAndReceiver(teacher,student);
+
+        if(stoTMatching != null && ttoSMatching != null)
+        {
+            stoTMatching.setState("종료");
+            stoTMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            ttoSMatching.setState("종료");
+            ttoSMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.stoTRepository.save(stoTMatching);
+            this.ttoSRepository.save(ttoSMatching);
+        }
+        else if(stoTMatching == null && ttoSMatching != null)
+        {
+            ttoSMatching.setState("종료");
+            ttoSMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.ttoSRepository.save(ttoSMatching);
+        }
+        else if(ttoSMatching == null && stoTMatching != null)
+        {
+            stoTMatching.setState("종료");
+            stoTMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.stoTRepository.save(stoTMatching);
+        }
         /*if(stoTMatching.getState() != "체결 완료" || ttoSMatching.getState() != "체결 완료")
         {
             return "존재하지 않는 과외 정보 입니다.";
         }*/
-        stoTMatching.setState("종료");
-        ttoSMatching.setState("종료");
         teacher.setIngStNum(teacher.getIngStNum() - 1);
         teacher.setEdStNum(teacher.getEdStNum() + 1);
         teacher.setRate(totalGrade/teacher.getEdStNum());
-        this.stoTRepository.save(stoTMatching);
-        this.ttoSRepository.save(ttoSMatching);
         this.teacherRepository.save(teacher);
         return student.getTel()+","+ teacher.getTel()+"과외가 종료되었습니다.";
-
     }
 
 

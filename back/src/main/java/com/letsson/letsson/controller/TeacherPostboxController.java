@@ -17,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 
@@ -50,8 +53,10 @@ public class TeacherPostboxController {
                     .sender(senderTeacher)
                     .receiver(receiverStudent)
                     .state("신청서 제출")
+                    .create_date(LocalDateTime.now().plusHours(9))
                     .build();
             ttoSRepository.save(profile);
+            System.out.println(ZonedDateTime.now(ZoneId.of("Asia/Seoul")));
             String message = "신청자: " + senderTel + " 신청대상: " + receiverTel;
             return message;
         }
@@ -140,11 +145,28 @@ public class TeacherPostboxController {
         {
            return "이미 체결되었습니다.";
         }
-        stoTMatching.setState("체결 완료");
-        ttoSMatching.setState("체결 완료");
+        if(stoTMatching != null && ttoSMatching != null)
+        {
+            stoTMatching.setState("체결 완료");
+            stoTMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            ttoSMatching.setState("체결 완료");
+            ttoSMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.stoTRepository.save(stoTMatching);
+            this.ttoSRepository.save(ttoSMatching);
+        }
+        else if(stoTMatching == null && ttoSMatching != null)
+        {
+            ttoSMatching.setState("체결 완료");
+            ttoSMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.ttoSRepository.save(ttoSMatching);
+        }
+        else if(ttoSMatching == null && stoTMatching != null)
+        {
+            stoTMatching.setState("체결 완료");
+            stoTMatching.setCreate_date(LocalDateTime.now().plusHours(9));
+            this.stoTRepository.save(stoTMatching);
+        }
         teacher.setIngStNum(teacher.getIngStNum() + 1);
-        this.stoTRepository.save(stoTMatching);
-        this.ttoSRepository.save(ttoSMatching);
         this.teacherRepository.save(teacher);
         return student.getTel()+","+ teacher.getTel()+"체결 완료!";
     }
