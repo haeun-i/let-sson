@@ -180,7 +180,7 @@ public class TeacherController {
             {
                     @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody Teacher teacher, HttpServletRequest request, @RequestParam("data") MultipartFile file) throws IOException {
+    public ResponseEntity<? extends BasicResponse> updateTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody Teacher teacher, HttpServletRequest request) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         Teacher existingTeacher = this.teacherRepository.findByTel(tel);
         if (existingTeacher == null) {
@@ -195,7 +195,6 @@ public class TeacherController {
         existingTeacher.setCareer(teacher.getCareer());
         existingTeacher.setIntro(teacher.getIntro());
         existingTeacher.setPlan(teacher.getPlan());
-        existingTeacher.setPhoto(amazonS3ClientService.upload(file, "back/teacher/photo"));
         Teacher saveTeacher = this.teacherRepository.save(existingTeacher);
         if (saveTeacher == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

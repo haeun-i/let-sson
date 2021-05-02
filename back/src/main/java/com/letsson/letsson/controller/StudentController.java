@@ -176,7 +176,7 @@ public class StudentController {
             {
                     @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody Student student, HttpServletRequest request,@RequestParam("data") MultipartFile file) throws IOException {
+    public ResponseEntity<? extends BasicResponse> updateStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody Student student, HttpServletRequest request) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         Student existingStudent = this.studentRepository.findByTel(tel);
         if(existingStudent == null)
