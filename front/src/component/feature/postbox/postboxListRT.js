@@ -57,7 +57,25 @@ const PostboxListRT = () => {
     };
     getRecieve();
   }, []);
-  
+
+  const connected = tel => {
+    axios
+      .post(
+        `http://localhost:8080/teachers/makeLetsson?student_tel=${tel}`,
+        {
+          student_tel: tel,
+        },
+        {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        }
+      )
+      .then(response => {
+        alert("과외가 체결되었습니다.");
+      });
+  };
+
   return (
     <Container>
       <CardList>
@@ -70,20 +88,23 @@ const PostboxListRT = () => {
                   pathname: "/postboxdetailS",
                   state: {
                     name: element.sender.name,
-                    region : element.sender.region,
-                    tel : element.sender.tel,
-                    intro : element.sender.intro,
-                    goal : element.sender.goal,
+                    region: element.sender.region,
+                    tel: element.sender.tel,
+                    intro: element.sender.intro,
+                    goal: element.sender.goal,
                   },
                 }}
               >
-                <Cardbutton>{element.sender.name}님이 보낸 신청입니다.</Cardbutton>
+                <Cardbutton>
+                  {element.sender.name}님이 보낸 신청입니다.
+                </Cardbutton>
               </Link>
             </Cardelement>
             <Cardelement>기간 : </Cardelement>
             <Cardelement>
-              <Cardbutton>진행</Cardbutton>
-              <Cardbutton>완료</Cardbutton>
+              <Cardbutton onClick={() => connected(element.sender.tel)}>
+                진행
+              </Cardbutton>
               <Cardbutton>삭제</Cardbutton>
             </Cardelement>
           </Card>

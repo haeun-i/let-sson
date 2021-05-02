@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // 선생이 보낸 내역 목록
 
 const Container = styled.div`
@@ -42,6 +42,7 @@ const Cardbutton = styled.button`
 
 const PostboxListST = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getSend = async () => {
@@ -59,6 +60,24 @@ const PostboxListST = () => {
     getSend();
   }, []);
 
+  const deleteSend = tel => {
+    console.log(tel);
+
+    if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
+      axios
+        .delete(
+          `http://localhost:8080/students/deleteSending?teacher_tel=${tel}`,
+          {
+            headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+            data: { teacher_tel: tel },
+          }
+        )
+        .then(response => {
+          history.push("/sendpost/tea");
+        });
+    }
+  };
+
   return (
     <Container>
       <CardList>
@@ -73,21 +92,35 @@ const PostboxListST = () => {
                     name: element.receiver.name,
                     period: element.receiver.period,
                     name: element.receiver.name,
-                    region : element.receiver.region,
-                    tel : element.receiver.tel,
-                    intro : element.receiver.intro,
-                    goal : element.receiver.goal,
+                    region: element.receiver.region,
+                    tel: element.receiver.tel,
+                    intro: element.receiver.intro,
+                    goal: element.receiver.goal,
                   },
                 }}
               >
-                <Cardbutton>{element.receiver.name}님에게 보낸 신청입니다.</Cardbutton>
+                <Cardbutton>
+                  {element.state === "신청서 제출" && (
+                    <div>{element.receiver.name}님에게 보낸 신청입니다.</div>
+                  )}
+                  {element.state === "체결 완료" && (
+                    <div>
+                      {element.receiver.name}님에게 신청 - 진행중인 과외입니다.
+                    </div>
+                  )}
+                  {element.state === "종료" && (
+                    <div>
+                      {element.receiver.name}님에게 신청 - 종료된 과외입니다.
+                    </div>
+                  )}
+                </Cardbutton>
               </Link>
             </Cardelement>
             <Cardelement>기간:</Cardelement>
             <Cardelement>
-              <Cardbutton>진행</Cardbutton>
-              <Cardbutton>완료</Cardbutton>
-              <Cardbutton>삭제</Cardbutton>
+              <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
+                삭제
+              </Cardbutton>
             </Cardelement>
           </Card>
         ))}

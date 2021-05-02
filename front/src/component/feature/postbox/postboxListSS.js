@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import Ratingdropbtn from "./Ratingdropbtn";
+import "./Ratingdropbtn.css";
 // 학생이 보낸 내역 목록
 // 진행, 완료 기능 만들고 후기 만드려고 미뤄둠
 
@@ -43,6 +45,7 @@ const Cardbutton = styled.button`
 
 const PostboxListSS = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getSend = async () => {
@@ -60,6 +63,23 @@ const PostboxListSS = () => {
     getSend();
   }, []);
 
+  const deleteSend = tel => {
+    console.log(tel);
+
+    if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
+      axios.delete(
+        `http://localhost:8080/students/deleteSending?teacher_tel=${tel}`,
+        {
+          headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+          data: { teacher_tel: tel },
+        }
+      );
+      // .then(() => {
+      //   window.location.reload(); // Add this to reload the page.
+      // });
+    }
+  };
+
   return (
     <Container>
       <CardList>
@@ -72,25 +92,42 @@ const PostboxListSS = () => {
                   pathname: "/postboxdetailT",
                   state: {
                     name: element.receiver.name,
-                    university : element.receiver.university,
-                    major : element.receiver.major,
-                    subject : element.receiver.subject,
-                    region : element.receiver.region,
-                    tel : element.receiver.tel,
-                    career : element.receiver.career,
-                    intro : element.receiver.intro,
-                    plan : element.receiver.plan,
+                    university: element.receiver.university,
+                    major: element.receiver.major,
+                    subject: element.receiver.subject,
+                    region: element.receiver.region,
+                    tel: element.receiver.tel,
+                    career: element.receiver.career,
+                    intro: element.receiver.intro,
+                    plan: element.receiver.plan,
                   },
                 }}
               >
-                <Cardbutton>{element.receiver.name}님에게 보낸 신청입니다.</Cardbutton>
+                <Cardbutton>
+                  {element.state === "신청서 제출" && (
+                    <div>{element.receiver.name}님에게 보낸 신청입니다.</div>
+                  )}
+                  {element.state === "체결 완료" && (
+                    <div>
+                      {element.receiver.name}님에게 신청 - 진행중인 과외입니다.
+                    </div>
+                  )}
+                  {element.state === "종료" && (
+                    <div>
+                      {element.receiver.name}님에게 신청 - 종료된 과외입니다.
+                    </div>
+                  )}
+                </Cardbutton>
               </Link>
             </Cardelement>
             <Cardelement>기간 : </Cardelement>
             <Cardelement>
-              <Cardbutton>진행</Cardbutton>
-              <Cardbutton>완료</Cardbutton>
-              <Cardbutton>삭제</Cardbutton>
+              <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
+                삭제
+              </Cardbutton>
+              {element.state == "체결 완료" && (
+                <Ratingdropbtn tel={element.receiver.tel} />
+              )}
             </Cardelement>
           </Card>
         ))}

@@ -42,7 +42,7 @@ const Cardbutton = styled.button`
 
 const PostboxListRS = () => {
   const [data, setData] = useState([]);
-
+  const [connect, setConnect] = useState(false);
   useEffect(() => {
     const getRecieve = async () => {
       const dataSRecieve = await axios.get(
@@ -59,6 +59,28 @@ const PostboxListRS = () => {
     getRecieve();
   }, []);
 
+  const deleteSend = tel => {
+    console.log(tel);
+
+    if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
+      axios.delete(
+        "http://localhost:8080/students/deleteSending",
+        {
+          data: { teacher_tel: tel },
+          headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+        }
+        // {
+        //   teacher_tel : tel,
+        // },
+        // {
+        //   headers: {
+        //     "X-AUTH-TOKEN": localStorage.getItem("token"),
+        //   },
+        // }
+      );
+    }
+  };
+
   return (
     <Container>
       <CardList>
@@ -71,25 +93,27 @@ const PostboxListRS = () => {
                   pathname: "/postboxdetailT",
                   state: {
                     name: element.sender.name,
-                    university : element.sender.university,
-                    major : element.sender.major,
-                    subject : element.sender.subject,
-                    region : element.sender.region,
-                    tel : element.sender.tel,
-                    career : element.sender.career,
-                    intro : element.sender.intro,
-                    plan : element.sender.plan,
+                    university: element.sender.university,
+                    major: element.sender.major,
+                    subject: element.sender.subject,
+                    region: element.sender.region,
+                    tel: element.sender.tel,
+                    career: element.sender.career,
+                    intro: element.sender.intro,
+                    plan: element.sender.plan,
                   },
                 }}
               >
-                <Cardbutton>{element.sender.name}님이 보낸 신청입니다.</Cardbutton>
+                <Cardbutton>
+                  {element.sender.name}님이 보낸 신청입니다.
+                </Cardbutton>
               </Link>
             </Cardelement>
             <Cardelement>기간:</Cardelement>
             <Cardelement>
-              <Cardbutton>진행</Cardbutton>
-              <Cardbutton>완료</Cardbutton>
-              <Cardbutton>삭제</Cardbutton>
+              <Cardbutton onClick={() => deleteSend(element.sender.tel)}>
+                삭제
+              </Cardbutton>
             </Cardelement>
           </Card>
         ))}
