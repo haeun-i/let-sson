@@ -65,6 +65,7 @@ const INITIAL_STATE = {
   noncontact:'',
   region: "",
   subject: "",
+  telCheck : "",
 };
 
 const reducer = (state, action) => {
@@ -91,6 +92,8 @@ const reducer = (state, action) => {
       return { ...state, pay: action.pay };
     case "setTel":
       return { ...state, tel: action.tel };
+    case "setTelcheck":
+      return { ...state, telCheck: action.telCheck };
     case "setEmail":
       return { ...state, email: action.email };
     case "setContact":
@@ -111,6 +114,8 @@ const Stusign = () => {
   const history = useHistory();
 
   useEffect(() => {
+
+
     if (state.tel.length === 10) {
       dispatch({
         type: "setTel",
@@ -126,6 +131,7 @@ const Stusign = () => {
       });
     }
   }, [state.tel]);
+
 
   const emailValidation = email => {
     const emailStat = AuthEmail(email);
@@ -150,15 +156,25 @@ const Stusign = () => {
       state.subject === ""
     ) {
       alert("필수 정보가 모두 기입되었는지 확인 해주세요.");
-    } else if (!emailValidation(state.email)) {
+    } 
+    else if (!emailValidation(state.email)) {
       alert("이메일 형식이 올바르지 않습니다.");
-    } else if (!phoneValidation(state.tel)) {
+    } 
+    else if (!phoneValidation(state.tel)) {
       alert("핸드폰 번호 형식이 올바르지 않습니다.( '-' 포함)");
-    } else if (state.password.length < 8) {
+    }else if(state.telCheck === "") {
+      alert("전화번호 중복 여부를 체크해주세요.")
+    }else if (state.tel !== "" && state.telCheck === "false"){
+      alert("중복되지 않은 전화번호를 입력하세요.")
+      dispatch({ type: "setTelcheck", telCheck : "" });
+    }
+    else if (state.password.length < 8) {
       alert("비밀번호는 8자리 이상이어야 합니다.");
-    } else if (state.password !== state.passcheck) {
+    } 
+    else if (state.password !== state.passcheck) {
       alert("비밀번호가 일치하지 않습니다.");
-    } else {
+    }
+    else {
       alert("회원가입이 완료되었습니다.");
       console.log(state);
       axios.post("http://localhost:8080/students/join", {

@@ -35,7 +35,7 @@ const InputBox = styled.input`
     return (
         <Box>
             <Text>나이를 입력 해주세요</Text>
-            <label><InputBox type="text" value={state.age}
+            <label><InputBox type="number" value={state.age}
             onChange={(e) =>
                 dispatch({ type: "setAge", age: e.currentTarget.value })
             }
