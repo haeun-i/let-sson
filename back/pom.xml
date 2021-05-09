@@ -156,7 +156,7 @@
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.9.1</version>
 				<configuration>
-					<workingDirectory>C:\Users\gkdms\Desktop\let'sson\front</workingDirectory>
+					<workingDirectory>C:\Users\user\Desktop\frontEnd\winterw\front</workingDirectory>
 					<installDirectory>target</installDirectory>
 				</configuration>
 				<executions>
@@ -166,8 +166,8 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v14.15.3</nodeVersion>
-							<npmVersion>6.14.9</npmVersion>
+							<nodeVersion>v12.18.4</nodeVersion>
+							<npmVersion>6.14.6</npmVersion>
 						</configuration>
 					</execution>
 					<execution>
@@ -199,7 +199,7 @@
 						<configuration>
 							<target>
 								<copy todir="${project.build.directory}/classes/public">
-									<fileset dir="C:/Users/gkdms/Desktop/let'sson/front/build"/>
+									<fileset dir="C:/Users/user/Desktop/frontEnd/winterw/front/build"/>
 								</copy>
 							</target>
 						</configuration>

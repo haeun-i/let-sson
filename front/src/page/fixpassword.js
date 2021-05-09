@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import { useHistory } from "react-router-dom";
+import {useLocation} from "react-router";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
 import axios from "axios";
@@ -65,6 +66,8 @@ const FindInput = styled.input`
   height: 100%;
 `;
 
+
+
 const INITIAL_STATE = {
   checkpassword: "",
   password: "",
@@ -82,15 +85,21 @@ const reducer = (state, action) => {
 const Fixpassword = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const history = useHistory();
+  const location = useLocation();
+  const tel = location.state.tel;
+
+  
 
   const confirm = async e => {
     e.preventDefault();
-    const data = { password: state.password, checkpassword: state.checkpassword };
+    if(state.password !== state.checkpassword){
+      alert("비밀번호가 일치하지 않습니다.")
+    }else{
+      const data = { password: state.password ,tel:tel};
     console.log(data);
     await axios
-      .get("http://localhost:8080/users/findID", {
-        params: { password: state.password, checkpassword: state.checkpassword },
-      })
+      .put(`http://localhost:8080/users/resetPassword/?password=${state.password}&tel=${tel}`,
+      )
       .then(function (response) {
         console.log(response);
         alert("비밀번호 수정 완료.");
@@ -99,6 +108,7 @@ const Fixpassword = () => {
       .catch(function (error) {
         console.log(error);
       });
+    }
   };
 
   const handleChangeP = e => {
@@ -115,13 +125,13 @@ const Fixpassword = () => {
         <Form>
           <FindText>
             <label classpassword="tofindtel">
-              <LogText1> 비밀번호 </LogText1>
+              <LogText1> 새 비밀번호 </LogText1>
               <FindInput type="text" onChange={handleChangeP}></FindInput>
             </label>
           </FindText>
           <FindText>
             <label classpassword="tofindtel">
-              <LogText2>비밀번호 확인</LogText2>
+              <LogText2>새 비밀번호 확인</LogText2>
               <FindInput
                 type="text"
                 placeholder="비밀번호 확인"

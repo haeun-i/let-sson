@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer,useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
@@ -83,12 +83,31 @@ const reducer = (state, action) => {
       return { ...state, name: action.name };
     case "setTel":
       return { ...state, tel: action.tel };
+    case "checkTel":
+      return { ...state, tel: action.tel };
   }
 };
 
 const Findpassword = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const history = useHistory();
+
+  useEffect(() => {
+    if (state.tel.length === 10) {
+      dispatch({
+        type: "checkTel",
+        tel: state.tel.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"),
+      });
+    }
+    if (state.tel.length === 13) {
+      dispatch({
+        type: "checkTel",
+        tel: state.tel
+          .replace(/-/g, "")
+          .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"),
+      });
+    }
+  }, [state.tel]);
 
   const confirm = async e => {
     e.preventDefault();
@@ -100,8 +119,15 @@ const Findpassword = () => {
       })
       .then(function (response) {
         console.log(response);
-        alert("비밀번호 변경 페이지로 이동합니다.");
-        history.push("/fixpassword");
+        if (response.data === true){
+          alert("비밀번호 변경 페이지로 이동합니다.");
+          history.push({
+            pathname:"/fixpassword",
+            state:{tel:state.tel},
+        });
+        } else if (response.data === false){
+          alert("회원정보와 일치하는 전화번호가 존재하지 않습니다.");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -133,6 +159,7 @@ const Findpassword = () => {
               <FindInput
                 type="text"
                 placeholder="핸드폰 번호"
+                value={state.tel}
                 onChange={handleChangeP}
               ></FindInput>
             </label>
