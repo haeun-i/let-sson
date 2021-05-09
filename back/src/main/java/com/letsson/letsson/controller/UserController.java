@@ -75,6 +75,7 @@ public class UserController {
         else return false;
 
     }
+    
     @PutMapping("/resetPassword")
     @ApiOperation(value="resetPassword",tags="비밀 번호 수정")
     public ResponseEntity<? extends BasicResponse> resetStudentPassword(@RequestParam("tel") String tel, @RequestParam("password")String password)
