@@ -6,7 +6,7 @@ target/
 
 ### my ignore ###
 application-credentials.yml
-
+.env
 ### STS ###
 .apt_generated
 .classpath
