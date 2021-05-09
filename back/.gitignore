@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### my ignore ###
-###application.properties###
+application-credentials.yml
 
 ### STS ###
 .apt_generated

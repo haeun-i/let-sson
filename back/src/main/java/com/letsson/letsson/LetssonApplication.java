@@ -13,7 +13,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class LetssonApplication{
 	public static final String APPLICATION_LOCATIONS = "spring.config.location="
-			+ "classpath:application.properties";
+			+ "classpath:application.yml";
 
 	/*@PostConstruct
 	public void started()
