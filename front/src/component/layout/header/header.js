@@ -15,7 +15,7 @@ const HeadButton = styled.span`
 `;
 
 const Head = styled.header`
-  width : 100%;
+  width: 100%;
 `;
 
 function HeadButtons() {
@@ -23,16 +23,15 @@ function HeadButtons() {
   const role = localStorage.getItem("role");
   const history = useHistory();
 
-  const myPageUrl = (e) =>{
-    if(role ==="teacher"){
+  const myPageUrl = e => {
+    if (role === "teacher") {
       history.push("/mypaget/profile");
-    }else if(role ==="student"){
+    } else if (role === "student") {
       history.push("/mypages/profile");
     }
   };
 
-
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     localStorage.removeItem("token");
     history.push("/login");
@@ -47,6 +46,7 @@ function HeadButtons() {
           </button>
         </Link>
       </span>
+      <text>믿음과 신뢰의 이유있는 선택</text>
       <HeadButton>
         <span>
           <DropbtnPost />
