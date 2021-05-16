@@ -10,54 +10,94 @@ const Log = styled.form`
   position: absolute;
   width: 400px;
   height: 180px;
-  margin-left: -200px;
-  margin-top: -90px;
-  left: 70%;
+  margin-left: -230px;
+  margin-top: -100px;
+  left: 77%;
   top: 43%;
-  padding-top: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: solid 1px black;
 `;
 const LogText1 = styled.span`
-  text-align: right;
-  padding-right: 30px;
-  margin-left: 35px;
+  position: absolute;
+  top: 0vh;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #02001e;
 `;
 const LogText2 = styled.span`
-  text-align: right;
-  padding-right: 45px;
-  margin-left: 35px;
+  position: absolute;
+  top: 20vh;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #02001e;
 `;
-const LogInput = styled.input`
-  background-color: white;
-  border: solid 1px black;
-  margin-right: 0;
-  width: 55%;
-  height: 100%;
+const LogInput1 = styled.input`
+  position: absolute;
+  top: 7vh;
+  width: 30vw;
+  height: 40px;
+
+  border: 2px solid #463ea0;
+  box-sizing: border-box;
+  border-radius: 2px;
 `;
+
+const LogInput2 = styled.input`
+  position: absolute;
+  top: 27vh;
+  width: 30vw;
+  height: 40px;
+
+  border: 2px solid #463ea0;
+  box-sizing: border-box;
+  border-radius: 2px;
+`;
+
 const LogBtns = styled.div`
   margin-top: 10px;
   margin-left: 3%;
 `;
 const LogBtn = styled.input`
-  height: 50px;
-  color: white;
-  padding-left: 150px;
-  padding-right: 150px;
-  border-radius: 50px;
-  font-size: 16px;
-  border: none;
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
-  background: linear-gradient(
-    to right,
-    rgba(104, 104, 104, 1) 18%,
-    rgba(43, 62, 104, 1) 70%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#686868', endColorstr='#2b3e68',GradientType=1 ); /* IE6-9 */
+  position: absolute;
+  width: 112px;
+  height: 35px;
+
+  background: #463ea0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  position: absolute;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 26px;
+
+  top: 39vh;
+  left: 24vw;
+
+  color: #ffffff;
+`;
+
+const Letsson = styled.p`
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: normal;
+font-size: 2em;
+line-height: 26px;
+
+top: 39vh;
+left: 24vw;
+
+color: #ffffff;
 `;
 
 const TeaLogin = () => {
@@ -81,18 +121,18 @@ const TeaLogin = () => {
     }
   }, [state.telT]);
 
-  const PhoneInput = (e) => {
+  const PhoneInput = e => {
     const regex = /^[0-9\b -]{0,13}$/;
     if (regex.test(e.target.value)) {
       dispatch({ type: "checkTelT", telT: e.target.value });
     }
   };
 
-  const PasswordInput = (e) => {
+  const PasswordInput = e => {
     dispatch({ type: "checkPasswordT", passwordT: e.target.value });
   };
 
-  const TeaLoged = async (e) => {
+  const TeaLoged = async e => {
     e.preventDefault();
     console.log(state.telT);
     console.log(state.passwordT);
@@ -102,13 +142,13 @@ const TeaLogin = () => {
         tel: state.telT,
         password: state.passwordT,
       })
-      .then((res) => {
+      .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data);
         history.push("/loginsuccess");
         localStorage.setItem("role", "teacher");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         alert("로그인에 실패하였습니다. 아이디와 비밀번호를 확인 해주세요.");
       });
@@ -118,22 +158,22 @@ const TeaLogin = () => {
     <Log>
       <label className="phoneNum">
         <LogText1>휴대폰번호</LogText1>
-        <LogInput
+        <LogInput1
           type="text"
           value={state.telT}
           onChange={PhoneInput}
           placeholder="010-0000-0000"
-        ></LogInput>
+        ></LogInput1>
       </label>
       <br></br>
       <label className="password">
         <LogText2>비밀번호</LogText2>
-        <LogInput
+        <LogInput2
           type="password"
           value={state.passwordT}
           onChange={PasswordInput}
           placeholder="8글자 이상"
-        ></LogInput>
+        ></LogInput2>
       </label>
 
       <LogBtns>

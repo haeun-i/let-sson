@@ -14,6 +14,10 @@ const HeadButton = styled.span`
   margin-right: 20px;
 `;
 
+const Head = styled.header`
+  width : 100%;
+`;
+
 function HeadButtons() {
   const user = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -35,7 +39,7 @@ function HeadButtons() {
   };
 
   return (
-    <header>
+    <Head>
       <span className="logoimage">
         <Link to="/">
           <button>
@@ -67,7 +71,7 @@ function HeadButtons() {
           </span>
         )}
       </HeadButton>
-    </header>
+    </Head>
   );
 }
 

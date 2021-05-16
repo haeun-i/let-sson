@@ -2,6 +2,7 @@ head {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  opacity:0;
 }
 
 .logoimage {

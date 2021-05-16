@@ -16,17 +16,24 @@ import Stusigncontact from "../component/feature/studentSign/contact";
 import Stusignemail from "../component/feature/studentSign/email";
 import Stusignpassword from "../component/feature/studentSign/password";
 import { AuthEmail, AuthPhone } from "../component/shared/auth";
+import Signlogotext from "../component/feature/studentSign/signlogotext";
 
 const Wrapper = styled.form`
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #f6f4f3;
+  position: absolute;
+  left: 20vw;
+  top: 35vh;
+  width: 60vw;
   padding-top: 30px;
+  margin-bottom: 30px;
+  border-top: solid 20px #463ea0;
+  border-left: solid 40px #463ea0;
+  border-right: solid 40px #463ea0;
+  border-bottom: solid 20px #463ea0;
 `;
-
+const Body = styled.div`
+  overflow: auto;
+  background-color: black;
+`;
 const SignBtns = styled.div`
   margin-top: 10px;
   margin-left: 55%;
@@ -53,8 +60,8 @@ const INITIAL_STATE = {
   name: "",
   is_stu: "",
   age: "",
-  male:"",
-  female:'',
+  male: "",
+  female: "",
   proper_gender: "",
   pay: "",
   tel: "",
@@ -62,10 +69,10 @@ const INITIAL_STATE = {
   passcheck: "",
   email: "",
   contact: "",
-  noncontact:'',
+  noncontact: "",
   region: "",
   subject: "",
-  telCheck : "",
+  telCheck: "",
 };
 
 const reducer = (state, action) => {
@@ -97,9 +104,17 @@ const reducer = (state, action) => {
     case "setEmail":
       return { ...state, email: action.email };
     case "setContact":
-      return { ...state, contact: action.contact, noncontact: action.noncontact };
+      return {
+        ...state,
+        contact: action.contact,
+        noncontact: action.noncontact,
+      };
     case "setNoncontact":
-      return { ...state, noncontact: action.noncontact, contact: action.contact };
+      return {
+        ...state,
+        noncontact: action.noncontact,
+        contact: action.contact,
+      };
     case "setSubject":
       return { ...state, subject: action.subject };
     case "reset":
@@ -114,8 +129,6 @@ const Stusign = () => {
   const history = useHistory();
 
   useEffect(() => {
-
-
     if (state.tel.length === 10) {
       dispatch({
         type: "setTel",
@@ -131,7 +144,6 @@ const Stusign = () => {
       });
     }
   }, [state.tel]);
-
 
   const emailValidation = email => {
     const emailStat = AuthEmail(email);
@@ -156,25 +168,20 @@ const Stusign = () => {
       state.subject === ""
     ) {
       alert("필수 정보가 모두 기입되었는지 확인 해주세요.");
-    } 
-    else if (!emailValidation(state.email)) {
+    } else if (!emailValidation(state.email)) {
       alert("이메일 형식이 올바르지 않습니다.");
-    } 
-    else if (!phoneValidation(state.tel)) {
+    } else if (!phoneValidation(state.tel)) {
       alert("핸드폰 번호 형식이 올바르지 않습니다.( '-' 포함)");
-    }else if(state.telCheck === "") {
-      alert("전화번호 중복 여부를 체크해주세요.")
-    }else if (state.tel !== "" && state.telCheck === "false"){
-      alert("중복되지 않은 전화번호를 입력하세요.")
-      dispatch({ type: "setTelcheck", telCheck : "" });
-    }
-    else if (state.password.length < 8) {
+    } else if (state.telCheck === "") {
+      alert("전화번호 중복 여부를 체크해주세요.");
+    } else if (state.tel !== "" && state.telCheck === "false") {
+      alert("중복되지 않은 전화번호를 입력하세요.");
+      dispatch({ type: "setTelcheck", telCheck: "" });
+    } else if (state.password.length < 8) {
       alert("비밀번호는 8자리 이상이어야 합니다.");
-    } 
-    else if (state.password !== state.passcheck) {
+    } else if (state.password !== state.passcheck) {
       alert("비밀번호가 일치하지 않습니다.");
-    }
-    else {
+    } else {
       alert("회원가입이 완료되었습니다.");
       console.log(state);
       axios.post("http://localhost:8080/students/join", {
@@ -182,14 +189,14 @@ const Stusign = () => {
         is_stu: state.is_stu,
         age: parseInt(state.age),
         male: state.male,
-        female:state.female,
+        female: state.female,
         proper_gender: state.proper_gender,
         pay: parseInt(state.pay),
         tel: state.tel,
         password: state.password,
         email: state.email,
         contact: state.contact,
-        noncontact:state.noncontact,
+        noncontact: state.noncontact,
         region: state.region,
         subject: state.subject,
       });
@@ -200,31 +207,35 @@ const Stusign = () => {
   return (
     <div>
       <HeadButton />
-      <CounterContext.Provider value={{ state, dispatch }}>
-        <Wrapper onSubmit={Signed}>
-          <Stusignname />
-          <Stusignisstu />
-          <Stusignage />
-          <Stusigngender />
-          <Stusignpropergender />
-          <Stusignregion />
-          <Stusignsubject />
-          <Stusignpay />
-          <Stusigncontact />
-          <Stusignphone />
-          <Stusignemail />
-          <Stusignpassword />
+      <Body>
+        <Signlogotext />
 
-          <SignBtns>
-            <SignBtn type="submit" value="확인"></SignBtn>
-            <SignBtn
-              type="reset"
-              onClick={() => dispatch({ type: "reset" })}
-              value="취소"
-            ></SignBtn>
-          </SignBtns>
-        </Wrapper>
-      </CounterContext.Provider>
+        <CounterContext.Provider value={{ state, dispatch }}>
+          <Wrapper onSubmit={Signed}>
+            <Stusignname />
+            <Stusignisstu />
+            <Stusignage />
+            <Stusigngender />
+            <Stusignpropergender />
+            <Stusignregion />
+            <Stusignsubject />
+            <Stusignpay />
+            <Stusigncontact />
+            <Stusignphone />
+            <Stusignemail />
+            <Stusignpassword />
+
+            <SignBtns>
+              <SignBtn type="submit" value="확인"></SignBtn>
+              <SignBtn
+                type="reset"
+                onClick={() => dispatch({ type: "reset" })}
+                value="취소"
+              ></SignBtn>
+            </SignBtns>
+          </Wrapper>
+        </CounterContext.Provider>
+      </Body>
     </div>
   );
 };

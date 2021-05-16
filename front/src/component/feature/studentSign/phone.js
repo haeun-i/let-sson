@@ -10,24 +10,23 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
+  margin-left: 3vw;
   margin-top: 30px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #463ea0;
+  font-size: 1em;
 `;
 
 const InputBox = styled.input`
-  border: 0.05em solid #010440;
+  border: 2px solid #463ea0;
   margin-right: 0;
-  width: 55%;
-  padding-right: 40%;
+  width: 50vw;
   padding-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const Stusignphone = () => {
@@ -55,12 +54,15 @@ const Stusignphone = () => {
     const check2 = await axios.get(
       `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
     );
-    if(check1.data.confirm === "사용가능한 아이디입니다." && check2.data.confirm === "사용가능한 아이디입니다."){
+    if (
+      check1.data.confirm === "사용가능한 아이디입니다." &&
+      check2.data.confirm === "사용가능한 아이디입니다."
+    ) {
       alert("사용할 수 있는 전화번호입니다.");
-      dispatch({ type: "setTelcheck", telCheck : "true" });
-    }else {
+      dispatch({ type: "setTelcheck", telCheck: "true" });
+    } else {
       alert("중복으로 인하여 사용할 수 없는 전화번호입니다.");
-      dispatch({ type: "setTelcheck", telCheck : "false" });
+      dispatch({ type: "setTelcheck", telCheck: "false" });
     }
   };
 
