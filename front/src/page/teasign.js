@@ -170,24 +170,27 @@ const Teasign = () => {
       alert("회원가입이 완료되었습니다.");
       console.log(state);
       await axios.post("http://localhost:8080/teachers/join", {
-        name: state.name,
-        is_attend: state.is_attend,
-        age: parseInt(state.age),
-        male: state.male,
-        female:state.female,
-        prove_image: state.prove_image,
-        pay: parseInt(state.pay),
-        tel: state.tel,
-        password: state.password,
-        email: state.email,
-        contact: state.contact,
-        noncontact:state.noncontact,
-        region: state.region,
-        subject: state.subject,
-        major: state.major,
-        university: state.university,
-        intro: state.intro,
-      });
+          TeacherJoinDto : {
+            name: state.name,
+            is_attend: state.is_attend,
+            age: parseInt(state.age),
+            male: state.male,
+            female:state.female,
+            prove_image: state.prove_image,
+            pay: parseInt(state.pay),
+            tel: state.tel,
+            password: state.password,
+            email: state.email,
+            contact: state.contact,
+            noncontact:state.noncontact,
+            region: state.region,
+            subject: state.subject,
+            major: state.major,
+            university: state.university,
+            intro: state.intro,
+            file : state.prove_image,
+          }
+        });
       history.push("/login");
     }
   };
