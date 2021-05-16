@@ -5,6 +5,7 @@ import HeadButtons from "../component/layout/header/header";
 import SidebarMyPs from "../component/shared/myPageS/sidebarMyPs";
 import styled from "styled-components";
 import axios from "axios";
+import myPback from "./myPback.jpg";
 
 const Wrapper = styled.div`
   margin: 0;
@@ -12,7 +13,11 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  background-color: #f6f4f3;
+  background-image: url(${myPback});
+  background-size: cover;
+  position: absolute;
+  font-weight: bold;
+  font-size: 24px;
 `;
 
 const SaveNref = styled.button`
@@ -35,38 +40,44 @@ const Buttonfame = styled.div`
   margin-top: 20px;
 `;
 const Wrapper2 = styled.div`
-  width: 85%;
+  justify-content:center;
+  width: 917px;
+  background: #ffffff;
+  border: 1px solid #f3f2fc;
+  box-sizing: border-box;
+`;
+const Blue = styled.span`
+  color: #0d00a4;
 `;
 class MypageSp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    name: "",
-    subject: "",
-    region: "",
-    review: "",
-    intro: "",
-    goal: "",
+      name: "",
+      subject: "",
+      region: "",
+      review: "",
+      intro: "",
+      goal: "",
     };
     this.tmp = this.state;
-  };
-  
-    getData = async () => {
-        const dataS = await axios.get(
-          "http://localhost:8080/students/studentInfo",
-        { 
-          headers:{
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        }
-        )
-        this.setState(dataS.data.data);
-    }
+  }
 
-    componentDidMount() {
-        this.getData();
+  getData = async () => {
+    const dataS = await axios.get(
+      "http://localhost:8080/students/studentInfo",
+      {
+        headers: {
+          "X-AUTH-TOKEN": localStorage.getItem("token"),
+        },
       }
+    );
+    this.setState(dataS.data.data);
+  };
 
+  componentDidMount() {
+    this.getData();
+  }
 
   handleChange = e => {
     const value = e.target.value;
@@ -111,21 +122,20 @@ class MypageSp extends React.Component {
       tel: this.state.tel,
       username: this.state.username,
       enabled: this.state.enabled,
-    }
+    };
     console.log(dataList);
-    await axios.put(
-      "http://localhost:8080/students/modify",dataList,
-      { 
-        headers:{
+    await axios
+      .put("http://localhost:8080/students/modify", dataList, {
+        headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      }
-    ).then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   returning = e => {
@@ -138,11 +148,16 @@ class MypageSp extends React.Component {
         <HeadButtons />
         <SidebarMyPs />
         <Wrapper>
-          학생
+          <hr color="#0D00A4" width="0.1px" height="26px"></hr>
+          <Blue>학생</Blue> 페이지
           <Wrapper2>
             <SubmitS state={this.state} handleChange={this.handleChange} />
             <Buttonfame>
-              <SaveNref type="submit" value="확인" onClick={() => alert("저장이 완료되었습니다.")}>
+              <SaveNref
+                type="submit"
+                value="확인"
+                onClick={() => alert("저장이 완료되었습니다.")}
+              >
                 저장하기
               </SaveNref>
               <SaveNref name="refresh" onClick={this.returning}>
