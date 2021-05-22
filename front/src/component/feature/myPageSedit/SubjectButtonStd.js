@@ -6,7 +6,7 @@ const Button = styled.input`
   background: white;
   width: 13%;
   height: 40px;
-  border: 1px dashed #010440;
+  border: 1px dashed #f3f2fc;
   margin: 1%;
   cursor: pointer;
 `;
@@ -30,7 +30,7 @@ const SubjectButtonStdMy = ({ isclicked, handleclick, subjectName }) => {
   const handleChange = e => {
     e.preventDefault();
     if (isclicked) {
-      setBackground("#010440");
+      setBackground("#f3f2fc");
       setTextcolor("white");
     } else {
       setBackground("white");

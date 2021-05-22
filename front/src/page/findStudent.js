@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   background-color: #f6f4f3;
+  width: 100%;
+  height: 100%;
 `;
 
 const Side = styled.span`
