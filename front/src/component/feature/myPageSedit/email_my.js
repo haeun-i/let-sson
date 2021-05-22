@@ -1,7 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import styled from "styled-components";
 import { ModifyContextS } from "../../../page/mypageSedit";
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -9,30 +8,37 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
-  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 7%;
+  background: #ffffff;
+  margin-top: 10px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d00a4;
 `;
-
 const InputBox = styled.input`
   border: 0.05em solid #010440;
   margin-right: 0;
-  width: 55%;
-  padding-right: 40%;
   padding-bottom: 30px;
+  margin-right: 0;
+  width: 100%;
+  height: 52px;
+  padding-bottom: 0px;
+  background-color: #f4f4fc;
+  border: 3px solid #f4f4fc;
+  box-sizing: border-box;
 `;
 
 const StusignemailMy = () => {
   const { state, dispatch } = useContext(ModifyContextS);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setEmail", email: e.currentTarget.value });
   };
 

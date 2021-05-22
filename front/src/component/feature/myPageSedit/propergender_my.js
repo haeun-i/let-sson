@@ -10,27 +10,29 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
-  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 7%;
+  background: #ffffff;
+  margin-top: 10px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d00a4;
 `;
 
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
 const StusignpropergenderMy = () => {
   const { state, dispatch } = useContext(ModifyContextS);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setPropergender", proper_gender: e.currentTarget.value });
   };
 
