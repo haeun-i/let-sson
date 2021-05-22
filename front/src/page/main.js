@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import mypic from "./main_image.png";
 import Logotext from "../component/feature/main/logotext";
 

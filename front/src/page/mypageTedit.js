@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from "react";
 import HeadButton from "../component/layout/header/header";
-import HeadSaveNrefs from "../component/layout/header/header";
 import SidebarMyPt from "../component/shared/myPageT/sidebarMyPt";
 import styled from "styled-components";
 import TeasignnameMy from "../component/feature/myPageTedit/name_my";

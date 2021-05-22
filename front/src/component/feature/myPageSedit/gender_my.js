@@ -1,7 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import styled from "styled-components";
 import { ModifyContextS } from "../../../page/mypageSedit";
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -9,16 +8,19 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
-  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 7%;
+  background: #ffffff;
+  margin-top: 10px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d00a4;
 `;
 
 const Btn = styled.div`
@@ -29,10 +31,10 @@ const Btn = styled.div`
 const StusigngenderMy = () => {
   const { state, dispatch } = useContext(ModifyContextS);
 
-  const handleChangeMale = (e) => {
+  const handleChangeMale = e => {
     dispatch({ type: "setMale", male: true, female: false });
   };
-  const handleChangeFemale = (e) => {
+  const handleChangeFemale = e => {
     dispatch({ type: "setFemale", male: false, female: true });
   };
 

@@ -58,7 +58,6 @@ const Cardelement3 = styled.div`
   margin-right : 15%;
   align-items: center;
   color : grey;
-  text-align: center;
 `;
 
 const Cardelement4 = styled.div`
@@ -151,7 +150,13 @@ const PostboxListSS = () => {
                 </Cardbutton>
               </Link>
             </Cardelement2>
-            <Cardelement3>기간 : </Cardelement3>
+            <Cardelement3>
+              <div>
+              {element.create_date.split("T")[0]}
+              <br></br>
+              {element.create_date.split("T")[1]}
+              </div>
+            </Cardelement3>
             <Cardelement4>
               <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
                 삭제

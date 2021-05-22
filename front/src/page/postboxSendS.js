@@ -15,6 +15,12 @@ justify-content: center;
 background-image: url(${successbackg});
 background-size: cover;
 `
+const Text2 = styled.div`
+  margin-left: 25%;
+  margin-right: 60%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+`;
 
 class PostboxSendS extends React.Component{
     render(){
@@ -22,6 +28,10 @@ class PostboxSendS extends React.Component{
             <div>
                 <HeadButtons/>
             <Wrapper>
+                <Text2>
+                    <hr color="#0D00A4" width="45px" height="10px"></hr>
+                    <Blue>학생</Blue> 페이지
+                </Text2>
                 <PostboxListSS/>
             </Wrapper>
             </div>

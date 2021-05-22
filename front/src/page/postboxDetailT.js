@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HeadButtons from "../component/layout/header/header";
 import styled from "styled-components";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Xbutton = styled.button`
   width: 30px;
