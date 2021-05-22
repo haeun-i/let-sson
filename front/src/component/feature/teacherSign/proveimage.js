@@ -25,7 +25,10 @@ const Teasignprove = () => {
   const { state, dispatch } = useContext(CounterContext);
 
   const handleChange = (e) => {
-    dispatch({ type: "setImage", prove_image: e.currentTarget.value });
+    // console.log(e.target.files);
+    // const file = e.target.files[0];
+    // dispatch({ type: "setImage", prove_image: file });
+    // console.log(state.prove_image)
   };
 
   return (
@@ -36,7 +39,6 @@ const Teasignprove = () => {
           type="file"
           accept="image/png, image/jpg"
           name="proveimage"
-          value={state.prove_image}
           onChange={handleChange}
         ></input>
       </label>

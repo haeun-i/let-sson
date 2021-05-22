@@ -149,6 +149,10 @@ const Teasign = () => {
 
   const Signed = async e => {
     e.preventDefault();
+    // const form = new FormData();
+    // form.append("photo", state.prove_image);
+
+
     if (
       state.name === "" ||
       state.tel === "" ||

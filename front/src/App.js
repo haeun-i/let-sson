@@ -25,11 +25,13 @@ import PostboxRecieveS from "./page/postboxRecieveS";
 import PostboxRecieveT from "./page/postboxRecieveT";
 import PostboxDetailT from "./page/postboxDetailT";
 import PostboxDetailS from "./page/postboxDetailS";
+import Posttest from "./page/posttest";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/posttest" exact={true} component={Posttest} />
         <Route path="/fixpassword" exact={true} component={Fixpassword} />
         <Route path="/findid" exact={true} component={Findid} />
         <Route path="/findpassword" exact={true} component={Findpassword} />
