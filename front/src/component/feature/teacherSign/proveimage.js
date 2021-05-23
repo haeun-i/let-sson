@@ -32,10 +32,10 @@ const Teasignprove = () => {
   const { state, dispatch } = useContext(CounterContext);
 
   const handleChange = (e) => {
-    // console.log(e.target.files);
-    // const file = e.target.files[0];
-    // dispatch({ type: "setImage", prove_image: file });
-    // console.log(state.prove_image)
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    dispatch({ type: "setImage", prove_image: file });
+    console.log(state.prove_image)
   };
 
   return (

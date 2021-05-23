@@ -47,16 +47,22 @@ const Teasignphone = () => {
   };
 
   const handleClick = async e => {
+    e.preventDefault();
     const check1 = await axios.get(
       `http://localhost:8080/students/idCheck?tel=${state.tel}`
     );
     const check2 = await axios.get(
       `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
     );
-    if (check1.data.confirm === "NO" || check2.data.confirm === "NO") {
-      console.log("가입불가");
+    if (
+      check1.data.confirm === "사용가능한 아이디입니다." &&
+      check2.data.confirm === "사용가능한 아이디입니다."
+    ) {
+      alert("사용할 수 있는 전화번호입니다.");
+      dispatch({ type: "setTelcheck", telCheck: "true" });
     } else {
-      console.log("가입가능");
+      alert("중복으로 인하여 사용할 수 없는 전화번호입니다.");
+      dispatch({ type: "setTelcheck", telCheck: "false" });
     }
   };
 

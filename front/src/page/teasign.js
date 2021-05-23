@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
@@ -9,7 +9,6 @@ import Teasignpay from "../component/feature/teacherSign/pay";
 import Teasignregion from "../component/feature/teacherSign/region";
 import Teasigncontact from "../component/feature/teacherSign/contact";
 import Teasignattend from "../component/feature/teacherSign/attend";
-import Teasignprove from "../component/feature/teacherSign/proveimage";
 import Teasignintro from "../component/feature/teacherSign/intro";
 import Teasignpassword from "../component/feature/teacherSign/password";
 import Teasignemail from "../component/feature/teacherSign/email";
@@ -38,7 +37,7 @@ const Wrapper = styled.form`
 `;
 const Body = styled.div`
   overflow: auto;
-  background-color: #F5F4F2;
+  background-color: #f5f4f2;
 `;
 const SignBtns = styled.div`
   margin-top: 10px;
@@ -60,24 +59,48 @@ const SignBtn = styled.input`
   margin-bottom: 30px;
 `;
 
+const Box = styled.div`
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3vw;
+  margin-top: 30px;
+`;
+
+const Text = styled.div`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #463ea0;
+  font-size: 1em;
+`;
+
+const InputBox = styled.input`
+  border: 2px solid #463ea0;
+  margin-right: 0;
+  width: 50vw;
+  padding-bottom: 30px;
+`;
+
 export const CounterContext = React.createContext();
 //
 const INITIAL_STATE = {
   name: "",
   male: "",
-  female:'',
+  female: "",
   pay: 0,
   tel: "",
   password: "",
   passcheck: "",
   email: "",
   contact: "",
-  noncontact:'',
+  noncontact: "",
   is_attend: "",
   intro: "",
   university: "",
   major: "",
-  prove_image: "",
   subject: "",
 };
 
@@ -88,7 +111,7 @@ const reducer = (state, action) => {
     case "setAge":
       return { ...state, age: action.age };
     case "setMale":
-      return { ...state, male: action.male, female: action.female  };
+      return { ...state, male: action.male, female: action.female };
     case "setFemale":
       return { ...state, female: action.female, male: action.male };
     case "setRegion":
@@ -104,9 +127,17 @@ const reducer = (state, action) => {
     case "setEmail":
       return { ...state, email: action.email };
     case "setContact":
-      return { ...state, contact: action.contact, noncontact: action.noncontact };
+      return {
+        ...state,
+        contact: action.contact,
+        noncontact: action.noncontact,
+      };
     case "setNoncontact":
-      return { ...state, noncontact: action.noncontact, contact: action.contact };
+      return {
+        ...state,
+        noncontact: action.noncontact,
+        contact: action.contact,
+      };
     case "setSubject":
       return { ...state, subject: action.subject };
     case "setIsattend":
@@ -115,8 +146,6 @@ const reducer = (state, action) => {
       return { ...state, university: action.university };
     case "setMajor":
       return { ...state, major: action.major };
-    case "setImage":
-      return { ...state, prove_image: action.prove_image };
     case "setIntro":
       return { ...state, intro: action.intro };
     case "reset":
@@ -128,6 +157,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [files, setFiles] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -159,11 +189,33 @@ const Teasign = () => {
     return phoneStat;
   };
 
+  const handleChange = e => {
+    e.preventDefault();
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    setFiles(file);
+  };
+
   const Signed = async e => {
     e.preventDefault();
-    // const form = new FormData();
-    // form.append("photo", state.prove_image);
-
+    const formData = new FormData();
+    // formData.append("contact", state.contact);
+    // formData.append("email", state.email);
+    // formData.append("female", state.female);
+    // formData.append("intro", state.intro);
+    // formData.append("is_attend", state.is_attend);
+    // formData.append("major", state.major);
+    // formData.append("male", state.male);
+    // formData.append("name", state.name);
+    // formData.append("nonContact", state.noncontact);
+    // formData.append("password", state.password);
+    // formData.append("pay", state.pay);
+    // formData.append("region", state.region);
+    // formData.append("role", state.role);
+    // formData.append("subject", state.subject);
+    // formData.append("tel", state.tel);
+    // formData.append("university", state.university);
+    // formData.append("file", files);
 
     if (
       state.name === "" ||
@@ -185,28 +237,11 @@ const Teasign = () => {
     } else {
       alert("회원가입이 완료되었습니다.");
       console.log(state);
-      await axios.post("http://localhost:8080/teachers/join", {
-          TeacherJoinDto : {
-            name: state.name,
-            is_attend: state.is_attend,
-            age: parseInt(state.age),
-            male: state.male,
-            female:state.female,
-            prove_image: state.prove_image,
-            pay: parseInt(state.pay),
-            tel: state.tel,
-            password: state.password,
-            email: state.email,
-            contact: state.contact,
-            noncontact:state.noncontact,
-            region: state.region,
-            subject: state.subject,
-            major: state.major,
-            university: state.university,
-            intro: state.intro,
-            file : state.prove_image,
-          }
-        });
+      await axios.post("http://localhost:8080/teachers/join", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       history.push("/login");
     }
   };
@@ -215,33 +250,43 @@ const Teasign = () => {
     <div>
       <HeadButton />
       <Body>
-      <Signlogotext></Signlogotext>
-      <CounterContext.Provider value={{ state, dispatch }}>
-        <Wrapper onSubmit={Signed}>
-          <Teasignname />
-          <Teasignsubject />
-          <Teasigngender />
-          <Teasignpay />
-          <Teasignregion />
-          <Teasigncontact />
-          <Teasignattend />
-          <Teasignuni />
-          <Teasignprove />
-          <Teasignintro />
-          <Teasignemail />
-          <Teasignphone />
-          <Teasignpassword />
+        <Signlogotext></Signlogotext>
+        <CounterContext.Provider value={{ state, dispatch }}>
+          <Wrapper onSubmit={Signed}>
+            <Teasignname />
+            <Teasignsubject />
+            <Teasigngender />
+            <Teasignpay />
+            <Teasignregion />
+            <Teasigncontact />
+            <Teasignattend />
+            <Teasignuni />
+            <Box>
+              <Text>학력을 증명할 사진을 첨부해주세요 ex)재학증명서</Text>
+              <label className="teaProve">
+                <input
+                  type="file"
+                  accept="image/png, image/jpg"
+                  name="proveimage"
+                  onChange={handleChange}
+                ></input>
+              </label>
+            </Box>
+            <Teasignintro />
+            <Teasignemail />
+            <Teasignphone />
+            <Teasignpassword />
 
-          <SignBtns>
-            <SignBtn type="submit" value="확인"></SignBtn>
-            <SignBtn
-              type="reset"
-              onClick={() => dispatch({ type: "reset" })}
-              value="취소"
-            ></SignBtn>
-          </SignBtns>
-        </Wrapper>
-      </CounterContext.Provider>
+            <SignBtns>
+              <SignBtn type="submit" value="확인"></SignBtn>
+              <SignBtn
+                type="reset"
+                onClick={() => dispatch({ type: "reset" })}
+                value="취소"
+              ></SignBtn>
+            </SignBtns>
+          </Wrapper>
+        </CounterContext.Provider>
       </Body>
     </div>
   );
