@@ -17,17 +17,29 @@ import Teasignphone from "../component/feature/teacherSign/phone";
 import Teasignuni from "../component/feature/teacherSign/university";
 import styled from "styled-components";
 import { AuthEmail, AuthPhone } from "../component/shared/auth";
+import Signlogotext from "../component/feature/studentSign/signlogotext";
 
 const Wrapper = styled.form`
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #f6f4f3;
-  padding-top: 30px;
-`;
+    left: 20vw;
+    top: 35vh;
+    width: 60vw;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    border-top: solid 20px #463ea0;
+    border-left: solid 40px #463ea0;
+    border-right: solid 40px #463ea0;
+    border-bottom: solid 20px #463ea0;
+    margin-top : 10%;
+    margin-left : 20%;
+    background-color : white;
+}
 
+
+`;
+const Body = styled.div`
+  overflow: auto;
+  background-color: #F5F4F2;
+`;
 const SignBtns = styled.div`
   margin-top: 10px;
   margin-left: 55%;
@@ -202,6 +214,8 @@ const Teasign = () => {
   return (
     <div>
       <HeadButton />
+      <Body>
+      <Signlogotext></Signlogotext>
       <CounterContext.Provider value={{ state, dispatch }}>
         <Wrapper onSubmit={Signed}>
           <Teasignname />
@@ -228,6 +242,7 @@ const Teasign = () => {
           </SignBtns>
         </Wrapper>
       </CounterContext.Provider>
+      </Body>
     </div>
   );
 };

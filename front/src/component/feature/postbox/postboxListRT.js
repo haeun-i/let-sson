@@ -2,41 +2,72 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
-
 const Container = styled.div`
   width: 100%;
   /* 1rem = 16px */
   padding: 0.6rem;
+  padding-top : 10%;
+  background-image: url(${postboxbackg});
+  background-size: cover;
   background-color: rgba(0,0,0,0);;
 `;
 
 const CardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1fr);
-  grid-template-rows: repeat(1fr 10fr 4fr 8fr);
-  gap: 1%;
+  grid-template-columns: repeat(auto 10fr 4fr 8fr);
+  grid-template-rows: repeat(1fr);
+  gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
 `;
 
 const Card = styled.li`
-  border-top : 2px solid lightgrey;
-  border-bottom: 2px solid lightgrey;
-  border-right: 1px solid lightgrey;
+  border-top: 2px solid lightgrey;
+  border-bottom : 2px solid lightgrey;
   border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
   background-color: white;
   color: black;
   display: flex;
   flex-direction: row;
 `;
 
-const Cardelement = styled.div`
+const Cardelement1 = styled.div`
+  padding-top : 3%;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
-  width: 33%;
+  width: 7%;
   text-align: center;
+  align-items: center;
 `;
+
+const Cardelement2 = styled.div`
+  border-left: 1px solid lightgrey;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+`;
+
+const Cardelement3 = styled.div`
+  padding-top : 1.9%;
+  width: 30%;
+  text-align: right;
+  flex-grow : 3;
+  margin-right : 5%;
+  align-items: center;
+  color : grey;
+`;
+
+const Cardelement4 = styled.div`
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  width: 20%;
+  text-align: center;
+  flex-grow : 4;
+`;
+
 
 const Cardbutton = styled.button`
   border: none;
@@ -83,8 +114,8 @@ const PostboxListRT = () => {
       <CardList>
         {data.map((element, index) => (
           <Card key={element.id}>
-            <Cardelement>{index + 1}</Cardelement>
-            <Cardelement>
+            <Cardelement1>{index + 1}</Cardelement1>
+            <Cardelement2>
               <Link
                 to={{
                   pathname: "/postboxdetailS",
@@ -101,14 +132,22 @@ const PostboxListRT = () => {
                   {element.sender.name}님이 보낸 신청입니다.
                 </Cardbutton>
               </Link>
-            </Cardelement>
-            <Cardelement>기간 : </Cardelement>
-            <Cardelement>
+            </Cardelement2>
+            <Cardelement3>
+              {element.create_date !== null && (
+                <div>
+                  {element.create_date.split("T")[0]}
+                  <br></br>
+                  {element.create_date.split("T")[1]}
+                </div>
+              )}
+            </Cardelement3>
+            <Cardelement4>
               <Cardbutton onClick={() => connected(element.sender.tel)}>
                 진행
               </Cardbutton>
               <Cardbutton>삭제</Cardbutton>
-            </Cardelement>
+            </Cardelement4>
           </Card>
         ))}
       </CardList>

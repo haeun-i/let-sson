@@ -4,6 +4,7 @@ import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import Ratingdropbtn from "./Ratingdropbtn";
 import "./Ratingdropbtn.css";
+import postboxbackg from "./postboxbackg.jpg";
 // 학생이 보낸 내역 목록
 // 진행, 완료 기능 만들고 후기 만드려고 미뤄둠
 
@@ -11,6 +12,9 @@ const Container = styled.div`
   width: 100%;
   /* 1rem = 16px */
   padding: 0.6rem;
+  padding-top : 10%;
+  background-image: url(${postboxbackg});
+  background-size: cover;
   background-color: rgba(0,0,0,0);;
 `;
 
@@ -51,11 +55,11 @@ const Cardelement2 = styled.div`
 `;
 
 const Cardelement3 = styled.div`
-  padding-top : 3%;
+  padding-top : 1.9%;
   width: 30%;
   text-align: right;
   flex-grow : 3;
-  margin-right : 15%;
+  margin-right : 5%;
   align-items: center;
   color : grey;
 `;
@@ -151,11 +155,13 @@ const PostboxListSS = () => {
               </Link>
             </Cardelement2>
             <Cardelement3>
-              <div>
-              {element.create_date.split("T")[0]}
-              <br></br>
-              {element.create_date.split("T")[1]}
-              </div>
+              {element.create_date !== null && (
+                <div>
+                  {element.create_date.split("T")[0]}
+                  <br></br>
+                  {element.create_date.split("T")[1]}
+                </div>
+              )}
             </Cardelement3>
             <Cardelement4>
               <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
