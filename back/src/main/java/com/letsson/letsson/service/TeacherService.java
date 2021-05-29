@@ -21,7 +21,7 @@ public class TeacherService {
     private final PasswordEncoder passwordEncoder;
     private final TeacherRepository teacherRepository;
 
-    public String signUp(TeacherJoinDto teacherJoinDto,MultipartFile file) throws IOException {
+    public String signUp(TeacherJoinDto teacherJoinDto) throws IOException {
         if(customUserDetailsService.idChk(teacherJoinDto.getTel())){
             return "사용불가한 아이디";
         }
@@ -38,7 +38,6 @@ public class TeacherService {
                     .is_attend(teacherJoinDto.getIs_attend())
                     .university(teacherJoinDto.getUniversity())
                     .major(teacherJoinDto.getMajor())
-                    .prove_image(amazonS3ClientService.upload(file,"back/teacher/provePhoto"))
                     .intro(teacherJoinDto.getIntro())
                     .email(teacherJoinDto.getEmail())
                     .tel(teacherJoinDto.getTel())
