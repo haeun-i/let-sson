@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import {  Link, useHistory } from "react-router-dom";
 import Ratingdropbtn from "./Ratingdropbtn";
 import "./Ratingdropbtn.css";
 import postboxbackg from "./postboxbackg.jpg";
@@ -25,6 +25,9 @@ const CardList = styled.ul`
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
+  box-shadow: 3px 3px lightgrey;
+  border-radius: 10px;
+  padding-left : 0px;
 `;
 
 const Card = styled.li`
@@ -36,6 +39,7 @@ const Card = styled.li`
   color: black;
   display: flex;
   flex-direction: row;
+  border-radius: 10px;
 `;
 
 const Cardelement1 = styled.div`
@@ -107,10 +111,9 @@ const PostboxListSS = () => {
           headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
           data: { teacher_tel: tel },
         }
-      );
-      // .then(() => {
-      //   window.location.reload(); // Add this to reload the page.
-      // });
+      ).then(response => {
+        alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+      });
     }
   };
 
@@ -159,7 +162,7 @@ const PostboxListSS = () => {
                 <div>
                   {element.create_date.split("T")[0]}
                   <br></br>
-                  {element.create_date.split("T")[1]}
+                  {element.create_date.split("T")[1].substr(0,8)}
                 </div>
               )}
             </Cardelement3>

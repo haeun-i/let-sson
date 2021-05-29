@@ -76,8 +76,8 @@ const Teasignphone = () => {
           value={state.tel}
           onChange={handlePress}
         ></InputBox>
+        <button onClick={handleClick}>중복체크</button>
       </label>
-      <button onClick={handleClick}>중복체크</button>
     </Box>
   );
 };

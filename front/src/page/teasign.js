@@ -199,23 +199,7 @@ const Teasign = () => {
   const Signed = async e => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("contact", state.contact);
-    // formData.append("email", state.email);
-    // formData.append("female", state.female);
-    // formData.append("intro", state.intro);
-    // formData.append("is_attend", state.is_attend);
-    // formData.append("major", state.major);
-    // formData.append("male", state.male);
-    // formData.append("name", state.name);
-    // formData.append("nonContact", state.noncontact);
-    // formData.append("password", state.password);
-    // formData.append("pay", state.pay);
-    // formData.append("region", state.region);
-    // formData.append("role", state.role);
-    // formData.append("subject", state.subject);
-    // formData.append("tel", state.tel);
-    // formData.append("university", state.university);
-    // formData.append("file", files);
+    formData.append("file", files);
 
     if (
       state.name === "" ||
@@ -235,13 +219,29 @@ const Teasign = () => {
     } else if (state.password !== state.passcheck) {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
-      alert("회원가입이 완료되었습니다.");
       console.log(state);
-      await axios.post("http://localhost:8080/teachers/join", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post("http://localhost:8080/teachers/join", 
+        {
+          "contact": state.contact,
+          "email": state.email,
+          "female": state.femail,
+          "intro": state.intro,
+          "is_attend": state.is_attend,
+          "major": state.major,
+          "male": state.mail,
+          "name": state.name,
+          "nonContact": true,
+          "password": state.noncontact,
+          "pay": state.pay,
+          "region": state.region,
+          "role": state.role,
+          "subject": state.subject,
+          "tel": state.tel,
+          "university": state.university
+        }
+      )
+      await axios.post("http://localhost:8080/teachers/proveImg", formData);
+      alert("가입에 성공하였습니다.");
       history.push("/login");
     }
   };
@@ -279,11 +279,11 @@ const Teasign = () => {
 
             <SignBtns>
               <SignBtn type="submit" value="확인"></SignBtn>
-              <SignBtn
+              {/* <SignBtn
                 type="reset"
                 onClick={() => dispatch({ type: "reset" })}
                 value="취소"
-              ></SignBtn>
+              ></SignBtn> */}
             </SignBtns>
           </Wrapper>
         </CounterContext.Provider>

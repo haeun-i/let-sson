@@ -93,7 +93,7 @@ const Teabutton1 = styled.button`
   width: 20vw;
   height: 10vh;
   left: 54vw;
-  top: 105vh;
+  top: 103vh;
   background: #373275;
   border: 1px solid #0d00a4;
   box-sizing: border-box;
@@ -115,7 +115,7 @@ const Teabutton2 = styled.button`
   width: 20vw;
   height: 10vh;
   left: 75vw;
-  top: 105vh;
+  top: 103vh;
   background: #373275;
   border: 1px solid #0d00a4;
   box-sizing: border-box;

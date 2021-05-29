@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
 const Container = styled.div`
@@ -21,6 +21,9 @@ const CardList = styled.ul`
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
+  box-shadow: 3px 3px lightgrey;
+  padding-left : 0px;
+  border-radius: 10px;
 `;
 
 const Card = styled.li`
@@ -32,6 +35,7 @@ const Card = styled.li`
   color: black;
   display: flex;
   flex-direction: row;
+  border-radius: 10px;
 `;
 
 const Cardelement1 = styled.div`
@@ -75,6 +79,7 @@ const Cardbutton = styled.button`
 
 const PostboxListRT = () => {
   const [data, setData] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     const getRecieve = async () => {
       const dataTRecieve = await axios.get(
@@ -106,7 +111,24 @@ const PostboxListRT = () => {
       )
       .then(response => {
         alert("과외가 체결되었습니다.");
+        history.push("/receivepost/tea");
       });
+  };
+
+  const deleteSend = tel => {
+    console.log(tel);
+
+    if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
+      axios.delete(
+        "http://localhost:8080/students/deleteSending",
+        {
+          data: { teacher_tel: tel },
+          headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+        }
+      ).then(response => {
+        alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+      });
+    }
   };
 
   return (
@@ -138,7 +160,7 @@ const PostboxListRT = () => {
                 <div>
                   {element.create_date.split("T")[0]}
                   <br></br>
-                  {element.create_date.split("T")[1]}
+                  {element.create_date.split("T")[1].substr(0,8)}
                 </div>
               )}
             </Cardelement3>
@@ -146,7 +168,7 @@ const PostboxListRT = () => {
               <Cardbutton onClick={() => connected(element.sender.tel)}>
                 진행
               </Cardbutton>
-              <Cardbutton>삭제</Cardbutton>
+              <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>삭제</Cardbutton>
             </Cardelement4>
           </Card>
         ))}

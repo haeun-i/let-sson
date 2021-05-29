@@ -240,9 +240,9 @@ class MypageSp extends React.Component {
                 >
                   저장하기
                 </SaveNref>
-                <SaveNref name="refresh" onClick={this.returning}>
+                {/* <SaveNref name="refresh" onClick={this.returning}>
                   되돌리기
-                </SaveNref>
+                </SaveNref> */}
               </Buttonfame>
             </Wrapper2>
           </Wrapper>

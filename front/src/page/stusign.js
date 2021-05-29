@@ -187,7 +187,6 @@ const Stusign = () => {
     } else if (state.password !== state.passcheck) {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
-      alert("회원가입이 완료되었습니다.");
       console.log(state);
       axios.post("http://localhost:8080/students/join", {
         name: state.name,
@@ -205,6 +204,7 @@ const Stusign = () => {
         region: state.region,
         subject: state.subject,
       });
+      alert("가입에 성공하였습니다.");
       history.push("/login");
     }
   };
@@ -232,11 +232,11 @@ const Stusign = () => {
 
             <SignBtns>
               <SignBtn type="submit" value="확인"></SignBtn>
-              <SignBtn
+              {/* <SignBtn
                 type="reset"
                 onClick={() => dispatch({ type: "reset" })}
                 value="취소"
-              ></SignBtn>
+              ></SignBtn> */}
             </SignBtns>
           </Wrapper>
         </CounterContext.Provider>

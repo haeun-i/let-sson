@@ -49,6 +49,7 @@ class MypageTp extends React.Component {
       career: "",
       intro: "",
       plan: "",
+      files : "",
     };
     this.tmp = this.state;
   };
@@ -91,6 +92,13 @@ componentDidMount() {
     }
   };
 
+  handleImage = e => {
+    e.preventDefault();
+    console.log(e.target.files);
+    this.setState(prevState => ({ ...prevState, files : e.target.files[0] }));
+  };
+
+
   savedataT = async e => {
     e.preventDefault();
     const dataList = {
@@ -120,25 +128,30 @@ componentDidMount() {
       is_attend:this.state.is_attend,
       prove_image:this.state.prove_image,
     }
-    console.log(dataList);
+    const formData = new FormData();
+    formData.append("file", this.state.files);
+
     await axios.put(
       "http://localhost:8080/teachers/modify",dataList,
       { 
         headers:{
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      }
-    ).then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+      });
+      await axios.post(
+        "http://localhost:8080/teachers/profileImg",formData,
+        { 
+          headers:{
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+    
   };
 
   returning = e => {
     this.setState(this.tmp);
   };
+
 
   render() {
     return (
@@ -148,6 +161,17 @@ componentDidMount() {
         <Wrapper>
           선생님
           <Wrapper2>
+          <div>
+              프로필 사진을 첨부해주세요.
+              <label className="teaProve">
+                <input
+                  type="file"
+                  accept="image/png, image/jpg"
+                  name="proveimage"
+                  onChange={this.handleImage}
+                ></input>
+              </label>
+            </div>
             <SubmitT state={this.state} handleChange={this.handleChange} />
             <Buttonfame>
               <SaveNref
@@ -156,9 +180,9 @@ componentDidMount() {
               >
                 저장하기
               </SaveNref>
-              <SaveNref type="refresh" onClick={this.returning}>
+              {/* <SaveNref type="refresh" onClick={this.returning}>
                 되돌리기
-              </SaveNref>
+              </SaveNref> */}
             </Buttonfame>
           </Wrapper2>
         </Wrapper>
