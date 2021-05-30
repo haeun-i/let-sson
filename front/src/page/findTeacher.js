@@ -5,7 +5,7 @@ import styled from "styled-components";
 import SidebarT from "../component/shared/findingT/sidebar";
 
 const Wrapper = styled.div`
-  background-color: #f6f4f3;
+  background-color: #ffffff;
 `;
 
 const Side = styled.span`

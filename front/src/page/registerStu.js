@@ -4,33 +4,44 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import RegisS from "../component/feature/registerStu/regisS";
 import axios from "axios";
+import backI from "./successbackg.jpg";
 
 const Wrapper = styled.div`
+  background: url(${backI});
+  background-size: cover;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
 `;
 const SubmitB = styled.button`
-  height: 45px;
-  width: 130px;
-  border-top: solid 3px #010440;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  background-color: white;
-  font-size: 16px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  margin-top: 10%;
+  margin-left: 9%;
+  text-align: center;
+  line-height: 200px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background-color: #8983d2;
+  color: white;
 `;
 
 const Buttonfame = styled.div`
-  margin-left: 55%;
-  margin-right: 40%;
   margin-top: 50px;
+  height: 200px;
+  width: 200px;
 `;
 
 const Registerstu = (props) => {

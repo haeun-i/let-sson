@@ -5,9 +5,7 @@ import Sidebar from "../component/shared/findingSnT/sidebar";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: #f6f4f3;
-  width: 100%;
-  height: 100%;
+  background-color: #ffffff;
 `;
 
 const Side = styled.span`

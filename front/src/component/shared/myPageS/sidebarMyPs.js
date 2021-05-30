@@ -45,7 +45,7 @@ const SidebarMyPs = () => {
     <div>
       <Wrapper>
         <Link to="/mypages/profile">
-          <SideB style={style}>프로필 작성</SideB>
+          <SideB >프로필 작성</SideB>
         </Link>
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>

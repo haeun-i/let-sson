@@ -11,18 +11,19 @@ const Wrapper = styled.div`
   width: 250px;
   box-sizing: border-box;
   display: grid;
-  background-color: #3a4866;
+  background-color: #463ea0;
+  border-radius: 10px;
   positon: flow;
 `;
 
 const SideB = styled.div`
-  background-color: white;
-  border-top: solid 3px grey;
-  border-left: solid 1px lightgrey;
-  border-right: solid 1px lightgrey;
-  border-bottom: solid 1px lightgrey;
+  background-color: #463ea0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 10px;
+  font-weight: bold;
+  color: #f3f2fc;
 `;
+
 
 const Sidebar = () => {
   return (
