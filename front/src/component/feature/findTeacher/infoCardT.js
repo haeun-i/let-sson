@@ -5,19 +5,18 @@ import axios from "axios";
 import { FilterContextT } from "../../../page/findTeacher";
 
 const Profile = styled.div`
-  background-color: white;
-  border-top: solid 3px #010440;
-  border-left: solid 1px lightgrey;
-  border-right: solid 1px lightgrey;
-  border-bottom: solid 1px lightgrey;
+  background-color: #f3f2fc;
   height: 250px;
   width: 180px;
   display: inline-block;
   margin-top: 30px;
   margin-left: 30px;
   position: grid;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 const Text = styled.div`
+  text-align: center;
+  font-weight: bold;
   color: black;
   margin: 1px;
 `;
