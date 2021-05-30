@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
+import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
-import HeadSaveNrefs from "../component/layout/header/header";
 import SidebarMyPt from "../component/shared/myPageT/sidebarMyPt";
 import styled from "styled-components";
 import TeasignnameMy from "../component/feature/myPageTedit/name_my";
@@ -246,6 +246,7 @@ const reducer = (state, action) => {
 
 const MypageTe = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const history = useHistory();
 
   useEffect(() => {
     const profileData = async () => {
@@ -396,13 +397,13 @@ const MypageTe = () => {
               <SaveNref type="submit" value="저장하기">
                 저장하기
               </SaveNref>
-              <SaveNref
+              {/* <SaveNref
                 type="reset"
-                onClick={() => dispatch({ type: "reset" })}
+                onClick={() => history.push("/mypaget/edit")}
                 value="원래대로"
               >
                 원래대로
-              </SaveNref>
+              </SaveNref> */}
             </Buttonfame>
           </Wrapper2>
         </ModifyContextT.Provider>

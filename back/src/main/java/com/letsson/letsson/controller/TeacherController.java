@@ -43,7 +43,7 @@ public class TeacherController {
 
     @PostMapping("/join")
     @ApiOperation(value = "join", tags = "선생님 회원 가입")
-    public ResponseEntity<? extends BasicResponse> join(@ApiParam(name = "TeacherJoinDto", value = "등록 선생님 정보", required = true) @RequestBody @Valid TeacherJoinDto teacherJoinDto, @RequestParam("file") MultipartFile file, BindingResult bindingResult) throws IOException {
+    public ResponseEntity<? extends BasicResponse> join(@ApiParam(name = "TeacherJoinDto", value = "등록 선생님 정보", required = true) @RequestBody @Valid TeacherJoinDto teacherJoinDto, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors()
                     .forEach(objectError -> {
@@ -54,7 +54,7 @@ public class TeacherController {
            /* return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .body(new ErrorResponse("valid error"));*/
         }
-        String message = teacherService.signUp(teacherJoinDto, file);
+        String message = teacherService.signUp(teacherJoinDto);
         if (message == "사용불가한 아이디") {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("사용 불가한 아이디 입니다."));
@@ -206,6 +206,29 @@ public class TeacherController {
 
     }
 
+    @ApiOperation(value = "proveImg", tags = "해당 선생님 신분 인증 사진")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
+    )
+    @PostMapping("/proveImg")
+    public String resisterProfileImg(HttpServletRequest request, @RequestParam("file") MultipartFile proveImg) throws IOException {
+        String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
+        String basePath = "back/teacher/provePhoto";
+        String fileName = proveImg.getOriginalFilename();
+
+        /*
+        if (profileImg.isEmpty()) return "redirect:/teacher/modify";
+        if (fileName.equals("stranger.png") || fileName.equals("default.png")) {
+            throw new RuntimeException("Invalid file name");
+        }*/
+
+        teacherService.addProfileImgWithS3(proveImg, basePath, tel);
+
+        return "사진 저장 완료";
+    }
+
+
     @ApiOperation(value = "profileImg", tags = "해당 선생님 프로필 이미지 등록")
     @ApiImplicitParams(
             {
@@ -243,5 +266,5 @@ public class TeacherController {
         return ResponseEntity.ok().build();
 
     }
-    
+
 }

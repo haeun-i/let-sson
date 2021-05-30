@@ -19,20 +19,25 @@ import { AuthEmail, AuthPhone } from "../component/shared/auth";
 import Signlogotext from "../component/feature/studentSign/signlogotext";
 
 const Wrapper = styled.form`
-  position: absolute;
-  left: 20vw;
-  top: 35vh;
-  width: 60vw;
-  padding-top: 30px;
-  margin-bottom: 30px;
-  border-top: solid 20px #463ea0;
-  border-left: solid 40px #463ea0;
-  border-right: solid 40px #463ea0;
-  border-bottom: solid 20px #463ea0;
+    left: 20vw;
+    top: 35vh;
+    width: 60vw;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    border-top: solid 20px #463ea0;
+    border-left: solid 40px #463ea0;
+    border-right: solid 40px #463ea0;
+    border-bottom: solid 20px #463ea0;
+    margin-top : 10%;
+    margin-left : 20%;
+    background-color : white;
+}
+
+
 `;
 const Body = styled.div`
   overflow: auto;
-  background-color: black;
+  background-color: #F5F4F2;
 `;
 const SignBtns = styled.div`
   margin-top: 10px;
@@ -182,7 +187,6 @@ const Stusign = () => {
     } else if (state.password !== state.passcheck) {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
-      alert("회원가입이 완료되었습니다.");
       console.log(state);
       axios.post("http://localhost:8080/students/join", {
         name: state.name,
@@ -200,13 +204,14 @@ const Stusign = () => {
         region: state.region,
         subject: state.subject,
       });
+      alert("가입에 성공하였습니다.");
       history.push("/login");
     }
   };
 
   return (
     <div>
-      <HeadButton />
+      <HeadButton></HeadButton>
       <Body>
         <Signlogotext />
 
@@ -227,11 +232,11 @@ const Stusign = () => {
 
             <SignBtns>
               <SignBtn type="submit" value="확인"></SignBtn>
-              <SignBtn
+              {/* <SignBtn
                 type="reset"
                 onClick={() => dispatch({ type: "reset" })}
                 value="취소"
-              ></SignBtn>
+              ></SignBtn> */}
             </SignBtns>
           </Wrapper>
         </CounterContext.Provider>

@@ -9,23 +9,23 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
+  margin-left: 3vw;
   margin-top: 30px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #463ea0;
+  font-size: 1em;
 `;
 
 const Select = styled.select`
-  border: 0.05em solid #010440;
+  border: 2px solid #463ea0;
   width: 95%;
   padding-bottom: 3%;
   margin-bottom: 10px;
+  color: #463ea0;
 `;
 
 const Teasignregion = () => {

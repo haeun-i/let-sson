@@ -29,6 +29,10 @@ const InputBox = styled.input`
   margin-bottom: 15px;
 `;
 
+const Btn = styled.button`
+  width : 50px;
+`;
+
 const Stusignphone = () => {
   const { state, dispatch } = useContext(CounterContext);
 

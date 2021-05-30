@@ -1,40 +1,79 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {  Link, useHistory } from "react-router-dom";
+import postboxbackg from "./postboxbackg.jpg";
+
 // 학생이 받은 내역 목록
 
 const Container = styled.div`
   width: 100%;
   /* 1rem = 16px */
   padding: 0.6rem;
-  background-color: #f6f4f3;
+  padding-top : 10%;
+  background-image: url(${postboxbackg});
+  background-size: cover;
+  background-color: rgba(0,0,0,0);;
 `;
 
 const CardList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1fr);
-  grid-template-rows: repeat(1fr 3fr 2fr 4fr);
+  grid-template-columns: repeat(auto 10fr 4fr 8fr);
+  grid-template-rows: repeat(1fr);
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
+  box-shadow: 3px 3px lightgrey;
+  padding-left : 0px;
+  border-radius: 10px;
 `;
 
 const Card = styled.li`
-  border-top: solid 3px #010440;
+  border-top: 2px solid lightgrey;
+  border-bottom : 2px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
   background-color: white;
   color: black;
   display: flex;
   flex-direction: row;
+  border-radius: 10px;
 `;
 
-const Cardelement = styled.div`
+const Cardelement1 = styled.div`
+  padding-top : 3%;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
-  width: 33%;
+  width: 7%;
   text-align: center;
+  align-items: center;
 `;
+
+const Cardelement2 = styled.div`
+  border-left: 1px solid lightgrey;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+`;
+
+const Cardelement3 = styled.div`
+  padding-top : 1.9%;
+  width: 30%;
+  text-align: right;
+  flex-grow : 3;
+  margin-right : 5%;
+  align-items: center;
+  color : grey;
+`;
+
+const Cardelement4 = styled.div`
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  width: 20%;
+  text-align: center;
+  flex-grow : 4;
+`;
+
 
 const Cardbutton = styled.button`
   border: none;
@@ -43,6 +82,8 @@ const Cardbutton = styled.button`
 const PostboxListRS = () => {
   const [data, setData] = useState([]);
   const [connect, setConnect] = useState(false);
+  const history = useHistory();
+
   useEffect(() => {
     const getRecieve = async () => {
       const dataSRecieve = await axios.get(
@@ -64,20 +105,14 @@ const PostboxListRS = () => {
 
     if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
       axios.delete(
-        "http://localhost:8080/students/deleteSending",
+        "http://localhost:8080/teachers/deleteSending",
         {
-          data: { teacher_tel: tel },
+          data: { student_tel: tel },
           headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
         }
-        // {
-        //   teacher_tel : tel,
-        // },
-        // {
-        //   headers: {
-        //     "X-AUTH-TOKEN": localStorage.getItem("token"),
-        //   },
-        // }
-      );
+      ).then(response => {
+        alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+      });;
     }
   };
 
@@ -86,8 +121,8 @@ const PostboxListRS = () => {
       <CardList>
         {data.map((element, index) => (
           <Card key={element.id}>
-            <Cardelement>{index + 1}</Cardelement>
-            <Cardelement>
+            <Cardelement1>{index + 1}</Cardelement1>
+            <Cardelement2>
               <Link
                 to={{
                   pathname: "/postboxdetailT",
@@ -108,13 +143,21 @@ const PostboxListRS = () => {
                   {element.sender.name}님이 보낸 신청입니다.
                 </Cardbutton>
               </Link>
-            </Cardelement>
-            <Cardelement>기간:</Cardelement>
-            <Cardelement>
-              <Cardbutton onClick={() => deleteSend(element.sender.tel)}>
+            </Cardelement2>
+            <Cardelement3>
+              {element.create_date !== null && (
+                <div>
+                  {element.create_date.split("T")[0]}
+                  <br></br>
+                  {element.create_date.split("T")[1].substr(0,8)}
+                </div>
+              )}
+            </Cardelement3>
+            <Cardelement4>
+              <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
                 삭제
               </Cardbutton>
-            </Cardelement>
+            </Cardelement4>
           </Card>
         ))}
       </CardList>

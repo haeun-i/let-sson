@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/teasign";
 import axios from "axios";
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -10,25 +9,25 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-top: solid 3px #010440;
-  background: white;
+  margin-left: 3vw;
   margin-top: 30px;
 `;
 
 const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #463ea0;
+  font-size: 1em;
 `;
 
 const InputBox = styled.input`
-  border: 0.05em solid #010440;
+  border: 2px solid #463ea0;
   margin-right: 0;
-  width: 55%;
-  padding-right: 40%;
+  width: 50vw;
   padding-bottom: 30px;
+  margin-bottom: 15px;
 `;
+
 
 const Teasignphone = () => {
   const { state, dispatch } = useContext(CounterContext);
@@ -48,16 +47,22 @@ const Teasignphone = () => {
   };
 
   const handleClick = async e => {
+    e.preventDefault();
     const check1 = await axios.get(
       `http://localhost:8080/students/idCheck?tel=${state.tel}`
     );
     const check2 = await axios.get(
       `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
     );
-    if (check1.data.confirm === "NO" || check2.data.confirm === "NO") {
-      console.log("가입불가");
+    if (
+      check1.data.confirm === "사용가능한 아이디입니다." &&
+      check2.data.confirm === "사용가능한 아이디입니다."
+    ) {
+      alert("사용할 수 있는 전화번호입니다.");
+      dispatch({ type: "setTelcheck", telCheck: "true" });
     } else {
-      console.log("가입가능");
+      alert("중복으로 인하여 사용할 수 없는 전화번호입니다.");
+      dispatch({ type: "setTelcheck", telCheck: "false" });
     }
   };
 
@@ -71,8 +76,8 @@ const Teasignphone = () => {
           value={state.tel}
           onChange={handlePress}
         ></InputBox>
+        <button onClick={handleClick}>중복체크</button>
       </label>
-      <button onClick={handleClick}>중복체크</button>
     </Box>
   );
 };
