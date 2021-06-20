@@ -232,15 +232,14 @@ const Teasign = () => {
           "name": state.name,
           "nonContact": true,
           "password": state.noncontact,
-          "pay": state.pay,
+          "pay":  parseInt(state.pay),
           "region": state.region,
           "role": state.role,
           "subject": state.subject,
           "tel": state.tel,
           "university": state.university
         }
-      )
-      await axios.post("http://localhost:8080/teachers/proveImg", formData);
+      );
       alert("가입에 성공하였습니다.");
       history.push("/login");
     }
