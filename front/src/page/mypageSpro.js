@@ -76,6 +76,9 @@ const Circle1 = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
+  @media only screen and (max-width: 1350px) {
+    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
+  }
 `;
 
 const Circle2 = styled.div`
@@ -98,6 +101,12 @@ const Circle2 = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
+  @media only screen and (max-width: 1350px) {
+    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;}
+    @media only screen and (max-width: 1350px) {
+    width: 0%;
+    padding-top: 33%;
+  }
 `;
 
 const Text1 = styled.div`

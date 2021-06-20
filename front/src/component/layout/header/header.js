@@ -12,10 +12,27 @@ const HeadButton = styled.span`
   vertical-align: middle;
   justify-content: right;
   margin-right: 20px;
+  @media only screen and (max-width: 797px) {
+
+    text-align:center;
+    justify-content:center;
+  
+  }
+}
+  
+  
+  
 `;
 
 const Head = styled.header`
   width: 100%;
+  padding: 1rem;
+  @media only screen and (max-width: 797px) {
+    height:150px;
+    text-align:center;
+    justify-content:center;
+  
+  }
 `;
 
 function HeadButtons() {

@@ -13,6 +13,11 @@ const Wrapper = styled.div`
   justify-content: center;
   background-image: url(${successbackg});
   background-size: cover;
+  @media only screen and (max-width: 1273px) {
+    background-size: contain;
+  }
+  @media only screen and (max-height: 580px) {
+    background-size: contain;}
 `;
 const SuccessText = styled.div`
   position: absolute;
@@ -31,6 +36,13 @@ const SuccessText = styled.div`
   color: #02001e;
   padding-right: 30px;
   margin-bottom: 5%;
+  @media only screen and (max-width: 1273px) {
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+  }
+  @media only screen and (max-height: 580px) {
+    position: relative;
+    width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
+  }
 `;
 
 const SuccessBtn1 = styled.button`
@@ -53,6 +65,14 @@ const SuccessBtn1 = styled.button`
       url(https://s3-alpha-sig.figma.com/img/5a64/9e5c/1aca201a55079fe6c2e40fb098bbfb00?Expires=1621814400&Signature=VKkEbz2wuu73bkVleUfSzJqID7E1uTJOlsBW5ll08Qr3Xa2oLzGIO0eG5vJuc-BI1kQF7Mjf2cLTXb5t3hYNVy0MhrCScnYF3JrY~K7XDkqBUh7Os-tROeIlhPJ9idV9xSgxG55QneFMh5w~zsoDzekCFP8LVR4LhH1LuHcsudSQnvuWWw9Ie3sthR2BfSF-9C1nxR0~zuMfD43sxDUdgTxgoniGgL07ty8~pfGNkJk~zQQB2cTxZrdCGF137YTT7W7rZVNaYKEFqhM7j8dPZpOzUh8KhbHW-kQGqQcHh3gS6NTeTkFZ7M~7yztiSqyK-5sA8N6Fx-veiXZaCFONMg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
   background-size: cover;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 5px rgba(0, 0, 0, 0.25);
+
+
+  @media only screen and (max-width: 1273px) {
+    width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
+  }
+  @media only screen and (max-height: 580px) {
+   height: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+  }
 `;
 
 const SuccessBtn2 = styled.button`
@@ -74,6 +94,12 @@ const SuccessBtn2 = styled.button`
       url(https://s3-alpha-sig.figma.com/img/0793/1cf2/222a5d9477b5c0798131c0503cdc9f93?Expires=1621814400&Signature=VhQujNpbv2G5k~8heetYLb9HdOQ2JniT82gc6wSBFxgwYQpCvboOmXwl~Xjx7rdi8U-xcZisjherMV5ysNAUbaaNNkQePYHyWPGg9gQUmZM4fu4jA8~h-0KfPrA9M2al2i1U17FVwEReqbvCCLJXqANthy2-RyfAB3bWEehj4ujqpKI9KCv8p5NLJazUmiq-CIIX8-BpIlbYZsq8mix0QaFlvJpLz~Hmyl6-Fblg-5H2hUJ~1KtaAqIelACPM~SpjnVc6zI9Kdk43OMH9-H03cZJNt5EDuqwFeIUDxUnzzJbEgyYzQ5VKIQlgAfjO0PkH9YkmJWi5QtXWfcbgETlxA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
   background-size: cover;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 5px rgba(0, 0, 0, 0.25);
+  @media only screen and (max-width: 1273px) {
+    width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
+  }
+  @media only screen and (max-height: 580px) {
+   height: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+  }
 `;
 
 const Bigblue = styled.span`
