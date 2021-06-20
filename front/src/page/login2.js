@@ -7,17 +7,18 @@ import StuLogin from "../component/feature/login/stulogin";
 import TeaLogin from "../component/feature/login/tealogin";
 import mypic from "./login_background.png";
 
-const Wrapper = styled.img`
-  margin-top : 10px;
-  width: 100vw;
-  height: 100vh;
+const Wrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(${mypic});
 `;
 
 const Logindiv = styled.div`
-  position : absolute;
+  position: absolute;
   width: 80vw;
-  height: 70%;
-  top: 34vh;
+  height: 60vh;
+  top: 20vh;
   left: 10vw;
 
   background: #ffffff;
@@ -31,29 +32,30 @@ const Logintext = styled.p`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 20px;
+  line-height: 29px;
   /* identical to box height */
 
   left: 14vw;
-  top: 22vh;
+  top: 4.5vh;
   color: #02001e;
 `;
 const Line1 = styled.span`
   position: absolute;
   width: 22px;
   height: 0px;
-  color : black;
-  border: 3px solid black;
+
+  border: 3px solid #000000;
   transform: rotate(-90deg);
   left: 11vw;
-  top: 25.5vh;
+  top: 10vh;
 `;
 
 const Logline = styled.span`
   position: absolute;
-  width: 20vw;
+  width: 304px;
   left: 35%;
-  top: 35vh;
+  top: 30vh;
   border: 1px solid #000000;
   transform: rotate(-90deg);
 `;
@@ -77,38 +79,21 @@ const Notlog2 = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  margin-left: 35%;
+  margin-left: 37%;
   top: 80%;
   margin-top: 95px;
 `;
 
 const NotlogText = styled.div`
-display: inline;
-position: absolute;
-margin-left: 30%;
-top: 88%;
-}
+  display: inline;
+  left: 50%;
 `;
-const NotlogBtn1 = styled.button`
-position: absolute;
-margin-left: 50%;
-top: 88%;
-  background-color: white;
+const NotlogBtn = styled.button`
+  background-color: #f6f4f3;
   height: 10px;
   text-decoration: underline #010440;
   text-underline-position: under;
 `;
-
-const NotlogBtn2 = styled.button`
-position: absolute;
-margin-left: 60%;
-top: 88%;
-  background-color: white;
-  height: 10px;
-  text-decoration: underline #010440;
-  text-underline-position: under;
-`;
-
 
 export const LoginContext = React.createContext();
 
@@ -132,31 +117,45 @@ const reducer = (state, action) => {
   }
 };
 
-const Login = () => {
+const Login2 = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   return (
     <div>
       <HeadButton />
       <LoginContext.Provider value={{ state, dispatch }}>
-        <Wrapper src={mypic}></Wrapper>
-        <Line1></Line1>
-        <Logintext>로그인</Logintext>
-        <Logindiv>
-          <TeaLogin></TeaLogin>
-          <Logline></Logline>
-          <StuLogin></StuLogin>
+        <Wrapper>
+          <Line1></Line1>
+          <Logintext>로그인</Logintext>
+          <Logindiv>
+            <StuLogin />
+            <Logline></Logline>
+            <TeaLogin />
+          </Logindiv>
+          {/* <Notlog>
+            <Notlog1>
+              <NotlogText>계정이 없으시다면?</NotlogText>
+              <Link to="/stusign">
+                <NotlogBtn>학생가입</NotlogBtn>
+              </Link>
+              <Link to="/teasign">
+                <NotlogBtn>선생님가입</NotlogBtn>
+              </Link>
+            </Notlog1>
+            <Notlog2>
               <NotlogText>비밀번호를 잊으셨다면?</NotlogText>
               <Link to="/findid">
-                <NotlogBtn1>아이디찾기</NotlogBtn1>
+                <NotlogBtn>아이디찾기</NotlogBtn>
               </Link>
               <Link to="/findpassword">
-                <NotlogBtn2>비밀번호찾기</NotlogBtn2>
+                <NotlogBtn>비밀번호찾기</NotlogBtn>
               </Link>
-        </Logindiv>
+            </Notlog2>
+          </Notlog> */}
+        </Wrapper>
       </LoginContext.Provider>
     </div>
   );
 };
 
-export default Login;
+export default Login2;

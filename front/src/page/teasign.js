@@ -261,7 +261,7 @@ const Teasign = () => {
             <Teasigncontact />
             <Teasignattend />
             <Teasignuni />
-            <Box>
+            {/* <Box>
               <Text>학력을 증명할 사진을 첨부해주세요 ex)재학증명서</Text>
               <label className="teaProve">
                 <input
@@ -271,7 +271,7 @@ const Teasign = () => {
                   onChange={handleChange}
                 ></input>
               </label>
-            </Box>
+            </Box> */}
             <Teasignintro />
             <Teasignemail />
             <Teasignphone />

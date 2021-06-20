@@ -7,7 +7,7 @@ import Logotext from "../component/feature/main/logotext";
 
 const Mainbody = styled.div`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`
@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 `;
 
 const MainImage = styled.img`
-  position: absolute;
   width: 100%;
   height: 90%;
 `;
@@ -35,7 +34,7 @@ const Text2_1 = styled.span`
   /* identical to box height */
 
   color: #ffeb34;
-  top: 40vh;
+  top: 39vh;
   left: 11vw;
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
@@ -50,7 +49,7 @@ const Text2_2 = styled.span`
   font-size: 48px;
   line-height: 70px;
   /* identical to box height */
-  top: 40vh;
+  top: 39vh;
   left: 40vw;
   color: #ffeb34;
 
@@ -58,9 +57,9 @@ const Text2_2 = styled.span`
 `;
 
 const Text = styled.p`
-  position: absolute;
-  top: 45vh;
-  left: 15vw;
+position : absolute;
+top: 41vh;
+left : 15vw;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -68,20 +67,16 @@ const Text = styled.p`
   line-height: 35px;
   /* identical to box height */
 
-  color: #ffffff;
+  color: white;
 `;
 
-const Introtext = styled.p`
-  position: absolute;
-  left: 18vw;
-  top: 105vh;
-
+const Introtext = styled.span`
+  margin-left: 18vw;
+  padding-top : 10vh;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
-  line-height: 20px;
-
   color: #000000;
 `;
 const Wrap = styled.div`
@@ -89,17 +84,15 @@ const Wrap = styled.div`
 `;
 
 const Teabutton1 = styled.button`
-  position: absolute;
+margin-top : 2vh;
+margin-left : 10vw;
+margin-bottom : 2vh;
   width: 20vw;
-  height: 10vh;
-  left: 54vw;
-  top: 103vh;
   background: #373275;
   border: 1px solid #0d00a4;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  margin-bottom: 10px;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -111,23 +104,17 @@ const Teabutton1 = styled.button`
 `;
 
 const Teabutton2 = styled.button`
-  position: absolute;
   width: 20vw;
-  height: 10vh;
-  left: 75vw;
-  top: 103vh;
   background: #373275;
   border: 1px solid #0d00a4;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  margin-bottom: 300px;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 1em;
   line-height: 35px;
-  /* identical to box height */
 
   color: #ffffff;
 `;
@@ -141,27 +128,21 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <HeadButton />
-        <Mainbody>
-          <Wrap>
+            <HeadButton />
             <MainImage src={mypic} />
+            <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
             <Text2_1>"</Text2_1>
             <Text2_2>"</Text2_2>
             <Text>
               {this.state.person}명의 회원이 이 사이트를 이용하고 있습니다.
             </Text>
-          </Wrap>
-          <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
-          <Logotext></Logotext>
-          <Wrapper>
+            <Logotext></Logotext>
             <Link to="/teasign">
               <Teabutton1>학생 가입</Teabutton1>
             </Link>
             <Link to="/stusign">
               <Teabutton2>선생님 가입</Teabutton2>
             </Link>
-          </Wrapper>
-        </Mainbody>
       </div>
     );
   }

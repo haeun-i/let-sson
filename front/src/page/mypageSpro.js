@@ -128,6 +128,39 @@ const Bar = styled.div`
   margin-right: 50%;
   margin-bottom: 100px;
 `;
+
+const Box = styled.div`
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5%;
+  margin-right: 7%;
+  background: #ffffff;
+  margin-top: 10px;
+`;
+
+const Text = styled.div`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d00a4;
+`;
+
+const InputBoxShort = styled.input`
+  margin-right: 0;
+  width: 100%;
+  height: 32px;
+  padding-bottom: 0px;
+  background-color: #f4f4fc;
+  border: 3px solid #f4f4fc;
+  box-sizing: border-box;
+`;
+
 class MypageSp extends React.Component {
   constructor(props) {
     super(props);
@@ -138,6 +171,7 @@ class MypageSp extends React.Component {
       review: "",
       intro: "",
       goal: "",
+      files : "",
     };
     this.tmp = this.state;
   }
@@ -152,6 +186,12 @@ class MypageSp extends React.Component {
       }
     );
     this.setState(dataS.data.data);
+  };
+
+  handleImage = e => {
+    e.preventDefault();
+    console.log(e.target.files);
+    this.setState(prevState => ({ ...prevState, files : e.target.files[0] }));
   };
 
   componentDidMount() {
@@ -203,22 +243,23 @@ class MypageSp extends React.Component {
       enabled: this.state.enabled,
     };
     console.log(dataList);
-    await axios
-      .put("http://localhost:8080/students/modify", dataList, {
-        headers: {
+    const formData = new FormData();
+    formData.append("file", this.state.files);
+
+    await axios.put(
+      "http://localhost:8080/teachers/modify",dataList,
+      { 
+        headers:{
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
       });
-  };
-
-  returning = e => {
-    this.setState(this.tmp);
+      await axios.post(
+        "http://localhost:8080/teachers/profileImg",formData,
+        { 
+          headers:{
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
   };
 
   render() {
@@ -240,6 +281,15 @@ class MypageSp extends React.Component {
           </Bar>
           <Wrapper>
             <Wrapper2>
+            <Box>
+          <Text>프로필 사진</Text>
+                <InputBoxShort
+                  type="file"
+                  accept="image/png, image/jpg"
+                  name="proveimage"
+                  onChange={this.handleImage}
+                ></InputBoxShort>
+            </Box>
               <SubmitS state={this.state} handleChange={this.handleChange} />
               <Buttonfame>
                 <SaveNref

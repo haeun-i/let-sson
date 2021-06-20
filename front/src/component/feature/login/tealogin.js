@@ -5,15 +5,12 @@ import axios from "axios";
 import { LoginContext } from "../../../page/login";
 
 const Log = styled.form`
-  display: relative;
+  position : absolute;
   background-color: white;
-  position: absolute;
   width: 400px;
   height: 180px;
-  margin-left: -230px;
-  margin-top: -100px;
-  left: 77%;
-  top: 43%;
+  margin-left: 55%;
+  margin-top : 10vh;
   display: flex;
   flex-direction: column;
 `;
@@ -63,7 +60,6 @@ const LogInput2 = styled.input`
 
 const LogBtns = styled.div`
   margin-top: 10px;
-  margin-left: 3%;
 `;
 const LogBtn = styled.input`
   position: absolute;
