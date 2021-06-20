@@ -41,7 +41,7 @@ const Card = styled.li`
 `;
 
 const Cardelement1 = styled.div`
-  padding-top : 3%;
+  padding-top : 2.5%;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
   width: 7%;
@@ -57,7 +57,7 @@ const Cardelement2 = styled.div`
 `;
 
 const Cardelement3 = styled.div`
-  padding-top : 1.9%;
+  padding-top : 1.5%;
   width: 30%;
   text-align: right;
   flex-grow : 3;
