@@ -4,11 +4,18 @@ import com.letsson.letsson.model.Student;
 import com.letsson.letsson.model.Teacher;
 import com.letsson.letsson.repository.StudentRepository;
 import com.letsson.letsson.repository.TeacherRepository;
+import com.letsson.letsson.response.BasicResponse;
+import com.letsson.letsson.response.CommonResponse;
+import com.letsson.letsson.response.ErrorResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 @RequiredArgsConstructor
@@ -17,9 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final StudentRepository studentRepository;
     private final TeacherRepository teacherRepository;
 
-
-
-    public boolean idChk(String tel) {
+    public boolean confirmTel(String tel) {
         boolean result = (studentRepository.findByTel(tel) != null || teacherRepository.findByTel(tel) != null);
         return result;
     }
@@ -39,11 +44,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         throw new UsernameNotFoundException("User '" + username + "' not found");
     }
-
-
-
-
-
 
 
 }

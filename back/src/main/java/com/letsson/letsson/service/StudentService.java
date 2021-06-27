@@ -3,7 +3,10 @@ package com.letsson.letsson.service;
 import com.letsson.letsson.model.Student;
 import com.letsson.letsson.model.StudentJoinDto;
 import com.letsson.letsson.repository.StudentRepository;
+import com.letsson.letsson.response.ErrorResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +25,7 @@ public class StudentService {
     private final PasswordEncoder passwordEncoder;
 
     public String signUp(StudentJoinDto studentJoinDto) {
-      if(customUserDetailsService.idChk(studentJoinDto.getTel())){
+      if(customUserDetailsService.confirmTel(studentJoinDto.getTel())){
           return "사용불가한 아이디";
       }
        else {
@@ -46,6 +50,51 @@ public class StudentService {
             return student.getTel();
         }
 
+    }
+
+    // 전화번호(아이디) 통해 학생 찾기
+    public Student findStudent(String tel)
+    {
+        return studentRepository.findByTel(tel);
+    }
+
+    // 전체 학생 목록
+    public List<Student> getALLStudents()
+    {
+        return this.studentRepository.findAll();
+    }
+
+    //학생의 기본 정보 수정
+    public Student updateBasicStudent(Student existingStudent, StudentJoinDto student)
+    {
+        existingStudent.setName(student.getName());
+        existingStudent.setIs_stu(student.getIs_stu());
+        existingStudent.setAge(student.getAge());
+        existingStudent.setMale(student.isMale());
+        existingStudent.setFemale(student.isFemale());
+        existingStudent.setProper_gender(student.getProper_gender());
+        existingStudent.setRegion(student.getRegion());
+        existingStudent.setSubject(student.getSubject());
+        existingStudent.setPay(student.getPay());
+        existingStudent.setContact(student.isContact());
+        existingStudent.setNonContact(student.isNonContact());
+        existingStudent.setTel(student.getTel());
+        existingStudent.setEmail(student.getEmail());
+        existingStudent.setPassword(passwordEncoder.encode(student.getPassword()));
+
+        return studentRepository.save(existingStudent);
+    }
+
+    public Student updateStudent(Student existingStudent, StudentJoinDto student)
+    {
+        existingStudent.setName(student.getName());
+        existingStudent.setSubject(student.getSubject());
+        existingStudent.setRegion(student.getRegion());
+        existingStudent.setIntro(student.getIntro());
+        existingStudent.setGoal(student.getGoal());
+        existingStudent.setReview(student.getReview());
+
+        return studentRepository.save(existingStudent);
     }
 
     @Transactional
@@ -73,6 +122,14 @@ public class StudentService {
         //student 의 photo 에 fileName기록
         student.setPhoto( amazonS3ClientService.upload(multipartFile, basePath));
     }
+
+    //학생 회원 정보 삭제
+    public void deleteStudent(String tel)
+    {
+        Student student = findStudent(tel);
+        this.studentRepository.delete(student);
+    }
+
 
 
 
