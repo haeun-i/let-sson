@@ -296,7 +296,6 @@ componentDidMount() {
             <SidebarMyPt />
           </Bar>
         <Wrapper>
-          선생님
           <Wrapper2>
           <Box>
           <Text>프로필 사진</Text>

@@ -13,6 +13,10 @@ const Log = styled.form`
   margin-top : 10vh;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 950px) {
+    position : unset;
+    margin-left : 35%;
+  }
 `;
 const LogText1 = styled.div`
   position: absolute;
@@ -82,6 +86,12 @@ const LogBtn = styled.input`
   left: 24vw;
 
   color: #ffffff;
+  @media only screen and (max-width: 950px) {
+    margin-left : 13vw;
+  }
+  @media only screen and (max-width: 650px) {
+    margin-left : 10vw;
+  }
 `;
 
 const StuLogin = () => {

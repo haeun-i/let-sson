@@ -67,12 +67,16 @@ const CardList = styled.ul`
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
-  box-shadow: 3px 3px lightgrey;
   border-radius: 10px;
   padding-left : 0px;
+  @media only screen and (max-width: 680px) {
+    margin-top : 10%;
+  }
+
 `;
 
 const Card = styled.li`
+box-shadow: 3px 3px lightgrey;
   border-top: 2px solid lightgrey;
   border-bottom : 2px solid lightgrey;
   border-left: 1px solid lightgrey;

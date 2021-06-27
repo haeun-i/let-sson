@@ -391,7 +391,6 @@ const MypageTe = () => {
           <SidebarMyPt />
         </Bar>
       <Wrapper>
-        선생님
         <ModifyContextT.Provider value={{ state, dispatch }}>
           <Wrapper2 onSubmit={EditSuccess}>
             <TeasignnameMy />

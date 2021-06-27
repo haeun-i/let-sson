@@ -7,12 +7,16 @@ import { LoginContext } from "../../../page/login";
 const Log = styled.form`
   position : absolute;
   background-color: white;
-  width: 400px;
+  width: 200px;
   height: 180px;
   margin-left: 55%;
   margin-top : 10vh;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 950px) {
+    margin-top : 45vh;
+    margin-left : 35%;
+  }
 `;
 const LogText1 = styled.span`
   position: absolute;
@@ -81,6 +85,13 @@ const LogBtn = styled.input`
   left: 24vw;
 
   color: #ffffff;
+
+  @media only screen and (max-width: 950px) {
+    margin-left : -15vw;
+  }
+  @media only screen and (max-width: 650px) {
+    margin-left : -18vw;
+  }
 `;
 
 const Letsson = styled.p`

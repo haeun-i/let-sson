@@ -25,9 +25,13 @@ const CardList = styled.ul`
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
-  box-shadow: 3px 3px lightgrey;
   border-radius: 10px;
   padding-left : 0px;
+
+  @media only screen and (max-width: 680px) {
+    margin-top : 10%;
+  }
+
 `;
 
 const Card = styled.li`
@@ -38,6 +42,7 @@ const Card = styled.li`
   background-color: white;
   color: black;
   display: flex;
+  box-shadow: 3px 3px lightgrey;
   flex-direction: row;
   border-radius: 10px;
 `;
