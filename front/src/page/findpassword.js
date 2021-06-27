@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import HeadButtons from "../component/layout/header/header";
+import backImg from "./idpassword.jpg";
 
 const Wrapper = styled.div`
   background-color: #e5e5e5;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
       rgba(247, 247, 247, 0.9)
     ),
     no-repeat 0 0
-      url("https://s3-alpha-sig.figma.com/img/d3af/b44e/69f52ace71eecb6841506c4568930fcb?Expires=1621814400&Signature=h1N5-cxDFLEXwbkHz2aRe5IY6LBiuKvSMYMHZvnQMwB3H1uE-tigxj9jNCcZoD-l-c48jYmc1aNzhkXUwFKgq62X4o2LtFbb60J-CXfQTTHKZONLBRllZ7Xwwd9VpTwf8Zl8ozgdurehXFwyhh~u-K0BHWmO~TEB2KAfDQ1q6ZE8Op9QjktibI8KECObr2P7JP54uMR-h7WaEXP8K6pWIuWAdEtiWVRMmLXvL7z1RLpTaSVOAp~he~A-FaMuwDPXK6meWeoJ-UgRYPih~NU9m8USnikAj40R8AYC2JNdI62WVWb4gpzJe97xCihnn7LYW2AEICl1sy4sbW9W3aWF9A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA");
+      url(${backImg});
   background-size: cover;
 `;
 
@@ -218,6 +219,7 @@ const Findpassword = () => {
             <label className="tofindtel">
               <LogText1>이름</LogText1>
               <FindInput
+
                 type="text"
                 onChange={handleChangeN}
                 placeholder="이름"
