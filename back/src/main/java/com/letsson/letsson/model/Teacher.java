@@ -71,10 +71,10 @@ public class Teacher implements UserDetails
     private String career;
     @Column(name = "rate")
     private double rate = 0.0;
-    @Column(name = "ingstnum")
-    private Integer ingStNum = 0;
+    @Column(name = "ingstnum",columnDefinition = "integer default 0")
+    private int ingStNum = 0;
     @Column(name = "edstnum")
-    private Integer edStNum = 0;
+    private int edStNum = 0;
 
     @Column(name="role")
     private String role;

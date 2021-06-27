@@ -63,6 +63,12 @@ public class TeacherJoinDto {
 
     private String role;
 
+    private int ingStNum;
+    private int edStNum;
+
+    private String career;
+    private String plan;
+
 
 
 

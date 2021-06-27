@@ -61,4 +61,8 @@ public class StudentJoinDto{
     private String subject;
 
     private String role;
+
+    private String intro;
+    private Float review;
+    private String goal;
 }
