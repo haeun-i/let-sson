@@ -6,8 +6,50 @@ import mypic from "./main_image.png";
 import Logotext from "../component/feature/main/logotext";
 
 const Mainbody = styled.div`
-  width: 100vw;
-  height: 100vh;
+  overflow : hidden;
+`;
+
+const Btnspan = styled.span`
+white-space: nowrap;
+@media only screen and (max-width: 1250px) {
+  margin-left : 18vw;
+}`;
+
+const Textspan = styled.span`
+white-space: nowrap;
+@media only screen and (max-width: 1250px) {
+  margin-left : 15vw;
+}
+@media only screen and (max-width: 970px) {
+  margin-left : 14vw;
+}
+@media only screen and (max-width: 900px) {
+  margin-left : 13vw;
+}
+@media only screen and (max-width: 850px) {
+  margin-left : 12vw;
+}
+@media only screen and (max-width: 800px) {
+  margin-left : 11vw;
+}
+@media only screen and (max-width: 750px) {
+  margin-left : 10vw;
+}
+@media only screen and (max-width: 700px) {
+  margin-left : 9vw;
+}
+@media only screen and (max-width: 650px) {
+  margin-left : 8vw;
+}
+@media only screen and (max-width: 600px) {
+  margin-left : 7vw;
+}
+@media only screen and (max-width: 550px) {
+  margin-left : 6vw;
+}
+@media only screen and (max-width: 500px) {
+  margin-left : 5vw;
+}
 `;
 
 const Wrapper = styled.div`
@@ -21,6 +63,7 @@ const Wrapper = styled.div`
 const MainImage = styled.img`
   width: 100%;
   height: 90%;
+  position : relative;
 `;
 const Text2_1 = styled.span`
   position: absolute;
@@ -37,7 +80,12 @@ const Text2_1 = styled.span`
   top: 39vh;
   left: 11vw;
 
+  @media all and (max-width: 1250px), (max-height: 300px) {
+    display : none;
+  }
+
   transform: matrix(-1, 0, 0, 1, 0, 0);
+
 `;
 const Text2_2 = styled.span`
   position: absolute;
@@ -48,10 +96,13 @@ const Text2_2 = styled.span`
   font-weight: bold;
   font-size: 48px;
   line-height: 70px;
-  /* identical to box height */
+  left : 40vw;
   top: 39vh;
-  left: 40vw;
   color: #ffeb34;
+
+  @media all and (max-width: 1250px), (max-height: 300px) {
+    display : none;
+  }
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
 `;
@@ -66,6 +117,32 @@ left : 15vw;
   font-size: 1em;
   line-height: 35px;
   /* identical to box height */
+
+
+  @media only screen and (max-height: 500px) {
+    top : 49vh;
+  }
+
+  @media only screen and (max-width: 800px) {
+    top : 53vh;
+  }
+
+  @media only screen and (max-width: 600px),  (max-height : 450px) {
+    display : none
+  }
+
+  @media only screen and (max-width: 800px) and (max-height : 450px) {
+    top : 59vh;
+  }
+
+  @media only screen and (max-height: 400px) {
+    display : none;
+  }
+
+  @media all and (max-width: 490px) and (max-height: 500px){
+    display : none;
+  }
+
 
   color: white;
 `;
@@ -127,23 +204,27 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <Mainbody>
             <HeadButton />
             <MainImage src={mypic} />
-            <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
             <Text2_1>"</Text2_1>
             <Text2_2>"</Text2_2>
             <Text>
               {this.state.person}명의 회원이 이 사이트를 이용하고 있습니다.
             </Text>
+            <Textspan>
+            <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
             <Logotext></Logotext>
+            </Textspan>
+            <Btnspan>
             <Link to="/teasign">
               <Teabutton1>학생 가입</Teabutton1>
             </Link>
             <Link to="/stusign">
               <Teabutton2>선생님 가입</Teabutton2>
             </Link>
-      </div>
+            </Btnspan>
+      </Mainbody>
     );
   }
 }

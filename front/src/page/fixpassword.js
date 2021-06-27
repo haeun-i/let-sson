@@ -1,12 +1,12 @@
 import React, { useReducer } from "react";
 import { useHistory } from "react-router-dom";
-import {useLocation} from "react-router";
+import { useLocation } from "react-router";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
 import axios from "axios";
 import backImg from "./idpassword.jpg";
 const Wrapper = styled.div`
-   background-color: #e5e5e5;
+  background-color: #e5e5e5;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -19,8 +19,7 @@ const Wrapper = styled.div`
       rgba(247, 247, 247, 0.9),
       rgba(247, 247, 247, 0.9)
     ),
-    no-repeat 0 0
-      url(${backImg});
+    no-repeat 0 0 url(${backImg});
   background-size: cover;
 `;
 
@@ -135,7 +134,6 @@ const FindInput = styled.input`
   border-radius: 2px;
 `;
 
-
 const INITIAL_STATE = {
   checkpassword: "",
   password: "",
@@ -156,26 +154,25 @@ const Fixpassword = () => {
   const location = useLocation();
   const tel = location.state.tel;
 
-  
-
   const confirm = async e => {
     e.preventDefault();
-    if(state.password !== state.checkpassword){
-      alert("비밀번호가 일치하지 않습니다.")
-    }else{
-      const data = { password: state.password ,tel:tel};
-    console.log(data);
-    await axios
-      .put(`http://localhost:8080/users/resetPassword/?password=${state.password}&tel=${tel}`,
-      )
-      .then(function (response) {
-        console.log(response);
-        alert("비밀번호 수정 완료.");
-        history.push("/login");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (state.password !== state.checkpassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+    } else {
+      const data = { password: state.password, tel: tel };
+      console.log(data);
+      await axios
+        .put(
+          `http://localhost:8080/users/resetPassword/?password=${state.password}&tel=${tel}`
+        )
+        .then(function (response) {
+          console.log(response);
+          alert("비밀번호 수정 완료.");
+          history.push("/login");
+        })
+        .catch(function (error) {
+          console.log(error.response);
+        });
     }
   };
 
@@ -183,21 +180,27 @@ const Fixpassword = () => {
     dispatch({ type: "setPassword", password: e.currentTarget.value });
   };
   const handleChangeC = e => {
-    dispatch({ type: "setCheckpassword", checkpassword: e.currentTarget.value });
+    dispatch({
+      type: "setCheckpassword",
+      checkpassword: e.currentTarget.value,
+    });
   };
 
   return (
     <div>
       <HeadButton />
       <Wrapper>
-      <Circle>비밀번호 변경</Circle>
+        <Circle>비밀번호 변경</Circle>
         <Letters>"Better Education," Better Life</Letters>
         <Form>
           <FindText1>
             <label classpassword="tofindtel">
               <LogText1> 새 비밀번호 </LogText1>
-              <FindInput type="text" 
-              placeholder="새 비밀번호"onChange={handleChangeP}></FindInput>
+              <FindInput
+                type="text"
+                placeholder="새 비밀번호"
+                onChange={handleChangeP}
+              ></FindInput>
             </label>
           </FindText1>
           <FindText2>

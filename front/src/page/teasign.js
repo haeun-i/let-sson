@@ -220,28 +220,32 @@ const Teasign = () => {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
       console.log(state);
-      await axios.post("http://localhost:8080/teachers/join", 
-        {
-          "contact": state.contact,
-          "email": state.email,
-          "female": state.femail,
-          "intro": state.intro,
-          "is_attend": state.is_attend,
-          "major": state.major,
-          "male": state.mail,
-          "name": state.name,
-          "nonContact": true,
-          "password": state.noncontact,
-          "pay":  parseInt(state.pay),
-          "region": state.region,
-          "role": state.role,
-          "subject": state.subject,
-          "tel": state.tel,
-          "university": state.university
-        }
-      );
-      alert("가입에 성공하였습니다.");
-      history.push("/login");
+      await axios
+        .post("http://localhost:8080/teachers/join", {
+          contact: state.contact,
+          email: state.email,
+          female: state.femail,
+          intro: state.intro,
+          is_attend: state.is_attend,
+          major: state.major,
+          male: state.mail,
+          name: state.name,
+          nonContact: true,
+          password: state.noncontact,
+          pay: parseInt(state.pay),
+          region: state.region,
+          role: state.role,
+          subject: state.subject,
+          tel: state.tel,
+          university: state.university,
+        })
+        .then(response => {
+          alert("가입에 성공하였습니다.");
+          history.push("/login");
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   };
 

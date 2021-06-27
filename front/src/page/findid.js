@@ -19,8 +19,7 @@ const Wrapper = styled.div`
       rgba(247, 247, 247, 0.9),
       rgba(247, 247, 247, 0.9)
     ),
-    no-repeat 0 0
-      url(${backImg});
+    no-repeat 0 0 url(${backImg});
   background-size: cover;
 `;
 
@@ -166,7 +165,7 @@ const Findid = () => {
         history.push("/login");
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response);
       });
   };
 

@@ -26,6 +26,7 @@ const Text = styled.div`
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
 `;
 
 const StusigngenderMy = () => {
