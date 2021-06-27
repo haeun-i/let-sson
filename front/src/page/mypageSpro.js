@@ -102,10 +102,7 @@ const Circle2 = styled.div`
   background-color: #8983d2;
   color: white;
   @media only screen and (max-width: 1350px) {
-    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;}
-    @media only screen and (max-width: 1350px) {
-    width: 0%;
-    padding-top: 33%;
+    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
 `;
 
@@ -116,6 +113,10 @@ const Text1 = styled.div`
   padding-top: 30%;
   padding-bottom: 50px;
   color: #0d00a4;
+  @media only screen and (max-width: 1350px) {
+    width: 0%;
+    padding-top: 33%;
+  }
 `;
 const Text2 = styled.div`
   margin-left: 25%;
