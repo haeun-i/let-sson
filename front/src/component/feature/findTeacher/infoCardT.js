@@ -13,10 +13,7 @@ const Profile = styled.div`
   margin-left: 30px;
   position: grid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  @media only screen and (max-width: 1280px) {
-    width: ${props => (props.span ? (props.span / 12) * 100 : "13")}%;
-    height: ${props => (props.span ? (props.span / 12) * 100 : "250")}px;
-  }
+  
 `;
 const Text = styled.div`
   text-align: center;

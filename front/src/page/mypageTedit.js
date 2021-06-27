@@ -20,6 +20,8 @@ import axios from "axios";
 import { AuthEmail, AuthPhone } from "../component/shared/auth";
 import myPback from "./successbackg.jpg";
 import HeadButtons from "../component/layout/header/header";
+import circleImg1 from "./mypage1.jpg";
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -68,7 +70,7 @@ const Blue = styled.span`
 
 const Circle1 = styled.div`
   position: absolute;
-  background-image: url(https://s3-alpha-sig.figma.com/img/fcbf/2bdb/a151e666636c5620c3b5533a5cc5817c?Expires=1622419200&Signature=Hht9i4BZlUyxYnPhFgIhSElREA6PYWoxxT-MUUG-of9MxyM9ug2tG7l9jDlKXeWJHUpI3TxP6yfeXALMdRICmB0gGXEgWNvFmi1utuNON2WyZVlRktWXWrtjwjWly2Vesqcsftcp7a9kftMWvAYvyX4UyFyg~64ybgbF0-fxMj4nvgoMOtQoFKZnvMP2RADKg6VCHs0Ey-aolA7ELED09yIdEssNblxsuePYFmeI7dVIHJHT2uwddH83DARTo5etSijM6uvMEyjkvorYJCzmUp0O6BxCJ6stCycXBES4CJ0TEmu8vA~7fpaDWDQyUFkeeCyyWgxcLwikvf1McziUxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: url(${circleImg1});
   background-position: center;
   background-size: cover;
   margin-top: 25%;

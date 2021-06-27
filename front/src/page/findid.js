@@ -166,7 +166,7 @@ const Findid = () => {
         history.push("/login");
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response);
       });
   };
 
