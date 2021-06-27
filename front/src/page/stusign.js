@@ -37,7 +37,7 @@ const Wrapper = styled.form`
 `;
 const Body = styled.div`
   overflow: auto;
-  background-color: #F5F4F2;
+  background-color: #f5f4f2;
 `;
 const SignBtns = styled.div`
   margin-top: 10px;
@@ -188,24 +188,30 @@ const Stusign = () => {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
       console.log(state);
-      axios.post("http://localhost:8080/students/join", {
-        name: state.name,
-        is_stu: state.is_stu,
-        age: parseInt(state.age),
-        male: state.male,
-        female: state.female,
-        proper_gender: state.proper_gender,
-        pay: parseInt(state.pay),
-        tel: state.tel,
-        password: state.password,
-        email: state.email,
-        contact: state.contact,
-        noncontact: state.noncontact,
-        region: state.region,
-        subject: state.subject,
-      });
-      alert("가입에 성공하였습니다.");
-      history.push("/login");
+      axios
+        .post("http://localhost:8080/students/join", {
+          name: state.name,
+          is_stu: state.is_stu,
+          age: parseInt(state.age),
+          male: state.male,
+          female: state.female,
+          proper_gender: state.proper_gender,
+          pay: parseInt(state.pay),
+          tel: state.tel,
+          password: state.password,
+          email: state.email,
+          contact: state.contact,
+          noncontact: state.noncontact,
+          region: state.region,
+          subject: state.subject,
+        })
+        .then(response => {
+          alert("가입에 성공하였습니다.");
+          history.push("/login");
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   };
 

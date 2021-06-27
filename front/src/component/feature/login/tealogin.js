@@ -5,17 +5,17 @@ import axios from "axios";
 import { LoginContext } from "../../../page/login";
 
 const Log = styled.form`
-  position : absolute;
+  position: absolute;
   background-color: white;
   width: 200px;
   height: 180px;
   margin-left: 55%;
-  margin-top : 10vh;
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 950px) {
-    margin-top : 45vh;
-    margin-left : 35%;
+    margin-top: 45vh;
+    margin-left: 35%;
   }
 `;
 const LogText1 = styled.span`
@@ -87,24 +87,24 @@ const LogBtn = styled.input`
   color: #ffffff;
 
   @media only screen and (max-width: 950px) {
-    margin-left : -15vw;
+    margin-left: -15vw;
   }
   @media only screen and (max-width: 650px) {
-    margin-left : -18vw;
+    margin-left: -18vw;
   }
 `;
 
 const Letsson = styled.p`
-font-family: Noto Sans KR;
-font-style: normal;
-font-weight: normal;
-font-size: 2em;
-line-height: 26px;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 26px;
 
-top: 39vh;
-left: 24vw;
+  top: 39vh;
+  left: 24vw;
 
-color: #ffffff;
+  color: #ffffff;
 `;
 
 const TeaLogin = () => {
@@ -156,7 +156,7 @@ const TeaLogin = () => {
         localStorage.setItem("role", "teacher");
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
         alert("로그인에 실패하였습니다. 아이디와 비밀번호를 확인 해주세요.");
       });
   };

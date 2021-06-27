@@ -27,9 +27,9 @@ const CardList = styled.ul`
   border-radius: 10px;
 
   @media only screen and (max-width: 680px) {
-    margin-top : 10%;
+    margin-top: 10%;
   }
-  `;
+`;
 
 const Card = styled.li`
   border-top: 2px solid lightgrey;
@@ -89,14 +89,16 @@ const PostboxListRS = () => {
 
   useEffect(() => {
     const getRecieve = async () => {
-      const dataSRecieve = await axios.get(
-        "http://localhost:8080/students/getAllReceiving",
-        {
+      const dataSRecieve = await axios
+        .get("http://localhost:8080/students/getAllReceiving", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        }
-      );
+        })
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
       console.log(dataSRecieve.data);
       setData(dataSRecieve.data);
     };
@@ -114,6 +116,9 @@ const PostboxListRS = () => {
         })
         .then(response => {
           alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+        })
+        .catch(err => {
+          console.log(err.response);
         });
     }
   };
