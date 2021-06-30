@@ -7,16 +7,12 @@ import { SidebarContextS } from "../../../page/findStudent";
 const Profile = styled.div`
   background-color: #f3f2fc;
   height: 250px;
-  width: 180px;
+  width: 200px;
   display: inline-block;
   margin-top: 30px;
   margin-left: 30px;
   position: grid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  @media only screen and (max-width: 1280px) {
-    width: ${props => (props.span ? (props.span / 12) * 100 : "13")}%;
-    height: ${props => (props.span ? (props.span / 12) * 100 : "250")}px;
-  }
 `;
 const Text = styled.div`
   text-align: center;
