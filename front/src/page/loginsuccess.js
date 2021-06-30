@@ -18,6 +18,9 @@ const Wrapper = styled.div`
   }
   @media only screen and (max-height: 580px) {
     background-size: contain;}
+  @media only screen and (max-width: 665px){
+    display:grid;
+  }
 `;
 const SuccessText = styled.div`
   position: absolute;
@@ -37,11 +40,16 @@ const SuccessText = styled.div`
   padding-right: 30px;
   margin-bottom: 5%;
   @media only screen and (max-width: 1273px) {
-    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "80")}%;
+    width:${props => (props.span ? (props.span / 12) * 100 : "20")}%;
   }
-  @media only screen and (max-height: 580px) {
-    position: relative;
-    width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
+  @media only screen and (max-width: 665px) {
+    margin-top:${props => (props.span ? (props.span / 12) * 100 : "1")}%;
+    
+  }
+  @media only screen and (max-width: 645px) {
+    margin-left:${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+    
   }
 `;
 
@@ -70,8 +78,12 @@ const SuccessBtn1 = styled.button`
   @media only screen and (max-width: 1273px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
   }
-  @media only screen and (max-height: 580px) {
-   height: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+  @media only screen and (max-width: 705px) {
+    width:226px;
+  }
+  @media only screen and (max-width: 580px){
+    height: 200px;
+    width:200px;
   }
 `;
 
@@ -97,8 +109,12 @@ const SuccessBtn2 = styled.button`
   @media only screen and (max-width: 1273px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "32")}%;
   }
-  @media only screen and (max-height: 580px) {
-   height: ${props => (props.span ? (props.span / 12) * 100 : "70")}%;
+  @media only screen and (max-width: 705px) {
+    width:226px;
+  }
+  @media only screen and (max-width: 580px){
+    height: 200px;
+    width:200px;
   }
 `;
 

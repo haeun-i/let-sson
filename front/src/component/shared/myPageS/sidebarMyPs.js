@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   width: 40%;
   background-color: white;
   height: 36px;
-  background: #ffffff;
+  background: none;
   box-shadow: 0px 4px 4px rgba(237, 237, 237, 0.25);
   border-radius: 3px;
   justify-content: center;
@@ -50,7 +50,9 @@ const SidebarMyPs = () => {
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
+        <Link>
         <SideB onClick={withdraw}>탈퇴하기</SideB>
+        </Link>
       </Wrapper>
     </div>
   );

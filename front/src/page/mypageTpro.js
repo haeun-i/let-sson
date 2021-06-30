@@ -6,6 +6,8 @@ import styled from "styled-components";
 import axios from "axios";
 import myPback from "./successbackg.jpg";
 import circleImg1 from "./mypage1.jpg";
+import circleImg2 from "./mypage2.jpg";
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -47,6 +49,9 @@ const Wrapper2 = styled.div`
   background: #ffffff;
   border: 1px solid #f3f2fc;
   box-sizing: border-box;
+  @media only screen and (max-width: 770px) {
+    width:85%
+  }
 `;
 
 const Blue = styled.span`
@@ -78,11 +83,17 @@ const Circle1 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
+  @media only screen and (max-width: 1350px) {
+    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
+  }
+  @media only screen and (max-width: 900px) {
+    display:none;
+  }
 `;
 
 const Circle2 = styled.div`
   position: absolute;
-  background-image: url(https://s3-alpha-sig.figma.com/img/03df/c6a8/415db81c007c30d615ba33a27cb1a327?Expires=1622419200&Signature=LKlEJlvlpA2pqq0wAhdBHNa4LEjP6koZxvyeE5wnOgThtQAkCatmq0Ju3E0y4cszru-GlfDYtgcbjOGQrdWzUX0vpZ0syRHNbfkyjWunv3u0EJD2iMURua5lCHjAn1a5tBNBOeDiHflTJsyyle0gKLauZACPd3ZMJh0paBLJI8SvmLw2cToiqQ~C-8S1O4k0S2qDoVV1Rdb~5VWZdAp-sF6ytXPTrq4bSjYib1Yqa5HvnMvqiqHGzY7mH0XyJie9KyUEhhS5PSk4mdG7gVQ0MVNbDU1mD0mYnWfW37iFRoeQHG5AcEp~NKhHh8-NtJJWrKNFGMIOxiBEmuPJwpy1kg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: url(${circleImg2});
   background-position: center;
   background-size: cover;
   margin-top: 10%;
@@ -103,6 +114,9 @@ const Circle2 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
+  @media only screen and (max-width: 900px) {
+    display:none;
+  }
 `;
 
 const Text1 = styled.div`
@@ -115,6 +129,9 @@ const Text1 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: 0%;
     padding-top: 33%;
+  }
+  @media only screen and (max-width: 770px) {
+    display:none;
   }
 `;
 const Text2 = styled.div`
@@ -296,7 +313,6 @@ componentDidMount() {
             <SidebarMyPt />
           </Bar>
         <Wrapper>
-          선생님
           <Wrapper2>
           <Box>
           <Text>프로필 사진</Text>

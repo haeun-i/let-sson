@@ -7,7 +7,7 @@ import { SidebarContextS } from "../../../page/findStudent";
 const Profile = styled.div`
   background-color: #f3f2fc;
   height: 250px;
-  width: 180px;
+  width: 200px;
   display: inline-block;
   margin-top: 30px;
   margin-left: 30px;

@@ -33,6 +33,7 @@ const Form = styled.form`
   border-radius: 2px;
   display: flex;
   flex-direction: column;
+  
 `;
 
 const Circle = styled.div`
@@ -51,6 +52,12 @@ const Circle = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
+  @media only screen and (max-height: 805px) {
+    border-radius:0px;
+    width: 120px;
+  height: 0px;
+  color: #8983d2;
+  }
 `;
 
 const Letters = styled.div`
@@ -69,6 +76,9 @@ const Letters = styled.div`
   line-height: 26px;
 
   color: #0d00a4;
+  @media only screen and (max-height: 805px) {
+    margin-top:${props => (props.span ? (props.span / 12) * 100 : "-37")}%;
+  }
 `;
 
 const FindText1 = styled.div`

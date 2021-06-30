@@ -12,6 +12,13 @@ const Side = styled.span`
   height: 100%;
 `;
 
+const CardList = styled.div`
+  
+  @media only screen and (max-width: 1350px) {
+    text-align: center;
+  }
+`;
+
 export const FilterContextT = React.createContext();
 
 const INITIAL_STATE = {
@@ -61,7 +68,9 @@ const FindTeacher = () => {
           <Side>
             <SidebarT />
           </Side>
+          <CardList>
           <InfoCardT />
+          </CardList>
         </FilterContextT.Provider>
       </Wrapper>
     </div>
