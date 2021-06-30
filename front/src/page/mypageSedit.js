@@ -244,29 +244,30 @@ const MypageSe = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          console.log(dataS);
+          dispatch({
+            type: "getData",
+            name: dataS.data.data.name,
+            tel: dataS.data.data.tel,
+            email: dataS.data.data.email,
+            region: dataS.data.data.region,
+            subject: dataS.data.data.subject,
+            age: dataS.data.data.age,
+            contact: dataS.data.data.contact,
+            male: dataS.data.data.male,
+            proper_gender: dataS.data.data.proper_gender,
+            pay: dataS.data.data.pay,
+            is_stu: dataS.data.data.is_stu,
+            password: "",
+            role: dataS.data.data.role,
+            female: dataS.data.data.female,
+            nonContact: dataS.data.data.nonContact,
+          });
+        })
         .catch(err => {
           console.log(err.response);
         });
-      console.log(dataS);
-      dispatch({
-        type: "getData",
-        name: dataS.data.data.name,
-        tel: dataS.data.data.tel,
-        email: dataS.data.data.email,
-        region: dataS.data.data.region,
-        subject: dataS.data.data.subject,
-        age: dataS.data.data.age,
-        contact: dataS.data.data.contact,
-        male: dataS.data.data.male,
-        proper_gender: dataS.data.data.proper_gender,
-        pay: dataS.data.data.pay,
-        is_stu: dataS.data.data.is_stu,
-        password: "",
-        role: dataS.data.data.role,
-        female: dataS.data.data.female,
-        nonContact: dataS.data.data.nonContact,
-      });
     };
     profileData();
   }, []);

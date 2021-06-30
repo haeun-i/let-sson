@@ -266,38 +266,39 @@ const MypageTe = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          console.log(dataT);
+          dispatch({
+            type: "getData",
+            id: dataT.data.data.id,
+            name: dataT.data.data.name,
+            tel: dataT.data.data.tel,
+            password: "",
+            email: dataT.data.data.email,
+            region: dataT.data.data.region,
+            male: dataT.data.data.male,
+            photo: dataT.data.data.photo,
+            pay: dataT.data.data.pay,
+            contact: dataT.data.data.contact,
+            major: dataT.data.data.major,
+            university: dataT.data.data.university,
+            is_attend: dataT.data.data.is_attend,
+            rate: dataT.data.data.rate,
+            stnum: dataT.data.data.stnum,
+            intro: dataT.data.data.intro,
+            plan: dataT.data.data.plan,
+            career: dataT.data.data.career,
+            subject: dataT.data.data.subject,
+            prove_image: dataT.data.data.prove_image,
+            role: dataT.data.data.role,
+            appeal: dataT.data.data.appeal,
+            female: dataT.data.data.female,
+            noncontact: dataT.data.data.nonContact,
+          });
+        })
         .catch(err => {
           console.log(err.response);
         });
-      console.log(dataT);
-      dispatch({
-        type: "getData",
-        id: dataT.data.data.id,
-        name: dataT.data.data.name,
-        tel: dataT.data.data.tel,
-        password: "",
-        email: dataT.data.data.email,
-        region: dataT.data.data.region,
-        male: dataT.data.data.male,
-        photo: dataT.data.data.photo,
-        pay: dataT.data.data.pay,
-        contact: dataT.data.data.contact,
-        major: dataT.data.data.major,
-        university: dataT.data.data.university,
-        is_attend: dataT.data.data.is_attend,
-        rate: dataT.data.data.rate,
-        stnum: dataT.data.data.stnum,
-        intro: dataT.data.data.intro,
-        plan: dataT.data.data.plan,
-        career: dataT.data.data.career,
-        subject: dataT.data.data.subject,
-        prove_image: dataT.data.data.prove_image,
-        role: dataT.data.data.role,
-        appeal: dataT.data.data.appeal,
-        female: dataT.data.data.female,
-        noncontact: dataT.data.data.nonContact,
-      });
     };
     profileData();
   }, []);

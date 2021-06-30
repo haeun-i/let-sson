@@ -104,11 +104,12 @@ const InfoCardS = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          setData(apidata.data);
+        })
         .catch(err => {
           console.log(err.response);
         });
-      setData(apidata.data);
     };
     cardData();
   }, []);

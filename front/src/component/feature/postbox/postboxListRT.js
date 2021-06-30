@@ -12,7 +12,6 @@ const Container = styled.div`
   background-image: url(${postboxbackg});
   background-size: cover;
   background-color: rgba(0, 0, 0, 0); ;
-
 `;
 
 const CardList = styled.ul`
@@ -26,9 +25,9 @@ const CardList = styled.ul`
   border-radius: 10px;
 
   @media only screen and (max-width: 680px) {
-    margin-top : 10%;
+    margin-top: 10%;
   }
-  `;
+`;
 
 const Card = styled.li`
   border-top: 2px solid lightgrey;
@@ -86,16 +85,19 @@ const PostboxListRT = () => {
   const history = useHistory();
   useEffect(() => {
     const getRecieve = async () => {
-      const dataTRecieve = await axios.get(
-        "http://localhost:8080/teachers/getAllReceiving",
-        {
+      const dataTRecieve = await axios
+        .get("http://localhost:8080/teachers/getAllReceiving", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        }
-      );
-      console.log(dataTRecieve.data);
-      setData(dataTRecieve.data);
+        })
+        .then(response => {
+          console.log(dataTRecieve.data);
+          setData(dataTRecieve.data);
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     };
     getRecieve();
   }, []);

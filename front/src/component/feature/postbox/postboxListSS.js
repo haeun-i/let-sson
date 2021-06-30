@@ -96,12 +96,13 @@ const PostboxListSS = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          console.log(dataSSend.data);
+          setData(dataSSend.data);
+        })
         .catch(err => {
           console.log(err.response);
         });
-      console.log(dataSSend.data);
-      setData(dataSSend.data);
     };
     getSend();
   }, []);
