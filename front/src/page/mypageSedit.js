@@ -288,16 +288,16 @@ const MypageSe = () => {
 
   useEffect(() => {
     const profileData = async () => {
-      const dataS = await axios.get(
-        "http://localhost:8080/students/studentInfo",
-        {
+      const dataS = await axios
+        .get("http://localhost:8080/students/studentInfo", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        }
-      ).then(response =>{}).catch(err => {
-        console.log(err.response);
-      });
+        })
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
       console.log(dataS);
       dispatch({
         type: "getData",

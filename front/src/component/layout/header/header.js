@@ -16,7 +16,7 @@ const HeadButton = styled.span`
 
     text-align:center;
     justify-content:center;
-  
+    align-item:center;
   }
 }
   
@@ -31,6 +31,7 @@ const Head = styled.header`
     height:150px;
     text-align:center;
     justify-content:center;
+    align-item:center;
   
   }
 `;

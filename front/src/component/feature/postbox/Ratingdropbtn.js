@@ -39,7 +39,11 @@ class Ratingdropbtn extends React.Component {
               "X-AUTH-TOKEN": localStorage.getItem("token"),
             },
           }
-        );
+        )
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   }
 

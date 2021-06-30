@@ -19,14 +19,15 @@ const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: bold;
-  font-size: 14px;
   line-height: 20px;
   color: #0d00a4;
+  font-size: 14px;
 `;
 
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
 `;
 
 const StusignisstuMy = () => {

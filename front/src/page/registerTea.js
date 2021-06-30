@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import HeadButtons from "../component/layout/header/header";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -44,7 +44,7 @@ const Buttonfame = styled.div`
   width: 200px;
 `;
 
-const Registertea = (props) => {
+const Registertea = props => {
   const [data, setData] = useState({
     id: props.location.state.id,
     name: props.location.state.name,
@@ -58,7 +58,6 @@ const Registertea = (props) => {
     rate: props.location.state.rate,
     tel: props.location.state.tel,
   });
-
 
   const teaPost = async e => {
     console.log(data.tel);
@@ -75,37 +74,38 @@ const Registertea = (props) => {
           },
         }
       )
-      .then((response) =>{
+      .then(response => {
         console.log("전송 성공");
       })
-      .catch((error) =>{
+      .catch(error => {
         console.log("전송 실패");
+        console.log(error.response);
       });
   };
-    return (
-      <div>
-        <HeadButtons />
-        <Wrapper>
-          <RegisT
-            id={data.id}
-            name={data.name}
-            university={data.university}
-            major={data.major}
-            subject={data.subject}
-            region={data.region}
-            career={data.career}
-            intro={data.intro}
-            plan={data.plan}
-            rate={data.rate}
-          />
-          <Buttonfame>
-            <Link to="/findteacher">
-              <SubmitB onClick={teaPost}>신청하기</SubmitB>
-            </Link>
-          </Buttonfame>
-        </Wrapper>
-      </div>
-    );
-}
+  return (
+    <div>
+      <HeadButtons />
+      <Wrapper>
+        <RegisT
+          id={data.id}
+          name={data.name}
+          university={data.university}
+          major={data.major}
+          subject={data.subject}
+          region={data.region}
+          career={data.career}
+          intro={data.intro}
+          plan={data.plan}
+          rate={data.rate}
+        />
+        <Buttonfame>
+          <Link to="/findteacher">
+            <SubmitB onClick={teaPost}>신청하기</SubmitB>
+          </Link>
+        </Buttonfame>
+      </Wrapper>
+    </div>
+  );
+};
 
 export default Registertea;

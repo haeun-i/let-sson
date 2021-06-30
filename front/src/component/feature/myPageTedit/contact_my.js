@@ -6,6 +6,7 @@ const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 20px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -5,6 +5,7 @@ import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
+  font-size: 14px;
   padding-left: 20px;
   display: flex;
   flex-direction: column;

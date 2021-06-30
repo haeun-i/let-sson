@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +22,14 @@ public class TeacherService {
     private final PasswordEncoder passwordEncoder;
     private final TeacherRepository teacherRepository;
 
+    // 핸드폰 번호(아이디) 통해 선생님 찾기
+    public Teacher findTeacher(String tel)
+    {
+        return this.teacherRepository.findByTel(tel);
+    }
+    // 선생님 회원 가입
     public String signUp(TeacherJoinDto teacherJoinDto) throws IOException {
-        if(customUserDetailsService.idChk(teacherJoinDto.getTel())){
+        if(customUserDetailsService.confirmTel(teacherJoinDto.getTel())){
             return "사용불가한 아이디";
         }
         else {
@@ -48,6 +55,47 @@ public class TeacherService {
             return teacher.getTel();
         }
 
+    }
+    // 모든 선생님 리스트
+    public List<Teacher> getAllTeachers()
+    {
+        return this.teacherRepository.findAll();
+    }
+
+    // 선생님 기본 정보 업데이트
+    public Teacher updateBasicTeacher(Teacher existingTeacher,TeacherJoinDto teacher)
+    {
+        existingTeacher.setName(teacher.getName());
+        existingTeacher.setSubject(teacher.getSubject());
+        existingTeacher.setFemale(teacher.isFemale());
+        existingTeacher.setMale(teacher.isMale());
+        existingTeacher.setPay(teacher.getPay());
+        existingTeacher.setRegion(teacher.getRegion());
+        existingTeacher.setContact(teacher.isContact());
+        existingTeacher.setNonContact(teacher.isNonContact());
+        existingTeacher.setIs_attend(teacher.getIs_attend());
+        existingTeacher.setMajor(teacher.getMajor());
+        existingTeacher.setUniversity(teacher.getUniversity());
+        existingTeacher.setIntro(teacher.getIntro());
+        existingTeacher.setEmail(teacher.getEmail());
+        existingTeacher.setTel(teacher.getTel());
+        existingTeacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
+
+        return this.teacherRepository.save(existingTeacher);
+    }
+
+    public Teacher updateTeacher(Teacher existingTeacher,TeacherJoinDto teacher)
+    {
+        existingTeacher.setName(teacher.getName());
+        existingTeacher.setUniversity(teacher.getUniversity());
+        existingTeacher.setMajor(teacher.getMajor());
+        existingTeacher.setSubject(teacher.getSubject());
+        existingTeacher.setRegion(teacher.getRegion());
+        existingTeacher.setCareer(teacher.getCareer());
+        existingTeacher.setIntro(teacher.getIntro());
+        existingTeacher.setPlan(teacher.getPlan());
+
+        return this.teacherRepository.save(existingTeacher);
     }
     @Transactional
     public void addProfileImgWithS3(MultipartFile multipartFile, String basePath,String tel) throws IOException
@@ -76,5 +124,27 @@ public class TeacherService {
     }
 
 
+    // 선생님 삭제
+    public void deleteTeacher(String tel)
+    {
+        Teacher existingTeacher = findTeacher(tel);
+        this.teacherRepository.delete(existingTeacher);
+    }
+    public void makeLetsson(Teacher teacher)
+    {
+        teacher.setIngStNum(teacher.getIngStNum() + 1);
+        this.teacherRepository.save(teacher);
+
+    }
+
+    // 선생님 과외 종료 후 정보 업데이트
+    public void updateRating(Teacher teacher,Integer grade)
+    {
+        double totalGrade = (teacher.getEdStNum()* teacher.getRate() + grade);
+        teacher.setIngStNum(teacher.getIngStNum() - 1);
+        teacher.setEdStNum(teacher.getEdStNum() + 1);
+        teacher.setRate(totalGrade/teacher.getEdStNum());
+        this.teacherRepository.save(teacher);
+    }
 
 }
