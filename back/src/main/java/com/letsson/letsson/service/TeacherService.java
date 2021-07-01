@@ -22,11 +22,6 @@ public class TeacherService {
     private final PasswordEncoder passwordEncoder;
     private final TeacherRepository teacherRepository;
 
-    // 핸드폰 번호(아이디) 통해 선생님 찾기
-    public Teacher findTeacher(String tel)
-    {
-        return this.teacherRepository.findByTel(tel);
-    }
     // 선생님 회원 가입
     public String signUp(TeacherJoinDto teacherJoinDto) throws IOException {
         if(customUserDetailsService.confirmTel(teacherJoinDto.getTel())){
@@ -56,10 +51,10 @@ public class TeacherService {
         }
 
     }
-    // 모든 선생님 리스트
-    public List<Teacher> getAllTeachers()
+    // 핸드폰 번호(아이디) 통해 선생님 찾기
+    public Teacher findTeacher(String tel)
     {
-        return this.teacherRepository.findAll();
+        return this.teacherRepository.findByTel(tel);
     }
 
     // 선생님 기본 정보 업데이트
@@ -138,13 +133,20 @@ public class TeacherService {
     }
 
     // 선생님 과외 종료 후 정보 업데이트
-    public void updateRating(Teacher teacher,Integer grade)
+    public String updateRating(Teacher teacher,Integer grade)
     {
-        double totalGrade = (teacher.getEdStNum()* teacher.getRate() + grade);
-        teacher.setIngStNum(teacher.getIngStNum() - 1);
-        teacher.setEdStNum(teacher.getEdStNum() + 1);
-        teacher.setRate(totalGrade/teacher.getEdStNum());
-        this.teacherRepository.save(teacher);
+        try {
+            double totalGrade = (teacher.getEdStNum() * teacher.getRate() + grade);
+            teacher.setIngStNum(teacher.getIngStNum() - 1);
+            teacher.setEdStNum(teacher.getEdStNum() + 1);
+            teacher.setRate(totalGrade / teacher.getEdStNum());
+            this.teacherRepository.save(teacher);
+            return "완료";
+        }
+        catch (Exception e)
+        {
+            return e.getMessage();
+        }
     }
 
 }

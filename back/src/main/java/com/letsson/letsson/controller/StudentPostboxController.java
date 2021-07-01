@@ -167,8 +167,10 @@ public class StudentPostboxController {
         String result = studentPostboxService.updateRating(student,teacher);
         if(result.equals("종료 완료"))
         {
-            teacherService.updateRating(teacher,grade);
-            return ResponseEntity.ok().body(new CommonResponse<String>(student.getTel()+","+ teacher.getTel()+"과외가 종료되었습니다."));
+            if(teacherService.updateRating(teacher,grade).equals("완료"))
+                return ResponseEntity.ok().body(new CommonResponse<String>(student.getTel()+","+ teacher.getTel()+"과외가 종료되었습니다."));
+            else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse("체결되지 않은 과외 정보"));
         }
         else
         {
