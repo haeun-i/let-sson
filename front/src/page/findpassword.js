@@ -5,7 +5,6 @@ import styled from "styled-components";
 import axios from "axios";
 import HeadButtons from "../component/layout/header/header";
 import backImg from "./idpassword.jpg";
-
 const Wrapper = styled.div`
   background-color: #e5e5e5;
   position: absolute;
@@ -25,24 +24,6 @@ const Wrapper = styled.div`
   background-size: cover;
 `;
 
-const Letters = styled.div`
-  margin-top: -500px;
-  margin-left: -500px;
-
-  position: absolute;
-  text-align: center;
-  width: 200px;
-  height: 100px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 26px;
-
-  color: #0d00a4;
-`;
-
 const Form = styled.form`
   position: absolute;
   width: 755px;
@@ -52,6 +33,10 @@ const Form = styled.form`
   border-radius: 2px;
   display: flex;
   flex-direction: column;
+  
+  @media only screen and (max-width: 805px) {
+    width :${props => (props.span ? (props.span / 12) * 100 : "95")}%;
+  }
 `;
 
 const Circle = styled.div`
@@ -70,19 +55,49 @@ const Circle = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
+  @media only screen and (max-width: 805px) {
+    border-radius:0px;
+    width: 180px;
+    height: 0px;
+    color: #8983d2;
+    margin-right:0px;
+  }
+`;
+
+const Letters = styled.div`
+  margin-top: -500px;
+  margin-left: -500px;
+
+  position: absolute;
+  text-align: center;
+  width: 200px;
+  height: 100px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+
+  color: #0d00a4;
+  @media only screen and (max-width: 805px) {
+    display:none;
+    
+  }
+
 `;
 
 const FindText1 = styled.div`
   margin-top: 77px;
   padding-right: 10px;
   padding-bottom: 20px;
+  
 `;
 const FindText2 = styled.div`
   margin-top: 35px;
   padding-right: 10px;
   padding-bottom: 20px;
 `;
-
 const SuccessBtn = styled.input`
   width: 77px;
   height: 32px;
@@ -96,8 +111,10 @@ const SuccessBtn = styled.input`
 
   border: 0;
   outline: 1;
+  @media only screen and (max-width: 805px) {
+    margin-left :${props => (props.span ? (props.span / 12) * 100 : "80")}%;
+  }
 `;
-
 const LogText1 = styled.span`
   margin-left: 91px;
   margin-right: 108px;
@@ -111,8 +128,12 @@ const LogText1 = styled.span`
   line-height: 26px;
   /* identical to box height */
   color: #02001e;
+  @media only screen and (max-width: 805px) {
+    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right :${props => (props.span ? (props.span / 12) * 100 : "11.5")}%;
+  }
+  
 `;
-
 const LogText2 = styled.span`
   margin-left: 89px;
   margin-right: 50px;
@@ -127,8 +148,11 @@ const LogText2 = styled.span`
   /* identical to box height */
 
   color: #02001e;
+  @media only screen and (max-width: 805px) {
+    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right :${props => (props.span ? (props.span / 12) * 100 : "2")}%;
+  }
 `;
-
 const FindInput = styled.input`
   position: absolute;
   width: 405px;
@@ -137,6 +161,9 @@ const FindInput = styled.input`
   border: 2px solid #463ea0;
   box-sizing: border-box;
   border-radius: 2px;
+  @media only screen and (max-width: 805px) {
+    width :${props => (props.span ? (props.span / 20) * 100 : "53")}%;
+  }
 `;
 
 const INITIAL_STATE = {

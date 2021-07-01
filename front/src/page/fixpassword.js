@@ -40,6 +40,11 @@ const Letters = styled.div`
   line-height: 26px;
 
   color: #0d00a4;
+  @media only screen and (max-width: 805px) {
+    display:none;
+    
+  }
+
 `;
 const Circle = styled.div`
   margin-top: -560px;
@@ -57,6 +62,13 @@ const Circle = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
+  @media only screen and (max-width: 805px) {
+    border-radius:0px;
+    width: 180px;
+    height: 0px;
+    color: #8983d2;
+    margin-right:0px;
+  }
 `;
 const Form = styled.form`
   position: absolute;
@@ -67,6 +79,9 @@ const Form = styled.form`
   border-radius: 2px;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 805px) {
+    width :${props => (props.span ? (props.span / 12) * 100 : "95")}%;
+  }
 `;
 const FindText1 = styled.div`
   margin-top: 77px;
@@ -92,11 +107,14 @@ const SuccessBtn = styled.input`
 
   border: 0;
   outline: 1;
+  @media only screen and (max-width: 805px) {
+    margin-left :${props => (props.span ? (props.span / 12) * 100 : "80")}%;
+  }
 `;
 
 const LogText1 = styled.span`
   margin-left: 91px;
-  margin-right: 95px;
+  margin-right: 90px;
   width: 87px;
   height: 26px;
 
@@ -107,6 +125,10 @@ const LogText1 = styled.span`
   line-height: 26px;
   /* identical to box height */
   color: #02001e;
+  @media only screen and (max-width: 805px) {
+    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right :${props => (props.span ? (props.span / 12) * 100 : "9")}%;
+  }
 `;
 
 const LogText2 = styled.span`
@@ -123,6 +145,10 @@ const LogText2 = styled.span`
   /* identical to box height */
 
   color: #02001e;
+  @media only screen and (max-width: 805px) {
+    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right :${props => (props.span ? (props.span / 12) * 100 : "2")}%;
+  }
 `;
 
 const FindInput = styled.input`
@@ -133,6 +159,9 @@ const FindInput = styled.input`
   border: 2px solid #463ea0;
   box-sizing: border-box;
   border-radius: 2px;
+  @media only screen and (max-width: 805px) {
+    width :${props => (props.span ? (props.span / 20) * 100 : "53")}%;
+  }
 `;
 
 
