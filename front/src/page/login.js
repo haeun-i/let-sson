@@ -17,12 +17,40 @@ const Logindiv = styled.div`
   position : absolute;
   width: 80vw;
   height: 70%;
+  @media only screen and (max-width: 950px) {
+    height : 130%;
+  }
   top: 34vh;
   left: 10vw;
 
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(180, 180, 180, 0.25);
   border-radius: 3px;
+
+  @media screen and (max-height: 490px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 480px) {
+    margin-top : 25vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 450px) {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 400px) {
+    margin-top : 35vh;
+  }
+  @media screen and (max-width: 500px)  {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 430px) {
+    margin-top : 40vh;
+  }
+  @media screen and (max-height: 350px) {
+    display : none;
+  }
 `;
 
 const Logintext = styled.p`
@@ -35,8 +63,34 @@ const Logintext = styled.p`
   /* identical to box height */
 
   left: 14vw;
-  top: 22vh;
+  margin-left : 3vh;
+  top: 23vh;
   color: #02001e;
+
+  @media screen and (max-height: 490px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 480px) {
+    margin-top : 25vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 450px) {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 400px) {
+    margin-top : 35vh;
+  }
+  @media screen and (max-width: 500px)  {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 430px) {
+    margin-top : 40vh;
+  }
+  @media screen and (max-height: 350px) {
+    display : none;
+  }
 `;
 const Line1 = styled.span`
   position: absolute;
@@ -46,57 +100,81 @@ const Line1 = styled.span`
   border: 3px solid black;
   transform: rotate(-90deg);
   left: 11vw;
-  top: 25.5vh;
+  top: 26.5vh;
+
+  @media screen and (max-height: 490px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px){
+    margin-top : 20vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 480px) {
+    margin-top : 25vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 450px) {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 791px) and (max-height: 400px) {
+    margin-top : 35vh;
+  }
+  @media screen and (max-width: 500px)  {
+    margin-top : 30vh;
+  }
+  @media screen and (max-width: 430px) {
+    margin-top : 40vh;
+  }
+  @media screen and (max-height: 350px) {
+    display : none;
+  }
 `;
 
 const Logline = styled.span`
   position: absolute;
-  width: 20vw;
+  width: 18vw;
   left: 35%;
   top: 35vh;
   border: 1px solid #000000;
   transform: rotate(-90deg);
-`;
 
-const Notlog = styled.div`
-  left: 10%;
-`;
-
-const Notlog1 = styled.div`
-  width: 100%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  top: 70%;
-  margin-left: 35%;
-  margin-top: 75px;
-`;
-
-const Notlog2 = styled.div`
-  width: 100%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  margin-left: 35%;
-  top: 80%;
-  margin-top: 95px;
+  @media only screen and (max-width: 1200px) {
+    display : none;
+  }
 `;
 
 const NotlogText = styled.div`
 display: inline;
 position: absolute;
-margin-left: 30%;
+margin-left: 25%;
 top: 88%;
+@media screen and (max-width: 950px) {
+  margin-left : 15vw;
+}
+@media only screen and (max-width: 750px) {
+  margin-left : 10vw;
+}
+@media only screen and (max-width: 580px) {
+  margin-left : 5vw;
 }
 `;
+
 const NotlogBtn1 = styled.button`
 position: absolute;
-margin-left: 50%;
+margin-left: 48%;
 top: 88%;
   background-color: white;
   height: 10px;
   text-decoration: underline #010440;
   text-underline-position: under;
+
+  @media only screen and (max-width: 950px) {
+    margin-left : 38vw;
+  }
+  @media only screen and (max-width: 750px) {
+    margin-left : 43vw;
+  }
+  @media only screen and (max-width: 580px) {
+    margin-left : 41vw;
+  }
 `;
 
 const NotlogBtn2 = styled.button`
@@ -107,8 +185,19 @@ top: 88%;
   height: 10px;
   text-decoration: underline #010440;
   text-underline-position: under;
+
+  @media only screen and (max-width: 950px) {
+    margin-left : 50vw;
+  }
+  @media only screen and (max-width: 750px) {
+    margin-left : 58vw;
+  }
+  @media only screen and (max-width: 580px) {
+    margin-left : 60vw;
+  }
 `;
 
+const Tlog = styled.div``;
 
 export const LoginContext = React.createContext();
 
@@ -143,9 +232,12 @@ const Login = () => {
         <Line1></Line1>
         <Logintext>로그인</Logintext>
         <Logindiv>
+          <Tlog>
           <TeaLogin></TeaLogin>
           <Logline></Logline>
           <StuLogin></StuLogin>
+          </Tlog>
+
               <NotlogText>비밀번호를 잊으셨다면?</NotlogText>
               <Link to="/findid">
                 <NotlogBtn1>아이디찾기</NotlogBtn1>

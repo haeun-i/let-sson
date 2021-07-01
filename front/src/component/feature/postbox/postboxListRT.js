@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
 const Container = styled.div`
   width: 100%;
   /* 1rem = 16px */
   padding: 0.6rem;
-  padding-top : 10%;
+  padding-top: 10%;
   background-image: url(${postboxbackg});
   background-size: cover;
-  background-color: rgba(0,0,0,0);;
+  background-color: rgba(0, 0, 0, 0); ;
+
 `;
 
 const CardList = styled.ul`
@@ -21,25 +22,29 @@ const CardList = styled.ul`
   gap: 30px;
   margin-left: 10%;
   margin-right: 10%;
-  box-shadow: 3px 3px lightgrey;
-  padding-left : 0px;
+  padding-left: 0px;
   border-radius: 10px;
-`;
+
+  @media only screen and (max-width: 680px) {
+    margin-top : 10%;
+  }
+  `;
 
 const Card = styled.li`
   border-top: 2px solid lightgrey;
-  border-bottom : 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
   background-color: white;
   color: black;
   display: flex;
+  box-shadow: 3px 3px lightgrey;
   flex-direction: row;
   border-radius: 10px;
 `;
 
 const Cardelement1 = styled.div`
-  padding-top : 2.5%;
+  padding-top: 2.5%;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
   width: 7%;
@@ -55,13 +60,13 @@ const Cardelement2 = styled.div`
 `;
 
 const Cardelement3 = styled.div`
-  padding-top : 1.5%;
+  padding-top: 1.5%;
   width: 30%;
   text-align: right;
-  flex-grow : 3;
-  margin-right : 5%;
+  flex-grow: 3;
+  margin-right: 5%;
   align-items: center;
-  color : grey;
+  color: grey;
 `;
 
 const Cardelement4 = styled.div`
@@ -69,9 +74,8 @@ const Cardelement4 = styled.div`
   border-right: 1px solid lightgrey;
   width: 20%;
   text-align: center;
-  flex-grow : 4;
+  flex-grow: 4;
 `;
-
 
 const Cardbutton = styled.button`
   border: none;
@@ -112,6 +116,9 @@ const PostboxListRT = () => {
       .then(response => {
         alert("과외가 체결되었습니다.");
         history.push("/receivepost/tea");
+      })
+      .catch(err => {
+        console.log(err.response);
       });
   };
 
@@ -119,15 +126,14 @@ const PostboxListRT = () => {
     console.log(tel);
 
     if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
-      axios.delete(
-        "http://localhost:8080/students/deleteSending",
-        {
+      axios
+        .delete("http://localhost:8080/students/deleteSending", {
           data: { teacher_tel: tel },
           headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
-        }
-      ).then(response => {
-        alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
-      });
+        })
+        .then(response => {
+          alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+        });
     }
   };
 
@@ -160,7 +166,7 @@ const PostboxListRT = () => {
                 <div>
                   {element.create_date.split("T")[0]}
                   <br></br>
-                  {element.create_date.split("T")[1].substr(0,8)}
+                  {element.create_date.split("T")[1].substr(0, 8)}
                 </div>
               )}
             </Cardelement3>
@@ -168,7 +174,6 @@ const PostboxListRT = () => {
               <Cardbutton onClick={() => connected(element.sender.tel)}>
                 진행
               </Cardbutton>
-              <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>삭제</Cardbutton>
             </Cardelement4>
           </Card>
         ))}

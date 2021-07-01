@@ -9,6 +9,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 14px;
   margin-left: 5%;
   margin-right: 7%;
   background: #ffffff;

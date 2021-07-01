@@ -98,11 +98,16 @@ function InfoCardT() {
 
   useEffect(() => {
     const cardData = async () => {
-      const apidata = await axios.get("http://localhost:8080/teachers/", {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      });
+      const apidata = await axios
+        .get("http://localhost:8080/teachers/", {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        })
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
       setData(apidata.data);
     };
     cardData();

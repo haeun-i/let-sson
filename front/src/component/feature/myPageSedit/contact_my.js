@@ -19,13 +19,14 @@ const Text = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: bold;
-  font-size: 14px;
   line-height: 20px;
+  font-size: 14px;
   color: #0d00a4;
 `;
 
 const Btn = styled.div`
   margin-top: 10px;
+  font-size: 14px;
   margin-bottom: 10px;
 `;
 

@@ -102,10 +102,7 @@ const Circle2 = styled.div`
   background-color: #8983d2;
   color: white;
   @media only screen and (max-width: 1350px) {
-    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;}
-    @media only screen and (max-width: 1350px) {
-    width: 0%;
-    padding-top: 33%;
+    width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
 `;
 
@@ -116,6 +113,10 @@ const Text1 = styled.div`
   padding-top: 30%;
   padding-bottom: 50px;
   color: #0d00a4;
+  @media only screen and (max-width: 1350px) {
+    width: 0%;
+    padding-top: 33%;
+  }
 `;
 const Text2 = styled.div`
   margin-left: 25%;
@@ -171,27 +172,29 @@ class MypageSp extends React.Component {
       review: "",
       intro: "",
       goal: "",
-      files : "",
+      files: "",
     };
     this.tmp = this.state;
   }
 
   getData = async () => {
-    const dataS = await axios.get(
-      "http://localhost:8080/students/studentInfo",
-      {
+    const dataS = await axios
+      .get("http://localhost:8080/students/studentInfo", {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      }
-    );
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log(err.response);
+      });
     this.setState(dataS.data.data);
   };
 
   handleImage = e => {
     e.preventDefault();
     console.log(e.target.files);
-    this.setState(prevState => ({ ...prevState, files : e.target.files[0] }));
+    this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
   };
 
   componentDidMount() {
@@ -246,20 +249,26 @@ class MypageSp extends React.Component {
     const formData = new FormData();
     formData.append("file", this.state.files);
 
-    await axios.put(
-      "http://localhost:8080/teachers/modify",dataList,
-      { 
-        headers:{
+    await axios
+      .put("http://localhost:8080/teachers/modify", dataList, {
+        headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log(err.response);
       });
-      await axios.post(
-        "http://localhost:8080/teachers/profileImg",formData,
-        { 
-          headers:{
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
+    await axios
+      .post("http://localhost:8080/teachers/profileImg", formData, {
+        headers: {
+          "X-AUTH-TOKEN": localStorage.getItem("token"),
+        },
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log(err.response);
+      });
   };
 
   render() {
@@ -281,15 +290,15 @@ class MypageSp extends React.Component {
           </Bar>
           <Wrapper>
             <Wrapper2>
-            <Box>
-          <Text>프로필 사진</Text>
+              <Box>
+                <Text>프로필 사진</Text>
                 <InputBoxShort
                   type="file"
                   accept="image/png, image/jpg"
                   name="proveimage"
                   onChange={this.handleImage}
                 ></InputBoxShort>
-            </Box>
+              </Box>
               <SubmitS state={this.state} handleChange={this.handleChange} />
               <Buttonfame>
                 <SaveNref
