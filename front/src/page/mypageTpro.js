@@ -146,7 +146,6 @@ const Bar = styled.div`
   margin-bottom: 100px;
 `;
 
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -179,7 +178,6 @@ const InputBoxShort = styled.input`
   box-sizing: border-box;
 `;
 
-
 class MypageTp extends React.Component {
   constructor(props) {
     super(props);
@@ -192,24 +190,27 @@ class MypageTp extends React.Component {
       career: "",
       intro: "",
       plan: "",
-      files : "",
+      files: "",
     };
     this.tmp = this.state;
-  };
+  }
 
   getData = async () => {
-    const dataT = await axios.get(
-      "http://localhost:8080/teachers/teacherInfo",
-    { 
-      headers:{
-        "X-AUTH-TOKEN": localStorage.getItem("token"),
-      },
-    }
-    )
-    this.setState(dataT.data.data);
-}
+    const dataT = await axios
+      .get("http://localhost:8080/teachers/teacherInfo", {
+        headers: {
+          "X-AUTH-TOKEN": localStorage.getItem("token"),
+        },
+      })
+      .then(response => {
+        this.setState(dataT.data.data);
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
+  };
 
-componentDidMount() {
+  componentDidMount() {
     this.getData();
   }
   handleChange = e => {
@@ -238,9 +239,8 @@ componentDidMount() {
   handleImage = e => {
     e.preventDefault();
     console.log(e.target.files);
-    this.setState(prevState => ({ ...prevState, files : e.target.files[0] }));
+    this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
   };
-
 
   savedataT = async e => {
     e.preventDefault();
@@ -265,30 +265,35 @@ componentDidMount() {
       subject: this.state.subject,
       tel: this.state.tel,
       username: this.state.username,
-      photo:this.state.photo,
-      university:this.state.university,
-      major:this.state.major,
-      is_attend:this.state.is_attend,
-      prove_image:this.state.prove_image,
-    }
+      photo: this.state.photo,
+      university: this.state.university,
+      major: this.state.major,
+      is_attend: this.state.is_attend,
+      prove_image: this.state.prove_image,
+    };
     const formData = new FormData();
     formData.append("file", this.state.files);
 
-    await axios.put(
-      "http://localhost:8080/teachers/modify",dataList,
-      { 
-        headers:{
+    await axios
+      .put("http://localhost:8080/teachers/modify", dataList, {
+        headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log(err.response);
       });
-      await axios.post(
-        "http://localhost:8080/teachers/profileImg",formData,
-        { 
-          headers:{
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
-    
+    await axios
+      .post("http://localhost:8080/teachers/profileImg", formData, {
+        headers: {
+          "X-AUTH-TOKEN": localStorage.getItem("token"),
+        },
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log(err.response);
+      });
   };
 
   returning = e => {
@@ -312,31 +317,31 @@ componentDidMount() {
           <Bar>
             <SidebarMyPt />
           </Bar>
-        <Wrapper>
-          <Wrapper2>
-          <Box>
-          <Text>프로필 사진</Text>
+          <Wrapper>
+            <Wrapper2>
+              <Box>
+                <Text>프로필 사진</Text>
                 <InputBoxShort
                   type="file"
                   accept="image/png, image/jpg"
                   name="proveimage"
                   onChange={this.handleImage}
                 ></InputBoxShort>
-            </Box>
-            <SubmitT state={this.state} handleChange={this.handleChange} />
-            <Buttonfame>
-              <SaveNref
-                type="submit"
-                onClick={() => alert("저장이 완료되었습니다.")}
-              >
-                저장하기
-              </SaveNref>
-              {/* <SaveNref type="refresh" onClick={this.returning}>
+              </Box>
+              <SubmitT state={this.state} handleChange={this.handleChange} />
+              <Buttonfame>
+                <SaveNref
+                  type="submit"
+                  onClick={() => alert("저장이 완료되었습니다.")}
+                >
+                  저장하기
+                </SaveNref>
+                {/* <SaveNref type="refresh" onClick={this.returning}>
                 되돌리기
               </SaveNref> */}
-            </Buttonfame>
-          </Wrapper2>
-        </Wrapper>
+              </Buttonfame>
+            </Wrapper2>
+          </Wrapper>
         </Container>
       </form>
     );

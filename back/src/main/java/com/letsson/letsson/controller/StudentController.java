@@ -2,12 +2,11 @@ package com.letsson.letsson.controller;
 
 import com.letsson.letsson.model.Student;
 import com.letsson.letsson.model.StudentJoinDto;
-import com.letsson.letsson.repository.StudentRepository;
+import com.letsson.letsson.model.LoginDto;
 import com.letsson.letsson.response.BasicResponse;
 import com.letsson.letsson.response.CommonResponse;
 import com.letsson.letsson.response.ErrorResponse;
 import com.letsson.letsson.security.JwtTokenProvider;
-import com.letsson.letsson.service.AmazonS3ClientService;
 import com.letsson.letsson.service.CustomUserDetailsService;
 import com.letsson.letsson.service.StudentService;
 import io.swagger.annotations.*;
@@ -33,7 +32,6 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
     private final JwtTokenProvider jwtTokenProvider;
-    private final StudentRepository studentRepository;
     private final CustomUserDetailsService customUserDetailsService;
     private final StudentService studentService;
     private final PasswordEncoder passwordEncoder;
@@ -73,8 +71,7 @@ public class StudentController {
             @ApiImplicitParam(name="tel",value="학생 입력 전화번호",dataType = "String",required = true, paramType = "query")
     )
     public Map<String, Object> confirmTel(@RequestParam("tel") String tel) throws Exception{
-        boolean result = customUserDetailsService.idChk(tel);
-
+        boolean result = customUserDetailsService.confirmTel(tel);
         Map<String,Object> data = new HashMap<>();
         if(result == true){
             System.out.println("핸드폰 번호 사용 불가!");
@@ -90,10 +87,10 @@ public class StudentController {
     // 로그인
     @PostMapping("/login")
     @ApiOperation(value="login",tags="학생 로그인")
-    public String login(@ApiParam(name="Student",value = "로그인 학생 정보",required = true) @RequestBody Map<String, String> student) {
-        Student member = studentRepository.findByTel(student.get("tel"));
+    public String login(@ApiParam(name="Student",value = "로그인 학생 정보",required = true) @RequestBody LoginDto loginDto) {
+        Student member = studentService.findStudent(loginDto.getTel());
         if(member == null) throw new IllegalArgumentException("가입되지 않은 tel 입니다");
-        if (!passwordEncoder.matches(student.get("password"), member.getPassword())) {
+        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
@@ -107,7 +104,7 @@ public class StudentController {
             @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")
     })
     public List<Student> getALLStudents() {
-        return this.studentRepository.findAll();
+       return studentService.getALLStudents();
     }
 
     @GetMapping("/studentInfo")
@@ -120,7 +117,7 @@ public class StudentController {
         Map<String, Object> response = new HashMap<>();
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
 
-        Student student = this.studentRepository.findByTel(tel);
+        Student student = studentService.findStudent(tel);
         if(student != null)
            {
                return ResponseEntity.ok().body(new CommonResponse<Student>(student));
@@ -136,31 +133,16 @@ public class StudentController {
             {
              @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateBasicStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody Student student, HttpServletRequest request)
+    public ResponseEntity<? extends BasicResponse> updateBasicStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody StudentJoinDto student, HttpServletRequest request)
     {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Student existingStudent = this.studentRepository.findByTel(tel);
+        Student existingStudent = studentService.findStudent(tel);
         if(existingStudent == null)
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("일치하는 회원 정보가 없습니다."));
         }
-        existingStudent.setName(student.getName());
-        existingStudent.setIs_stu(student.getIs_stu());
-        existingStudent.setAge(student.getAge());
-        existingStudent.setMale(student.isMale());
-        existingStudent.setFemale(student.isFemale());
-        existingStudent.setProper_gender(student.getProper_gender());
-        existingStudent.setRegion(student.getRegion());
-        existingStudent.setSubject(student.getSubject());
-        existingStudent.setPay(student.getPay());
-        existingStudent.setContact(student.isContact());
-        existingStudent.setNonContact(student.isNonContact());
-        existingStudent.setTel(student.getTel());
-        existingStudent.setEmail(student.getEmail());
-        existingStudent.setPassword(passwordEncoder.encode(student.getPassword()));
-
-        Student saveStudent =  this.studentRepository.save(existingStudent);
+        Student saveStudent =  studentService.updateBasicStudent(existingStudent,student);
         if(saveStudent == null)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -176,23 +158,15 @@ public class StudentController {
             {
                     @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody Student student, HttpServletRequest request) throws IOException {
+    public ResponseEntity<? extends BasicResponse> updateStudent(@ApiParam(name="Student",value = "등록 학생 정보",required = true) @RequestBody StudentJoinDto student, HttpServletRequest request) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Student existingStudent = this.studentRepository.findByTel(tel);
+        Student existingStudent = studentService.findStudent(tel);
         if(existingStudent == null)
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("일치하는 회원 정보가 없습니다."));
         }
-        existingStudent.setName(student.getName());
-        existingStudent.setSubject(student.getSubject());
-        existingStudent.setRegion(student.getRegion());
-        existingStudent.setIntro(student.getIntro());
-        existingStudent.setGoal(student.getGoal());
-        existingStudent.setReview(student.getReview());
-
-
-        Student saveStudent =  this.studentRepository.save(existingStudent);
+        Student saveStudent =  studentService.updateStudent(existingStudent,student);
         if(saveStudent == null)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -236,8 +210,7 @@ public class StudentController {
     )
     public ResponseEntity<Student> deleteStudent(HttpServletRequest request) {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Student existingStudent = this.studentRepository.findByTel(tel);
-        this.studentRepository.delete(existingStudent);
+        this.studentService.deleteStudent(tel);
         return ResponseEntity.ok().build();
     }
 

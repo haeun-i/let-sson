@@ -275,14 +275,16 @@ const MypageTe = () => {
 
   useEffect(() => {
     const profileData = async () => {
-      const dataT = await axios.get(
-        "http://localhost:8080/teachers/teacherInfo",
-        {
+      const dataT = await axios
+        .get("http://localhost:8080/teachers/teacherInfo", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        }
-      );
+        })
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
       console.log(dataT);
       dispatch({
         type: "getData",
@@ -315,19 +317,19 @@ const MypageTe = () => {
     profileData();
   }, []);
 
-  const emailValidation = (email) => {
+  const emailValidation = email => {
     const emailStat = AuthEmail(email);
     console.log(emailStat);
     return emailStat;
   };
 
-  const phoneValidation = (num) => {
+  const phoneValidation = num => {
     const phoneStat = AuthPhone(num);
     console.log(phoneStat);
     return phoneStat;
   };
 
-  const EditSuccess = async (e) => {
+  const EditSuccess = async e => {
     e.preventDefault();
 
     if (state.password === "" || state.passcheck === "") {
@@ -381,6 +383,7 @@ const MypageTe = () => {
         })
         .catch(function (error) {
           alert("회원정보 수정에 실패하였습니다.");
+          console.log(error.response);
         });
     }
   };
@@ -429,10 +432,10 @@ const MypageTe = () => {
               >
                 원래대로
               </SaveNref> */}
-            </Buttonfame>
-          </Wrapper2>
-        </ModifyContextT.Provider>
-      </Wrapper>
+              </Buttonfame>
+            </Wrapper2>
+          </ModifyContextT.Provider>
+        </Wrapper>
       </Container>
     </div>
   );

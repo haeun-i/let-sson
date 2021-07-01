@@ -94,11 +94,16 @@ const InfoCardS = () => {
 
   useEffect(() => {
     const cardData = async () => {
-      const apidata = await axios.get("http://localhost:8080/students/", {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      });
+      const apidata = await axios
+        .get("http://localhost:8080/students/", {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        })
+        .then(response => {})
+        .catch(err => {
+          console.log(err.response);
+        });
       setData(apidata.data);
     };
     cardData();
@@ -106,7 +111,7 @@ const InfoCardS = () => {
 
   return (
     <span>
-      {Data.map((whoname) => (
+      {Data.map(whoname => (
         <MyName
           key={whoname.id}
           id={whoname.id}
@@ -122,7 +127,7 @@ const InfoCardS = () => {
           intro={whoname.intro}
           goal={whoname.goal}
           tel={whoname.tel}
-                  />
+        />
       ))}
     </span>
   );

@@ -12,6 +12,7 @@ const Box = styled.div`
   justify-content: center;
   margin-left: 5%;
   margin-right: 7%;
+  font-size: 14px;
   background: #ffffff;
   margin-top: 10px;
 `;

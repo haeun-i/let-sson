@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import HeadButtons from "../component/layout/header/header";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -44,18 +44,18 @@ const Buttonfame = styled.div`
   width: 200px;
 `;
 
-const Registerstu = (props) => {
+const Registerstu = props => {
   // history
   const [data, setData] = useState({
-      id: props.location.state.id,
-      name: props.location.state.name,
-      subject: props.location.state.subject,
-      region: props.location.state.region,
-      intro: props.location.state.intro,
-      goal: props.location.state.goal,
-      tel: props.location.state.tel,
-    });
-  
+    id: props.location.state.id,
+    name: props.location.state.name,
+    subject: props.location.state.subject,
+    region: props.location.state.region,
+    intro: props.location.state.intro,
+    goal: props.location.state.goal,
+    tel: props.location.state.tel,
+  });
+
   const stuPost = async e => {
     console.log(data.tel);
 
@@ -71,34 +71,35 @@ const Registerstu = (props) => {
           },
         }
       )
-      .then((response) =>{
+      .then(response => {
         console.log("전송 성공");
       })
-      .catch((error) =>{
+      .catch(error => {
         console.log("전송 실패");
+        console.log(error.response);
       });
   };
 
-    return (
-      <div>
-        <HeadButtons />
-        <Wrapper>
-          <RegisS
-            id={data.id}
-            name={data.name}
-            subject={data.subject}
-            region={data.region}
-            intro={data.intro}
-            goal={data.goal}
-          />
-          <Buttonfame>
-            <Link to="/findstudent">
-              <SubmitB onClick={stuPost}>신청하기</SubmitB>
-            </Link>
-          </Buttonfame>
-        </Wrapper>
-      </div>
-    );
-}
+  return (
+    <div>
+      <HeadButtons />
+      <Wrapper>
+        <RegisS
+          id={data.id}
+          name={data.name}
+          subject={data.subject}
+          region={data.region}
+          intro={data.intro}
+          goal={data.goal}
+        />
+        <Buttonfame>
+          <Link to="/findstudent">
+            <SubmitB onClick={stuPost}>신청하기</SubmitB>
+          </Link>
+        </Buttonfame>
+      </Wrapper>
+    </div>
+  );
+};
 
 export default Registerstu;

@@ -1,6 +1,6 @@
 package com.letsson.letsson.controller;
 
-import com.letsson.letsson.model.Student;
+import com.letsson.letsson.model.LoginDto;
 import com.letsson.letsson.model.Teacher;
 import com.letsson.letsson.model.TeacherJoinDto;
 import com.letsson.letsson.repository.TeacherRepository;
@@ -33,10 +33,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class TeacherController {
-    private AmazonS3ClientService amazonS3ClientService;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-    private final TeacherRepository teacherRepository;
     private final TeacherService teacherService;
     private final CustomUserDetailsService customUserDetailsService;
 
@@ -73,7 +71,7 @@ public class TeacherController {
             @ApiImplicitParam(name = "tel", value = "선생님 입력 전화번호", dataType = "String", required = true, paramType = "query")
     )
     public Map<String, Object> confirmTel(@RequestParam("tel") String tel) throws Exception {
-        boolean result = customUserDetailsService.idChk(tel);
+        boolean result = customUserDetailsService.confirmTel(tel);
 
         Map<String, Object> data = new HashMap<>();
         if (result == true) {
@@ -89,11 +87,11 @@ public class TeacherController {
     //로그인
     @PostMapping("/login")
     @ApiOperation(value = "login", tags = "선생님 로그인")
-    public String login(@ApiParam(name = "Teacher", value = "로그인 선생님 정보", required = true) @RequestBody Map<String, String> teacher) {
-        Teacher member = teacherRepository.findByTel(teacher.get("tel"));
+    public String login(@ApiParam(name = "Teacher", value = "로그인 선생님 정보", required = true) @RequestBody LoginDto loginDto) {
+        Teacher member = teacherService.findTeacher(loginDto.getTel());
         if (member == null) throw new IllegalArgumentException("가입되지 않은 tel 입니다");
         //.orElseThrow(() -> new IllegalArgumentException("가입되지 않은 tel 입니다"));
-        if (!passwordEncoder.matches(teacher.get("password"), member.getPassword())) {
+        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
@@ -103,7 +101,7 @@ public class TeacherController {
     @GetMapping("")
     @ApiOperation(value = "getALLTeachers", tags = "모든 선생님 정보")
     public List<Teacher> getALLTeachers() {
-        return this.teacherRepository.findAll();
+        return this.teacherService.getAllTeachers();
     }
 
     //get teacher by id
@@ -116,7 +114,7 @@ public class TeacherController {
     )
     public ResponseEntity<? extends BasicResponse> getTeacherById(HttpServletRequest request) {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Teacher teacher = this.teacherRepository.findByTel(tel);
+        Teacher teacher = this.teacherService.findTeacher(tel);
         if (teacher != null) {
             return ResponseEntity.ok().body(new CommonResponse<Teacher>(teacher));
         } else {
@@ -127,43 +125,20 @@ public class TeacherController {
 
     }
 
-    /* //create new teacher
-     @PostMapping("")
-     public Teacher createTeacher(@RequestBody Teacher teacher){
-         return this.teacherRepository.save(teacher);
-     }
- */
     @PutMapping("/basicModify")
     @ApiOperation(value = "updateBasicTeacher", tags = "등록 id에 해당하는 선생님 기본 정보 수정")
     @ApiImplicitParams(
             {
                     @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateBasicTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody Teacher teacher, HttpServletRequest request) {
+    public ResponseEntity<? extends BasicResponse> updateBasicTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody TeacherJoinDto teacher, HttpServletRequest request) {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Teacher existingTeacher = this.teacherRepository.findByTel(tel);
+        Teacher existingTeacher = this.teacherService.findTeacher(tel);
         if (existingTeacher == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("일치하는 회원 정보가 없습니다."));
         }
-        existingTeacher.setName(teacher.getName());
-        existingTeacher.setSubject(teacher.getSubject());
-        existingTeacher.setFemale(teacher.isFemale());
-        existingTeacher.setMale(teacher.isMale());
-        existingTeacher.setPay(teacher.getPay());
-        existingTeacher.setRegion(teacher.getRegion());
-        existingTeacher.setContact(teacher.isContact());
-        existingTeacher.setNonContact(teacher.isNonContact());
-        existingTeacher.setIs_attend(teacher.getIs_attend());
-        existingTeacher.setMajor(teacher.getMajor());
-        existingTeacher.setUniversity(teacher.getUniversity());
-        existingTeacher.setIntro(teacher.getIntro());
-        existingTeacher.setEmail(teacher.getEmail());
-        existingTeacher.setTel(teacher.getTel());
-        existingTeacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
-
-
-        Teacher saveTeacher = this.teacherRepository.save(existingTeacher);
+        Teacher saveTeacher = this.teacherService.updateBasicTeacher(existingTeacher,teacher);
         if (saveTeacher == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("기본 정보 수정 실패"));
@@ -180,30 +155,20 @@ public class TeacherController {
             {
                     @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
     )
-    public ResponseEntity<? extends BasicResponse> updateTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody Teacher teacher, HttpServletRequest request) throws IOException {
+    public ResponseEntity<? extends BasicResponse> updateTeacher(@ApiParam(name = "Teacher", value = "수정 선생님 정보", required = true) @RequestBody TeacherJoinDto teacher, HttpServletRequest request) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Teacher existingTeacher = this.teacherRepository.findByTel(tel);
+        Teacher existingTeacher = teacherService.findTeacher(tel);
         if (existingTeacher == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("일치하는 회원 정보가 없습니다."));
         }
-        existingTeacher.setName(teacher.getName());
-        existingTeacher.setUniversity(teacher.getUniversity());
-        existingTeacher.setMajor(teacher.getMajor());
-        existingTeacher.setSubject(teacher.getSubject());
-        existingTeacher.setRegion(teacher.getRegion());
-        existingTeacher.setCareer(teacher.getCareer());
-        existingTeacher.setIntro(teacher.getIntro());
-        existingTeacher.setPlan(teacher.getPlan());
-        Teacher saveTeacher = this.teacherRepository.save(existingTeacher);
+        Teacher saveTeacher = teacherService.updateTeacher(existingTeacher,teacher);
         if (saveTeacher == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("회원 정보 수정 실패"));
 
         }
         return ResponseEntity.ok().body(new CommonResponse<Teacher>(saveTeacher));
-
-
     }
 
     @ApiOperation(value = "proveImg", tags = "해당 선생님 신분 인증 사진")
@@ -261,8 +226,7 @@ public class TeacherController {
     )
     public ResponseEntity<Teacher> deleteTeacher(HttpServletRequest request) {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
-        Teacher existingTeacher = this.teacherRepository.findByTel(tel);
-        this.teacherRepository.delete(existingTeacher);
+        this.teacherService.deleteTeacher(tel);
         return ResponseEntity.ok().build();
 
     }

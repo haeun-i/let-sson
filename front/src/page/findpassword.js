@@ -19,8 +19,7 @@ const Wrapper = styled.div`
       rgba(247, 247, 247, 0.9),
       rgba(247, 247, 247, 0.9)
     ),
-    no-repeat 0 0
-      url(${backImg});
+    no-repeat 0 0 url(${backImg});
   background-size: cover;
 `;
 
@@ -246,7 +245,6 @@ const Findpassword = () => {
             <label className="tofindtel">
               <LogText1>이름</LogText1>
               <FindInput
-
                 type="text"
                 onChange={handleChangeN}
                 placeholder="이름"

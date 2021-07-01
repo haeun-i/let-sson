@@ -9,10 +9,14 @@ const Log = styled.form`
   position: absolute;
   width: 20vw;
   height: 180px;
-  margin-left :3vw;
-  margin-top : 10vh;
+  margin-left: 3vw;
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 950px) {
+    position: unset;
+    margin-left: 35%;
+  }
 `;
 const LogText1 = styled.div`
   position: absolute;
@@ -82,6 +86,12 @@ const LogBtn = styled.input`
   left: 24vw;
 
   color: #ffffff;
+  @media only screen and (max-width: 950px) {
+    margin-left: 13vw;
+  }
+  @media only screen and (max-width: 650px) {
+    margin-left: 10vw;
+  }
 `;
 
 const StuLogin = () => {
@@ -136,7 +146,7 @@ const StuLogin = () => {
         history.push("/loginsuccess");
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
         alert("로그인에 실패하였습니다. 아이디와 비밀번호를 확인 해주세요.");
       });
   };
