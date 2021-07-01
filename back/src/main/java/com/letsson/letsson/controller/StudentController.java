@@ -90,21 +90,10 @@ public class StudentController {
     public String login(@ApiParam(name="Student",value = "로그인 학생 정보",required = true) @RequestBody LoginDto loginDto) {
         Student member = studentService.findStudent(loginDto.getTel());
         if(member == null) throw new IllegalArgumentException("가입되지 않은 tel 입니다");
-        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+        if (!(passwordEncoder.matches(loginDto.getPassword(), member.getPassword()))) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
-    }
-
-
-
-    @GetMapping("")
-    @ApiOperation(value="getALLStudents",tags="모든 학생 정보")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")
-    })
-    public List<Student> getALLStudents() {
-       return studentService.getALLStudents();
     }
 
     @GetMapping("/studentInfo")

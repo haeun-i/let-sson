@@ -1,5 +1,9 @@
 package com.letsson.letsson.controller;
+import com.letsson.letsson.model.Student;
+import com.letsson.letsson.model.Teacher;
 import com.letsson.letsson.response.BasicResponse;
+import com.letsson.letsson.service.StudentService;
+import com.letsson.letsson.service.TeacherService;
 import com.letsson.letsson.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @Api(value = "사용자 공통 API")
 @RestController
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final StudentService studentService;
 
 
 
@@ -53,7 +59,24 @@ public class UserController {
     }
 
 
+    //get all teachers
+    @GetMapping("/teachers")
+    @ApiOperation(value = "getALLTeachers", tags = "모든 선생님 정보")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")
+    })
+    public List<Teacher> getALLTeachers() {
+           return userService.getAllTeachers();
+    }
 
+    @GetMapping("/students")
+    @ApiOperation(value="getALLStudents",tags="모든 학생 정보")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")
+    })
+    public List<Student> getALLStudents() {
+        return userService.getALLStudents();
+    }
 
 
 

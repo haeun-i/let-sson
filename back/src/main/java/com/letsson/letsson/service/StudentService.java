@@ -58,11 +58,6 @@ public class StudentService {
         return studentRepository.findByTel(tel);
     }
 
-    // 전체 학생 목록
-    public List<Student> getALLStudents()
-    {
-        return this.studentRepository.findAll();
-    }
 
     //학생의 기본 정보 수정
     public Student updateBasicStudent(Student existingStudent, StudentJoinDto student)
