@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -20,6 +22,18 @@ public class UserService {
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
     private final TeacherRepository teacherRepository;
+
+    // 모든 선생님 리스트
+    public List<Teacher> getAllTeachers()
+    {
+       return teacherRepository.findAll();
+    }
+    // 전체 학생 목록
+    public List<Student> getALLStudents()
+    {
+        return this.studentRepository.findAll();
+    }
+
     // 사용자 아이디 찾기
     public ResponseEntity<? extends BasicResponse> findId(String email, String name)
     {
