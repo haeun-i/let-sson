@@ -96,7 +96,7 @@ function InfoCardT() {
   useEffect(() => {
     const cardData = async () => {
       const apidata = await axios
-        .get("http://localhost:8080/teachers/", {
+        .get("http://localhost:8080/users/teachers", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
