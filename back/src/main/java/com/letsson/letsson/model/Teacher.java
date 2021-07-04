@@ -79,12 +79,12 @@ public class Teacher implements UserDetails
     @Column(name="role")
     private String role;
 
-    @OneToMany(mappedBy="receiver")
+    @OneToMany(mappedBy="receiver",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<StoTMatching> stoTMatchings;
 
 
-    @OneToMany(mappedBy="sender")
+    @OneToMany(mappedBy="sender",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<TtoSMatching> ttoSMatchings;
 

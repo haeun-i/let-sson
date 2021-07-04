@@ -7,18 +7,22 @@ import com.letsson.letsson.response.BasicResponse;
 import com.letsson.letsson.response.CommonResponse;
 import com.letsson.letsson.response.ErrorResponse;
 import com.letsson.letsson.security.JwtTokenProvider;
+import com.letsson.letsson.security.SecurityConfig;
 import com.letsson.letsson.service.CustomUserDetailsService;
 import com.letsson.letsson.service.TeacherService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
@@ -93,7 +97,7 @@ public class TeacherController {
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
     }
-
+    
 
     //get teacher by id
     @GetMapping("/teacherInfo")
@@ -216,6 +220,7 @@ public class TeacherController {
                     @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
     )
     public ResponseEntity<Teacher> deleteTeacher(HttpServletRequest request) {
+
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         this.teacherService.deleteTeacher(tel);
         return ResponseEntity.ok().build();
