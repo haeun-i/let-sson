@@ -39,11 +39,14 @@ const Letters = styled.div`
   line-height: 26px;
 
   color: #0d00a4;
-  @media only screen and (max-width: 805px) {
+  @media only screen and (max-width: 1004px){
     display:none;
     
   }
-
+  @media only screen and (max-height: 785px){
+    display:none;
+    
+  }
 `;
 const Circle = styled.div`
   margin-top: -560px;
@@ -61,9 +64,16 @@ const Circle = styled.div`
   border-radius: 100px;
   background-color: #8983d2;
   color: white;
-  @media only screen and (max-width: 805px) {
+  @media only screen and (max-width: 1004px) {
     border-radius:0px;
-    width: 180px;
+    width: 200px;
+    height: 0px;
+    color: #8983d2;
+    margin-right:0px;
+  }
+  @media only screen and (max-height: 785px) {
+    border-radius:0px;
+    width: 200px;
     height: 0px;
     color: #8983d2;
     margin-right:0px;
@@ -126,7 +136,7 @@ const LogText1 = styled.span`
   color: #02001e;
   @media only screen and (max-width: 805px) {
     margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :${props => (props.span ? (props.span / 12) * 100 : "9")}%;
+    margin-right :50px;
   }
 `;
 
@@ -146,7 +156,7 @@ const LogText2 = styled.span`
   color: #02001e;
   @media only screen and (max-width: 805px) {
     margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :${props => (props.span ? (props.span / 12) * 100 : "2")}%;
+    margin-right :10px;
   }
 `;
 
