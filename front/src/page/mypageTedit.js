@@ -58,7 +58,7 @@ const Buttonfame = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Wrapper2 = styled.div`
+const Wrapper2 = styled.form`
   width: 50%;
   background: #ffffff;
   border: 1px solid #f3f2fc;

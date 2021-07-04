@@ -59,7 +59,7 @@ const Buttonfame = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Wrapper2 = styled.div`
+const Wrapper2 = styled.form`
   width: 50%;
   background: #ffffff;
   border: 1px solid #f3f2fc;
@@ -322,6 +322,7 @@ const MypageSe = () => {
   }, []);
 
   const EditSuccess = async e => {
+    console.log("hello");
     e.preventDefault();
     if (state.password === "" || state.passcheck === "") {
       alert("비밀번호를 입력해주세요.");

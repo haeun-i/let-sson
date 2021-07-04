@@ -27,13 +27,18 @@ const SideB = styled.button`
 `;
 
 const SidebarMyP = () => {
+  
   const withdraw = (e) => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios.delete("http://localhost:8080/students/delete", {
+      axios.delete("http://localhost:8080/teachers/delete", {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      });
+      }).then((res) => {       
+     })
+     .catch((err) => {
+       console.log(err.response);
+     });
     }
   };
 
