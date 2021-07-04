@@ -239,54 +239,51 @@ class MypageSp extends React.Component {
   };
 
   savedataT = async e => {
-    e.preventDefault();
-    const dataList = {
-      age: parseInt(this.state.age),
-      contact: this.state.contact,
-      noncontact: this.state.noncontact,
-      email: this.state.email,
-      male: this.state.male,
-      female: this.state.female,
-      goal: this.state.goal,
-      id: this.state.id,
-      intro: this.state.intro,
-      is_stu: this.state.is_stu,
-      name: this.state.name,
-      password: this.state.password,
-      pay: parseInt(this.state.pay),
-      proper_gender: this.state.proper_gender,
-      region: this.state.region,
-      review: this.state.review,
-      role: this.state.role,
-      subject: this.state.subject,
-      tel: this.state.tel,
-      username: this.state.username,
-      enabled: this.state.enabled,
-    };
-    console.log(dataList);
-    const formData = new FormData();
-    formData.append("file", this.state.files);
-
-    await axios
-      .put("http://localhost:8080/teachers/modify", dataList, {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      })
-      .then(response => {})
-      .catch(err => {
-        console.log(err.response);
-      });
-    await axios
-      .post("http://localhost:8080/teachers/profileImg", formData, {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      })
-      .then(response => {})
-      .catch(err => {
-        console.log(err.response);
-      });
+    try{e.preventDefault();
+      const dataList = {
+        age: parseInt(this.state.age),
+        contact: this.state.contact,
+        noncontact: this.state.noncontact,
+        email: this.state.email,
+        male: this.state.male,
+        female: this.state.female,
+        goal: this.state.goal,
+        id: this.state.id,
+        intro: this.state.intro,
+        is_stu: this.state.is_stu,
+        name: this.state.name,
+        password: this.state.password,
+        pay: parseInt(this.state.pay),
+        proper_gender: this.state.proper_gender,
+        region: this.state.region,
+        review: this.state.review,
+        role: this.state.role,
+        subject: this.state.subject,
+        tel: this.state.tel,
+        username: this.state.username,
+        enabled: this.state.enabled,
+      };
+      console.log(dataList);
+      const formData = new FormData();
+      formData.append("file", this.state.files);
+  
+      await axios
+        .put("http://localhost:8080/students/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+      await axios
+        .post("http://localhost:8080/students/profileImg", formData, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });}
+        catch(error) {
+          console.log(error.response);
+        }
+  
+    
   };
 
   render() {
