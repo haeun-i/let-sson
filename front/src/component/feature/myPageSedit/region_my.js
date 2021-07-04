@@ -46,9 +46,7 @@ const StusignregionMy = () => {
           },
         }
       );
-      console.log(dataS);
       const cityArray = dataS.data.data.region.split(" ");
-      console.log(cityArray);
       setCity(cityArray[0]);
       if (cityArray[2] === undefined) setCity2(cityArray[1]);
       else setCity2(cityArray[1] + " " + cityArray[2]);

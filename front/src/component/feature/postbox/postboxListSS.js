@@ -118,7 +118,8 @@ const PostboxListSS = () => {
           }
         )
         .then(response => {
-          alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+          history.go(0);
+          alert("삭제 되었습니다.");
         })
         .catch(err => {
           console.log(err.response);

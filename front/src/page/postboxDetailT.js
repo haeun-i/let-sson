@@ -6,6 +6,10 @@ import { useHistory } from "react-router-dom";
 const Body = styled.div`
   overflow: auto;
   background-color: #f5f4f2;
+
+  @media only screen and (max-width: 820px) {
+    margin-top : 8vh;
+  }
 `;
 
 const Profilebox = styled.span`
@@ -32,6 +36,10 @@ const Xbutton = styled.button`
   margin-left: 45%;
   margin-top: 30px;
   margin-bottom: 30px;
+
+  @media only screen and (max-width: 820px) {
+    display : none;
+  }
 `;
 
 const Wrapper = styled.div`
