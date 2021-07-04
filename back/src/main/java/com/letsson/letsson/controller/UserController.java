@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -78,7 +79,13 @@ public class UserController {
         return userService.getALLStudents();
     }
 
-
+    @GetMapping("/totalNumber")
+    @ApiOperation(value = "getAllUserCount", tags = "총 이용자 수")
+    @Scheduled(fixedRate = 30000)
+    public int getALLUsersNum()
+    {
+        return userService.getAllUsersNum();
+    }
 
 }
 
