@@ -244,57 +244,51 @@ class MypageTp extends React.Component {
   };
 
   savedataT = async e => {
-    e.preventDefault();
-    const dataList = {
-      stnum: this.state.stnum,
-      contact: this.state.contact,
-      noncontact: this.state.noncontact,
-      email: this.state.email,
-      enabled: this.state.enabled,
-      male: this.state.male,
-      female: this.state.female,
-      plan: this.state.plan,
-      id: this.state.id,
-      intro: this.state.intro,
-      name: this.state.name,
-      password: this.state.password,
-      pay: parseInt(this.state.pay),
-      career: this.state.career,
-      region: this.state.region,
-      rate: this.state.rate,
-      role: this.state.role,
-      subject: this.state.subject,
-      tel: this.state.tel,
-      username: this.state.username,
-      photo: this.state.photo,
-      university: this.state.university,
-      major: this.state.major,
-      is_attend: this.state.is_attend,
-      prove_image: this.state.prove_image,
-    };
-    const formData = new FormData();
-    formData.append("file", this.state.files);
+    try {
+      e.preventDefault();
+      const dataList = {
+        stnum: this.state.stnum,
+        contact: this.state.contact,
+        noncontact: this.state.noncontact,
+        email: this.state.email,
+        enabled: this.state.enabled,
+        male: this.state.male,
+        female: this.state.female,
+        plan: this.state.plan,
+        id: this.state.id,
+        intro: this.state.intro,
+        name: this.state.name,
+        password: this.state.password,
+        pay: parseInt(this.state.pay),
+        career: this.state.career,
+        region: this.state.region,
+        rate: this.state.rate,
+        role: this.state.role,
+        subject: this.state.subject,
+        tel: this.state.tel,
+        username: this.state.username,
+        photo: this.state.photo,
+        university: this.state.university,
+        major: this.state.major,
+        is_attend: this.state.is_attend,
+        prove_image: this.state.prove_image,
+      };
+      const formData = new FormData();
+      formData.append("file", this.state.files);
 
-    await axios
-      .put("http://localhost:8080/teachers/modify", dataList, {
+      await axios.put("http://localhost:8080/teachers/modify", dataList, {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      })
-      .then(response => {})
-      .catch(err => {
-        console.log(err.response);
       });
-    await axios
-      .post("http://localhost:8080/teachers/profileImg", formData, {
+      await axios.post("http://localhost:8080/teachers/profileImg", formData, {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      })
-      .then(response => {})
-      .catch(err => {
-        console.log(err.response);
       });
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   returning = e => {
