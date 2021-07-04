@@ -129,20 +129,18 @@ const PostboxListST = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const getSend = async () => {
-      const dataTSend = await axios
-        .get("http://localhost:8080/teachers/getAllSending", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          console.log(dataTSend.data);
-          setData(dataTSend.data);
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
+    async function getSend() {
+      try {
+        const dataTSend =  await axios
+              .get("http://localhost:8080/teachers/getAllSending", {
+                headers: {
+                  "X-AUTH-TOKEN": localStorage.getItem("token"),
+                },
+              });
+        setData(dataTSend.data);
+      } catch (error) {
+        console.log(error.response);
+      }
     };
     getSend();
   }, []);
@@ -160,7 +158,8 @@ const PostboxListST = () => {
           }
         )
         .then(response => {
-          alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+          history.go(0);
+          alert("삭제 되었습니다.");
         })
         .catch(err => {
           console.log(err.response);

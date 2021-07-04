@@ -72,7 +72,7 @@ const Registerstu = props => {
         }
       )
       .then(response => {
-        console.log("전송 성공");
+        alert("신청이 완료되었습니다.");
       })
       .catch(error => {
         console.log("전송 실패");

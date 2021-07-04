@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SubjectButtonStdMy from "./SubjectButtonStd";
+import SubjectButtonTeaMy from "./SubjectButtonStuMy";
 
 const Box = styled.div`
   padding-top: 10px;
@@ -51,10 +51,10 @@ const StusignsubjectMy = () => {
 
   return (
     <Box>
-      <Text>어떤 과목을 배우시겠습니까?</Text>
+      <Text>어떤 과목의 선생님이신가요?</Text>
       <ButtonContainer>
         {subjectNames.map((subjectName, index) => (
-          <SubjectButtonStdMy
+          <SubjectButtonTeaMy
             key={index}
             isclicked={isclicked}
             handleclick={handleclick}

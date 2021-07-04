@@ -31,7 +31,10 @@ const Wrapper = styled.form`
     margin-top : 10%;
     margin-left : 20%;
     background-color : white;
-}
+
+    @media only screen and (max-width: 820px), (max-height : 700px) {
+      margin-top : 35vh;
+    }
 
 
 `;

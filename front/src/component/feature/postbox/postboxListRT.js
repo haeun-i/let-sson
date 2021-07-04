@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,  useLocation } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
 const Container = styled.div`
@@ -83,21 +83,20 @@ const Cardbutton = styled.button`
 const PostboxListRT = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
+  
   useEffect(() => {
-    const getRecieve = async () => {
-      const dataTRecieve = await axios
-        .get("http://localhost:8080/teachers/getAllReceiving", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          console.log(dataTRecieve.data);
-          setData(dataTRecieve.data);
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
+    async function getRecieve() {
+      try {
+        const dataTRecieve =  await axios
+              .get("http://localhost:8080/teachers/getAllReceiving", {
+                headers: {
+                  "X-AUTH-TOKEN": localStorage.getItem("token"),
+                },
+              });
+        setData(dataTRecieve.data);
+      } catch (error) {
+        console.log(error.response);
+      }
     };
     getRecieve();
   }, []);
@@ -117,7 +116,7 @@ const PostboxListRT = () => {
       )
       .then(response => {
         alert("과외가 체결되었습니다.");
-        history.push("/receivepost/tea");
+        history.go(0);
       })
       .catch(err => {
         console.log(err.response);
@@ -134,7 +133,8 @@ const PostboxListRT = () => {
           headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
         })
         .then(response => {
-          alert("삭제 되었습니다. 페이지를 재접속하면 반영됩니다");
+          history.go(0);
+          alert("삭제 되었습니다.");
         });
     }
   };
@@ -174,7 +174,14 @@ const PostboxListRT = () => {
             </Cardelement3>
             <Cardelement4>
               <Cardbutton onClick={() => connected(element.sender.tel)}>
-                진행
+                {element.state === "신청서 제출" && (
+                    <div>진행</div>
+                  )}
+                  {element.state === "체결 완료" && (
+                    <div>
+                      진행중
+                    </div>
+                  )}
               </Cardbutton>
             </Cardelement4>
           </Card>
