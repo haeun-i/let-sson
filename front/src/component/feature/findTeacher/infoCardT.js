@@ -94,19 +94,18 @@ function InfoCardT() {
   const [Data, setData] = useState([]);
 
   useEffect(() => {
-    const cardData = async () => {
-      const apidata = await axios
-        .get("http://localhost:8080/users/teachers", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          setData(apidata.data);
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
+    async function cardData() {
+      try {
+        const response =  await axios
+              .get("http://localhost:8080/users/teachers", {
+                headers: {
+                  "X-AUTH-TOKEN": localStorage.getItem("token"),
+                },
+              });
+        setData(response.data);
+      } catch (error) {
+        console.log(error.response);
+      }
     };
     cardData();
   }, []);

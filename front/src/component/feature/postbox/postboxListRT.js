@@ -84,20 +84,18 @@ const PostboxListRT = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
   useEffect(() => {
-    const getRecieve = async () => {
-      const dataTRecieve = await axios
-        .get("http://localhost:8080/teachers/getAllReceiving", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          console.log(dataTRecieve.data);
-          setData(dataTRecieve.data);
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
+    async function getRecieve() {
+      try {
+        const dataTRecieve =  await axios
+              .get("http://localhost:8080/teachers/getAllReceiving", {
+                headers: {
+                  "X-AUTH-TOKEN": localStorage.getItem("token"),
+                },
+              });
+        setData(dataTRecieve.data);
+      } catch (error) {
+        console.log(error.response);
+      }
     };
     getRecieve();
   }, []);

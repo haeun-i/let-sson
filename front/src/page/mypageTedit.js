@@ -64,7 +64,7 @@ const Wrapper2 = styled.div`
   border: 1px solid #f3f2fc;
   box-sizing: border-box;
   @media only screen and (max-width: 770px) {
-    width:85%
+    width: 85%;
   }
 `;
 
@@ -98,7 +98,7 @@ const Circle1 = styled.div`
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
   @media only screen and (max-width: 900px) {
-    display:none;
+    display: none;
   }
 `;
 
@@ -126,7 +126,7 @@ const Circle2 = styled.div`
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
   @media only screen and (max-width: 900px) {
-    display:none;
+    display: none;
   }
 `;
 
@@ -142,7 +142,7 @@ const Text1 = styled.div`
     padding-top: 33%;
   }
   @media only screen and (max-width: 770px) {
-    display:none;
+    display: none;
   }
 `;
 const Text2 = styled.div`
@@ -274,47 +274,47 @@ const MypageTe = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const profileData = async () => {
-      const dataT = await axios
-        .get("http://localhost:8080/teachers/teacherInfo", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          console.log(dataT);
-          dispatch({
-            type: "getData",
-            id: dataT.data.data.id,
-            name: dataT.data.data.name,
-            tel: dataT.data.data.tel,
-            password: "",
-            email: dataT.data.data.email,
-            region: dataT.data.data.region,
-            male: dataT.data.data.male,
-            photo: dataT.data.data.photo,
-            pay: dataT.data.data.pay,
-            contact: dataT.data.data.contact,
-            major: dataT.data.data.major,
-            university: dataT.data.data.university,
-            is_attend: dataT.data.data.is_attend,
-            rate: dataT.data.data.rate,
-            stnum: dataT.data.data.stnum,
-            intro: dataT.data.data.intro,
-            plan: dataT.data.data.plan,
-            career: dataT.data.data.career,
-            subject: dataT.data.data.subject,
-            prove_image: dataT.data.data.prove_image,
-            role: dataT.data.data.role,
-            appeal: dataT.data.data.appeal,
-            female: dataT.data.data.female,
-            noncontact: dataT.data.data.nonContact,
-          });
-        })
-        .catch(err => {
-          console.log(err.response);
+    async function profileData() {
+      try {
+        const dataT = await axios.get(
+          "http://localhost:8080/teachers/teacherInfo",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        dispatch({
+          type: "getData",
+          id: dataT.data.data.id,
+          name: dataT.data.data.name,
+          tel: dataT.data.data.tel,
+          password: "",
+          email: dataT.data.data.email,
+          region: dataT.data.data.region,
+          male: dataT.data.data.male,
+          photo: dataT.data.data.photo,
+          pay: dataT.data.data.pay,
+          contact: dataT.data.data.contact,
+          major: dataT.data.data.major,
+          university: dataT.data.data.university,
+          is_attend: dataT.data.data.is_attend,
+          rate: dataT.data.data.rate,
+          stnum: dataT.data.data.stnum,
+          intro: dataT.data.data.intro,
+          plan: dataT.data.data.plan,
+          career: dataT.data.data.career,
+          subject: dataT.data.data.subject,
+          prove_image: dataT.data.data.prove_image,
+          role: dataT.data.data.role,
+          appeal: dataT.data.data.appeal,
+          female: dataT.data.data.female,
+          noncontact: dataT.data.data.nonContact,
         });
-    };
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
     profileData();
   }, []);
 
@@ -405,28 +405,27 @@ const MypageTe = () => {
         <Bar>
           <SidebarMyPt />
         </Bar>
-      <Wrapper>
-
-        <ModifyContextT.Provider value={{ state, dispatch }}>
-          <Wrapper2 onSubmit={EditSuccess}>
-            <TeasignnameMy />
-            <TeasignsubjectMy />
-            <TeasigngenderMy />
-            <TeasignpayMy />
-            <TeasignregionMy />
-            <TeasigncontactMy />
-            <TeasignattendMy />
-            <TeasignuniMy />
-            <TeasignproveMy />
-            <TeasignintroMy />
-            <TeasignemailMy />
-            <TeasignphoneMy />
-            <TeasignpasswordMy />
-            <Buttonfame>
-              <SaveNref type="submit" value="저장하기">
-                저장하기
-              </SaveNref>
-              {/* <SaveNref
+        <Wrapper>
+          <ModifyContextT.Provider value={{ state, dispatch }}>
+            <Wrapper2 onSubmit={EditSuccess}>
+              <TeasignnameMy />
+              <TeasignsubjectMy />
+              <TeasigngenderMy />
+              <TeasignpayMy />
+              <TeasignregionMy />
+              <TeasigncontactMy />
+              <TeasignattendMy />
+              <TeasignuniMy />
+              <TeasignproveMy />
+              <TeasignintroMy />
+              <TeasignemailMy />
+              <TeasignphoneMy />
+              <TeasignpasswordMy />
+              <Buttonfame>
+                <SaveNref type="submit" value="저장하기">
+                  저장하기
+                </SaveNref>
+                {/* <SaveNref
                 type="reset"
                 onClick={() => history.push("/mypaget/edit")}
                 value="원래대로"

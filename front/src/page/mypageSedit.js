@@ -65,7 +65,7 @@ const Wrapper2 = styled.div`
   border: 1px solid #f3f2fc;
   box-sizing: border-box;
   @media only screen and (max-width: 770px) {
-    width:85%
+    width: 85%;
   }
 `;
 
@@ -102,7 +102,7 @@ const Circle1 = styled.div`
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
   @media only screen and (max-width: 900px) {
-    display:none;
+    display: none;
   }
 `;
 
@@ -130,7 +130,7 @@ const Circle2 = styled.div`
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
   @media only screen and (max-width: 900px) {
-    display:none;
+    display: none;
   }
 `;
 
@@ -146,7 +146,7 @@ const Text1 = styled.div`
     padding-top: 33%;
   }
   @media only screen and (max-width: 770px) {
-    display:none;
+    display: none;
   }
 `;
 const Text2 = styled.div`
@@ -160,7 +160,6 @@ const Bar = styled.div`
   margin-right: 50%;
   margin-bottom: 100px;
 `;
-
 
 const Box = styled.div`
   padding-top: 10px;
@@ -287,38 +286,38 @@ const MypageSe = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const profileData = async () => {
-      const dataS = await axios
-        .get("http://localhost:8080/students/studentInfo", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        })
-        .then(response => {
-          console.log(dataS);
-          dispatch({
-            type: "getData",
-            name: dataS.data.data.name,
-            tel: dataS.data.data.tel,
-            email: dataS.data.data.email,
-            region: dataS.data.data.region,
-            subject: dataS.data.data.subject,
-            age: dataS.data.data.age,
-            contact: dataS.data.data.contact,
-            male: dataS.data.data.male,
-            proper_gender: dataS.data.data.proper_gender,
-            pay: dataS.data.data.pay,
-            is_stu: dataS.data.data.is_stu,
-            password: "",
-            role: dataS.data.data.role,
-            female: dataS.data.data.female,
-            nonContact: dataS.data.data.nonContact,
-          });
-        })
-        .catch(err => {
-          console.log(err.response);
+    async function profileData() {
+      try {
+        const dataS = await axios.get(
+          "http://localhost:8080/students/studentInfo",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        dispatch({
+          type: "getData",
+          name: dataS.data.data.name,
+          tel: dataS.data.data.tel,
+          email: dataS.data.data.email,
+          region: dataS.data.data.region,
+          subject: dataS.data.data.subject,
+          age: dataS.data.data.age,
+          contact: dataS.data.data.contact,
+          male: dataS.data.data.male,
+          proper_gender: dataS.data.data.proper_gender,
+          pay: dataS.data.data.pay,
+          is_stu: dataS.data.data.is_stu,
+          password: "",
+          role: dataS.data.data.role,
+          female: dataS.data.data.female,
+          nonContact: dataS.data.data.nonContact,
         });
-    };
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
     profileData();
   }, []);
 
