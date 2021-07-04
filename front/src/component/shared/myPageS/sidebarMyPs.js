@@ -38,7 +38,11 @@ const SidebarMyPs = () => {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      });
+      }).then((res) => {       
+     })
+     .catch((err) => {
+       console.log(err.response);
+     });
     }
   };
   return (

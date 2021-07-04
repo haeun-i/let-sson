@@ -223,7 +223,9 @@ class Main extends React.Component {
     .then((res) => {       
        this.setState({person : res.data});
     })
-
+    .catch((err) => {
+      console.log(err.response);
+    })
   }
 
   render() {
