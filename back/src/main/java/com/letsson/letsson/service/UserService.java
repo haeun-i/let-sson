@@ -101,6 +101,16 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ErrorResponse("존재하지 않는 핸드폰 번호 비밀번호 수정 실패"));
         }
+
+
+    }
+    public int getAllUsersNum()
+    {
+        int students = studentRepository.findAll().size();
+        int teachers = teacherRepository.findAll().size();
+        System.out.println(students);
+        System.out.println(teachers);
+        return students +teachers;
     }
 
 
