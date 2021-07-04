@@ -3,12 +3,10 @@ package com.letsson.letsson.controller;
 import com.letsson.letsson.model.LoginDto;
 import com.letsson.letsson.model.Teacher;
 import com.letsson.letsson.model.TeacherJoinDto;
-import com.letsson.letsson.repository.TeacherRepository;
 import com.letsson.letsson.response.BasicResponse;
 import com.letsson.letsson.response.CommonResponse;
 import com.letsson.letsson.response.ErrorResponse;
 import com.letsson.letsson.security.JwtTokenProvider;
-import com.letsson.letsson.service.AmazonS3ClientService;
 import com.letsson.letsson.service.CustomUserDetailsService;
 import com.letsson.letsson.service.TeacherService;
 import io.swagger.annotations.*;
@@ -90,19 +88,12 @@ public class TeacherController {
     public String login(@ApiParam(name = "Teacher", value = "로그인 선생님 정보", required = true) @RequestBody LoginDto loginDto) {
         Teacher member = teacherService.findTeacher(loginDto.getTel());
         if (member == null) throw new IllegalArgumentException("가입되지 않은 tel 입니다");
-        //.orElseThrow(() -> new IllegalArgumentException("가입되지 않은 tel 입니다"));
-        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+        if (!(passwordEncoder.matches(loginDto.getPassword(),member.getPassword()))) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
     }
 
-    //get all teachers
-    @GetMapping("")
-    @ApiOperation(value = "getALLTeachers", tags = "모든 선생님 정보")
-    public List<Teacher> getALLTeachers() {
-        return this.teacherService.getAllTeachers();
-    }
 
     //get teacher by id
     @GetMapping("/teacherInfo")

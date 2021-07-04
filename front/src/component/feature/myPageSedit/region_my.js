@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { ModifyContextS } from "../../../page/mypageSedit";
+import { ModifyContext, ModifyContextS } from "../../../page/mypageSedit";
 import axios from "axios";
 
 const Box = styled.div`
@@ -25,20 +25,11 @@ const Text = styled.div`
   color: #0d00a4;
 `;
 
-const Text2 = styled.span``;
-
 const Select = styled.select`
   border: 0.05em solid #010440;
   width: 95%;
+  padding-bottom: 3%;
   margin-bottom: 10px;
-  border: 0.05em solid #010440;
-  padding-bottom: 30px;
-  margin-right: 0;
-  width: 100%;
-  height: 52px;
-  background-color: #f4f4fc;
-  border: 3px solid #f4f4fc;
-  box-sizing: border-box;
 `;
 
 const StusignregionMy = () => {
@@ -56,7 +47,6 @@ const StusignregionMy = () => {
         }
       );
       const cityArray = dataS.data.data.region.split(" ");
-      console.log(cityArray);
       setCity(cityArray[0]);
       if (cityArray[2] === undefined) setCity2(cityArray[1]);
       else setCity2(cityArray[1] + " " + cityArray[2]);

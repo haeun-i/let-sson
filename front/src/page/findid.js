@@ -32,9 +32,9 @@ const Form = styled.form`
   border-radius: 2px;
   display: flex;
   flex-direction: column;
-  
+
   @media only screen and (max-width: 805px) {
-    width :${props => (props.span ? (props.span / 12) * 100 : "95")}%;
+    width: ${props => (props.span ? (props.span / 12) * 100 : "95")}%;
   }
 `;
 
@@ -66,7 +66,7 @@ const Circle = styled.div`
     width: 120px;
     height: 0px;
     color: #8983d2;
-    margin-right:0px;
+    margin-right: 0px;
   }
 `;
 
@@ -92,16 +92,14 @@ const Letters = styled.div`
   }
   @media only screen and (max-height: 785px){
     display:none;
-    
-  }
 
+  }
 `;
 
 const FindText1 = styled.div`
   margin-top: 77px;
   padding-right: 10px;
   padding-bottom: 20px;
-  
 `;
 const FindText2 = styled.div`
   margin-top: 35px;
@@ -122,7 +120,7 @@ const SuccessBtn = styled.input`
   border: 0;
   outline: 1;
   @media only screen and (max-width: 805px) {
-    margin-left :${props => (props.span ? (props.span / 12) * 100 : "80")}%;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "80")}%;
   }
 `;
 const LogText1 = styled.span`
@@ -139,10 +137,9 @@ const LogText1 = styled.span`
   /* identical to box height */
   color: #02001e;
   @media only screen and (max-width: 805px) {
-    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :${props => (props.span ? (props.span / 12) * 100 : "5.25")}%;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right: ${props => (props.span ? (props.span / 12) * 100 : "5.25")}%;
   }
-  
 `;
 const LogText2 = styled.span`
   margin-left: 89px;
@@ -159,8 +156,8 @@ const LogText2 = styled.span`
 
   color: #02001e;
   @media only screen and (max-width: 805px) {
-    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :${props => (props.span ? (props.span / 12) * 100 : "2")}%;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right: ${props => (props.span ? (props.span / 12) * 100 : "2")}%;
   }
 `;
 const FindInput = styled.input`
@@ -172,7 +169,7 @@ const FindInput = styled.input`
   box-sizing: border-box;
   border-radius: 2px;
   @media only screen and (max-width: 805px) {
-    width :${props => (props.span ? (props.span / 20) * 100 : "53")}%;
+    width: ${props => (props.span ? (props.span / 20) * 100 : "53")}%;
   }
 `;
 
@@ -194,23 +191,20 @@ const Findid = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const history = useHistory();
 
-  const confirm = async e => {
+  async function confirm(e) {
     e.preventDefault();
     const data = { name: state.name, email: state.email };
-    console.log(data);
-    await axios
-      .get("http://localhost:8080/users/findID", {
+    try {
+      const response = await axios.get("http://localhost:8080/users/findID", {
         params: { name: state.name, email: state.email },
-      })
-      .then(function (response) {
-        console.log(response);
-        alert("당신의 아이디는 " + response.data + " 입니다.");
-        history.push("/login");
-      })
-      .catch(function (error) {
-        console.log(error.response);
       });
-  };
+      alert("당신의 아이디는 " + response.data.data + " 입니다.");
+      history.push("/login");
+    } catch (error) {
+      console.log(error.response);
+      alert("존재하지 않는 사용자입니다.");
+    }
+  }
 
   const handleChangeN = e => {
     dispatch({ type: "setName", name: e.currentTarget.value });

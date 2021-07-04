@@ -31,7 +31,10 @@ const Wrapper = styled.form`
     margin-top : 10%;
     margin-left : 20%;
     background-color : white;
-}
+
+    @media only screen and (max-width: 820px), (max-height : 700px) {
+      margin-top : 35vh;
+    }
 
 
 `;
@@ -222,17 +225,24 @@ const Teasign = () => {
       console.log(state);
       await axios
         .post("http://localhost:8080/teachers/join", {
+          career : "",
+  
           contact: state.contact,
+          edStNum : 0,
+
           email: state.email,
-          female: state.femail,
+          female: state.female,
+          ingStNum : 0,
           intro: state.intro,
           is_attend: state.is_attend,
           major: state.major,
-          male: state.mail,
+          male: state.male,
           name: state.name,
-          nonContact: true,
-          password: state.noncontact,
+          nonContact: state.noncontact,
+          password: state.password,
           pay: parseInt(state.pay),
+          plan : "",
+      
           region: state.region,
           role: state.role,
           subject: state.subject,

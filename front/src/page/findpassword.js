@@ -32,9 +32,9 @@ const Form = styled.form`
   border-radius: 2px;
   display: flex;
   flex-direction: column;
-  
+
   @media only screen and (max-width: 805px) {
-    width :${props => (props.span ? (props.span / 12) * 100 : "95")}%;
+    width: ${props => (props.span ? (props.span / 12) * 100 : "95")}%;
   }
 `;
 
@@ -66,7 +66,7 @@ const Circle = styled.div`
     width: 200px;
     height: 0px;
     color: #8983d2;
-    margin-right:0px;
+    margin-right: 0px;
   }
 `;
 
@@ -92,16 +92,13 @@ const Letters = styled.div`
   }
   @media only screen and (max-height: 785px){
     display:none;
-    
   }
-
 `;
 
 const FindText1 = styled.div`
   margin-top: 77px;
   padding-right: 10px;
   padding-bottom: 20px;
-  
 `;
 const FindText2 = styled.div`
   margin-top: 35px;
@@ -122,7 +119,7 @@ const SuccessBtn = styled.input`
   border: 0;
   outline: 1;
   @media only screen and (max-width: 805px) {
-    margin-left :${props => (props.span ? (props.span / 12) * 100 : "80")}%;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "80")}%;
   }
 `;
 const LogText1 = styled.span`
@@ -142,7 +139,6 @@ const LogText1 = styled.span`
     margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
     margin-right :70px;
   }
-  
 `;
 const LogText2 = styled.span`
   margin-left: 89px;
@@ -172,7 +168,7 @@ const FindInput = styled.input`
   box-sizing: border-box;
   border-radius: 2px;
   @media only screen and (max-width: 805px) {
-    width :${props => (props.span ? (props.span / 20) * 100 : "53")}%;
+    width: ${props => (props.span ? (props.span / 20) * 100 : "53")}%;
   }
 `;
 
@@ -213,30 +209,28 @@ const Findpassword = () => {
     }
   }, [state.tel]);
 
-  const confirm = async e => {
+  async function confirm(e) {
     e.preventDefault();
-    const data = { name: state.name, tel: state.tel };
-    console.log(data);
-    await axios
-      .get("http://localhost:8080/users/findPassword", {
-        params: { name: state.name, tel: state.tel },
-      })
-      .then(function (response) {
-        console.log(response);
-        if (response.data === true) {
-          alert("비밀번호 변경 페이지로 이동합니다.");
-          history.push({
-            pathname: "/fixpassword",
-            state: { tel: state.tel },
-          });
-        } else if (response.data === false) {
-          alert("회원정보와 일치하는 전화번호가 존재하지 않습니다.");
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/users/findPassword",
+        {
+          params: { name: state.name, tel: state.tel },
         }
-      })
-      .catch(function (error) {
-        console.log(error.response);
-      });
-  };
+      );
+      if (response.data === true) {
+        alert("비밀번호 변경 페이지로 이동합니다.");
+        history.push({
+          pathname: "/fixpassword",
+          state: { tel: state.tel },
+        });
+      } else if (response.data === false) {
+        alert("회원정보와 일치하는 전화번호가 존재하지 않습니다.");
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
 
   const handleChangeN = e => {
     dispatch({ type: "setName", name: e.currentTarget.value });
