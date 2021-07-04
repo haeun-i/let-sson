@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
 import mypic from "./main_image.png";
+import axios from "axios";
 import Logotext from "../component/feature/main/logotext";
 
 const Mainbody = styled.div`
@@ -200,6 +201,29 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = { person: 50 }; // 임의로 지정한 값입니다.
+  }
+
+  // getData = async () => {
+  //   try {
+  //     const dataS = await axios.get(
+  //       "http://localhost:8080/students/studentInfo",
+  //       {
+  //         headers: {
+  //           "X-AUTH-TOKEN": localStorage.getItem("token"),
+  //         },
+  //       }
+  //     );
+  //     this.setState(dataS.data.data);
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+
+  componentDidMount(){
+    axios.get("http://localhost:8080/users/totalNumber")
+    .then((res) => {       
+       this.setState({person : res.data});
+    })
+
   }
 
   render() {
