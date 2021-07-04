@@ -27,7 +27,6 @@ public class TtoSMatching {
 
     @ManyToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
     @JoinColumn(name="sender")
-
     private Teacher sender;
 
     @ManyToOne(targetEntity = Student.class, fetch = FetchType.EAGER)

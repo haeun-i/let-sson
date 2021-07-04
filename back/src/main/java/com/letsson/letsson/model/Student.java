@@ -75,12 +75,12 @@ public class Student implements UserDetails
     private String role;
 
 
-    @OneToMany(mappedBy="sender")
+    @OneToMany(mappedBy="sender",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<StoTMatching> stoTMatchings;
 
 
-    @OneToMany(mappedBy="receiver")
+    @OneToMany(mappedBy="receiver",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<TtoSMatching> ttoSMatchings;
 
