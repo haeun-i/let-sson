@@ -12,6 +12,12 @@ const Side = styled.span`
   height: 100%;
 `;
 
+const CardList = styled.div`
+  @media only screen and (max-width: 1350px) {
+    text-align:center;
+  }
+`;
+
 export const SidebarContextS = React.createContext();
 
 const INITIAL_STATE = {
@@ -61,7 +67,9 @@ const FindStudent = () => {
           <Side>
             <Sidebar />
           </Side>
+          <CardList>
           <InfoCardS />
+          </CardList>
         </SidebarContextS.Provider>
       </Wrapper>
     </div>

@@ -46,7 +46,9 @@ const SidebarMyP = () => {
         <Link to="/mypaget/edit">
           <SideB>수정하기</SideB>
         </Link>
+        <Link>
         <SideB onClick={withdraw}>탈퇴하기</SideB>
+        </Link>
       </Wrapper>
     </div>
   );

@@ -20,6 +20,9 @@ import axios from "axios";
 import { AuthEmail, AuthPhone } from "../component/shared/auth";
 import myPback from "./successbackg.jpg";
 import HeadButtons from "../component/layout/header/header";
+import circleImg1 from "./mypage1.jpg";
+import circleImg2 from "./mypage2.jpg";
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -60,6 +63,9 @@ const Wrapper2 = styled.div`
   background: #ffffff;
   border: 1px solid #f3f2fc;
   box-sizing: border-box;
+  @media only screen and (max-width: 770px) {
+    width:85%
+  }
 `;
 
 const Blue = styled.span`
@@ -68,7 +74,7 @@ const Blue = styled.span`
 
 const Circle1 = styled.div`
   position: absolute;
-  background-image: url(https://s3-alpha-sig.figma.com/img/fcbf/2bdb/a151e666636c5620c3b5533a5cc5817c?Expires=1622419200&Signature=Hht9i4BZlUyxYnPhFgIhSElREA6PYWoxxT-MUUG-of9MxyM9ug2tG7l9jDlKXeWJHUpI3TxP6yfeXALMdRICmB0gGXEgWNvFmi1utuNON2WyZVlRktWXWrtjwjWly2Vesqcsftcp7a9kftMWvAYvyX4UyFyg~64ybgbF0-fxMj4nvgoMOtQoFKZnvMP2RADKg6VCHs0Ey-aolA7ELED09yIdEssNblxsuePYFmeI7dVIHJHT2uwddH83DARTo5etSijM6uvMEyjkvorYJCzmUp0O6BxCJ6stCycXBES4CJ0TEmu8vA~7fpaDWDQyUFkeeCyyWgxcLwikvf1McziUxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: url(${circleImg1});
   background-position: center;
   background-size: cover;
   margin-top: 25%;
@@ -91,11 +97,14 @@ const Circle1 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
+  @media only screen and (max-width: 900px) {
+    display:none;
+  }
 `;
 
 const Circle2 = styled.div`
   position: absolute;
-  background-image: url(https://s3-alpha-sig.figma.com/img/03df/c6a8/415db81c007c30d615ba33a27cb1a327?Expires=1622419200&Signature=LKlEJlvlpA2pqq0wAhdBHNa4LEjP6koZxvyeE5wnOgThtQAkCatmq0Ju3E0y4cszru-GlfDYtgcbjOGQrdWzUX0vpZ0syRHNbfkyjWunv3u0EJD2iMURua5lCHjAn1a5tBNBOeDiHflTJsyyle0gKLauZACPd3ZMJh0paBLJI8SvmLw2cToiqQ~C-8S1O4k0S2qDoVV1Rdb~5VWZdAp-sF6ytXPTrq4bSjYib1Yqa5HvnMvqiqHGzY7mH0XyJie9KyUEhhS5PSk4mdG7gVQ0MVNbDU1mD0mYnWfW37iFRoeQHG5AcEp~NKhHh8-NtJJWrKNFGMIOxiBEmuPJwpy1kg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: url(${circleImg2});
   background-position: center;
   background-size: cover;
   margin-top: 10%;
@@ -116,6 +125,9 @@ const Circle2 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: ${props => (props.span ? (props.span / 12) * 100 : "15")}%;
   }
+  @media only screen and (max-width: 900px) {
+    display:none;
+  }
 `;
 
 const Text1 = styled.div`
@@ -128,6 +140,9 @@ const Text1 = styled.div`
   @media only screen and (max-width: 1350px) {
     width: 0%;
     padding-top: 33%;
+  }
+  @media only screen and (max-width: 770px) {
+    display:none;
   }
 `;
 const Text2 = styled.div`
@@ -266,38 +281,39 @@ const MypageTe = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          console.log(dataT);
+          dispatch({
+            type: "getData",
+            id: dataT.data.data.id,
+            name: dataT.data.data.name,
+            tel: dataT.data.data.tel,
+            password: "",
+            email: dataT.data.data.email,
+            region: dataT.data.data.region,
+            male: dataT.data.data.male,
+            photo: dataT.data.data.photo,
+            pay: dataT.data.data.pay,
+            contact: dataT.data.data.contact,
+            major: dataT.data.data.major,
+            university: dataT.data.data.university,
+            is_attend: dataT.data.data.is_attend,
+            rate: dataT.data.data.rate,
+            stnum: dataT.data.data.stnum,
+            intro: dataT.data.data.intro,
+            plan: dataT.data.data.plan,
+            career: dataT.data.data.career,
+            subject: dataT.data.data.subject,
+            prove_image: dataT.data.data.prove_image,
+            role: dataT.data.data.role,
+            appeal: dataT.data.data.appeal,
+            female: dataT.data.data.female,
+            noncontact: dataT.data.data.nonContact,
+          });
+        })
         .catch(err => {
           console.log(err.response);
         });
-      console.log(dataT);
-      dispatch({
-        type: "getData",
-        id: dataT.data.data.id,
-        name: dataT.data.data.name,
-        tel: dataT.data.data.tel,
-        password: "",
-        email: dataT.data.data.email,
-        region: dataT.data.data.region,
-        male: dataT.data.data.male,
-        photo: dataT.data.data.photo,
-        pay: dataT.data.data.pay,
-        contact: dataT.data.data.contact,
-        major: dataT.data.data.major,
-        university: dataT.data.data.university,
-        is_attend: dataT.data.data.is_attend,
-        rate: dataT.data.data.rate,
-        stnum: dataT.data.data.stnum,
-        intro: dataT.data.data.intro,
-        plan: dataT.data.data.plan,
-        career: dataT.data.data.career,
-        subject: dataT.data.data.subject,
-        prove_image: dataT.data.data.prove_image,
-        role: dataT.data.data.role,
-        appeal: dataT.data.data.appeal,
-        female: dataT.data.data.female,
-        noncontact: dataT.data.data.nonContact,
-      });
     };
     profileData();
   }, []);
@@ -389,27 +405,28 @@ const MypageTe = () => {
         <Bar>
           <SidebarMyPt />
         </Bar>
-        <Wrapper>
-          <ModifyContextT.Provider value={{ state, dispatch }}>
-            <Wrapper2 onSubmit={EditSuccess}>
-              <TeasignnameMy />
-              <TeasignsubjectMy />
-              <TeasigngenderMy />
-              <TeasignpayMy />
-              <TeasignregionMy />
-              <TeasigncontactMy />
-              <TeasignattendMy />
-              <TeasignuniMy />
-              <TeasignproveMy />
-              <TeasignintroMy />
-              <TeasignemailMy />
-              <TeasignphoneMy />
-              <TeasignpasswordMy />
-              <Buttonfame>
-                <SaveNref type="submit" value="저장하기">
-                  저장하기
-                </SaveNref>
-                {/* <SaveNref
+      <Wrapper>
+
+        <ModifyContextT.Provider value={{ state, dispatch }}>
+          <Wrapper2 onSubmit={EditSuccess}>
+            <TeasignnameMy />
+            <TeasignsubjectMy />
+            <TeasigngenderMy />
+            <TeasignpayMy />
+            <TeasignregionMy />
+            <TeasigncontactMy />
+            <TeasignattendMy />
+            <TeasignuniMy />
+            <TeasignproveMy />
+            <TeasignintroMy />
+            <TeasignemailMy />
+            <TeasignphoneMy />
+            <TeasignpasswordMy />
+            <Buttonfame>
+              <SaveNref type="submit" value="저장하기">
+                저장하기
+              </SaveNref>
+              {/* <SaveNref
                 type="reset"
                 onClick={() => history.push("/mypaget/edit")}
                 value="원래대로"

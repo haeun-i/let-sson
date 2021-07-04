@@ -95,12 +95,13 @@ const PostboxListRS = () => {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
-        .then(response => {})
+        .then(response => {
+          console.log(dataSRecieve.data);
+          setData(dataSRecieve.data);
+        })
         .catch(err => {
           console.log(err.response);
         });
-      console.log(dataSRecieve.data);
-      setData(dataSRecieve.data);
     };
     getRecieve();
   }, []);
