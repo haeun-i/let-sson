@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class TeacherService {
             return "사용불가한 아이디";
         }
         else {
+            String photo;
+           if(teacherJoinDto.isMale()) photo = "https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/Mteacher.png";
+           else photo = "https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/Wteacher.png";
             Teacher teacher = Teacher.builder()
                     .name(teacherJoinDto.getName())
                     .subject(teacherJoinDto.getSubject())
@@ -44,6 +48,7 @@ public class TeacherService {
                     .email(teacherJoinDto.getEmail())
                     .tel(teacherJoinDto.getTel())
                     .password(passwordEncoder.encode(teacherJoinDto.getPassword()))
+                    .photo(photo)
                     .role("TEACHER")
                     .build();
             teacherRepository.save(teacher);
@@ -97,25 +102,33 @@ public class TeacherService {
     {
         Teacher teacher = teacherRepository.findByTel(tel);
 
-      /*  //이전 사진 파일 삭제
-        String beforeFileName = teacher.getPhoto();
-        if(!beforeFileName.equals("default.png"))
-        {
+        //이전 사진 파일 삭제
+        // teacher에서 사진 이름 얻기
+        String beforeFileName = teacher.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/","");
+        if (!beforeFileName.equals("Mteacher.png") && !beforeFileName.equals("Wteacher.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
             amazonS3ClientService.delete(beforeFilePath);
         }
-*/
-        String sourceFileName = multipartFile.getOriginalFilename();
 
-        //현재 날짜, 시간을 기준으로 구별값 첨부 -> 중복 방지
-        int dataTimeInteger = (int)(new Date().getTime()/1000);
-        String fileName = dataTimeInteger+sourceFileName;
-
-        //현재 사진 파일 s3 저장
-        //s3Service.upload(multipartFile, basePath, fileName);
-
-        //student 의 photo 에 fileName기록
         teacher.setPhoto(amazonS3ClientService.upload(multipartFile, basePath));
+    }
+
+    @Transactional
+    public void basicImgWithS3(String tel,String basePath)
+    {
+        Teacher teacher = teacherRepository.findByTel(tel);
+        // teacher에서 사진 이름 얻기
+        String beforeFileName = teacher.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/","");
+        if (!beforeFileName.equals("Mteacher.png") && !beforeFileName.equals("Wteacher.png")) {
+            String beforeFilePath = basePath + "/" + beforeFileName;
+            amazonS3ClientService.delete(beforeFilePath);
+            if(teacher.isMale())
+            {
+                teacher.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/Mteacher.png");
+            }
+            else teacher.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/Wteacher.png");
+        }
+
     }
 
 

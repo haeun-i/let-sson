@@ -97,7 +97,7 @@ public class TeacherController {
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRole());
     }
-    
+
 
     //get teacher by id
     @GetMapping("/teacherInfo")
@@ -175,42 +175,53 @@ public class TeacherController {
     public String resisterProfileImg(HttpServletRequest request, @RequestParam("file") MultipartFile proveImg) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         String basePath = "back/teacher/provePhoto";
-        String fileName = proveImg.getOriginalFilename();
-
-        /*
-        if (profileImg.isEmpty()) return "redirect:/teacher/modify";
-        if (fileName.equals("stranger.png") || fileName.equals("default.png")) {
-            throw new RuntimeException("Invalid file name");
-        }*/
-
         teacherService.addProfileImgWithS3(proveImg, basePath, tel);
 
         return "사진 저장 완료";
     }
 
-
-    @ApiOperation(value = "profileImg", tags = "해당 선생님 프로필 이미지 등록")
+    // 사진 update
+    @ApiOperation(value = "profileImg", tags = "선생님 프로필 이미지 등록")
     @ApiImplicitParams(
             {
                     @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
     )
     @PostMapping("/profileImg")
-    public String updateProfileImg(HttpServletRequest request, @RequestParam("file") MultipartFile profileImg) throws IOException {
+    public ResponseEntity<? extends BasicResponse> updateProfileImg(HttpServletRequest request, @RequestParam("file") MultipartFile profileImg) throws IOException {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         String basePath = "back/teacher/photo";
-        String fileName = profileImg.getOriginalFilename();
+        try {
+            teacherService.addProfileImgWithS3(profileImg, basePath, tel);
+            return ResponseEntity.ok().body(new CommonResponse<String>("사진 변경 완료"));
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse(e.getMessage()));
+        }
 
-        /*
-        if (profileImg.isEmpty()) return "redirect:/teacher/modify";
-        if (fileName.equals("stranger.png") || fileName.equals("default.png")) {
-            throw new RuntimeException("Invalid file name");
-        }*/
-
-        teacherService.addProfileImgWithS3(profileImg, basePath, tel);
-
-        return "사진 저장 완료";
     }
 
+    // 초기 이미지로 변경(delete)
+    @ApiOperation(value = "basicImg", tags = "선생님 프로필 기본 이미지로 변경")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
+    )
+    @PostMapping("/basicImg")
+    public ResponseEntity<? extends BasicResponse> deleteProfileImg(HttpServletRequest request) throws IOException {
+        String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
+        String basePath = "back/teacher/photo";
+        try {
+            teacherService.basicImgWithS3(tel,basePath);
+            return ResponseEntity.ok().body(new CommonResponse<String>("basic 사진으로 변경"));
+
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse(e.getMessage()));
+        }
+
+    }
 
     //delete teacher by id
     @DeleteMapping("/delete")
