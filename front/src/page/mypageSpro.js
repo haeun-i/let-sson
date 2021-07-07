@@ -1,5 +1,5 @@
 import React from "react";
-///import { Link } from "react-router-dom";
+///import { Link } from "react-router-dom"
 import SubmitS from "../component/feature/myPageSpro/submitS";
 import HeadButtons from "../component/layout/header/header";
 import SidebarMyPs from "../component/shared/myPageS/sidebarMyPs";
@@ -170,6 +170,7 @@ const Text = styled.div`
 `;
 
 const InputBoxShort = styled.input`
+  margin-top:20px;
   margin-right: 0;
   width: 100%;
   height: 32px;
@@ -178,6 +179,25 @@ const InputBoxShort = styled.input`
   border: 3px solid #f4f4fc;
   box-sizing: border-box;
 `;
+
+const PrfImage = styled.div`
+  display:flex;
+  flex-direction:row;
+`;
+
+
+const DefaultB = styled.button`
+  height: 50px;
+  width: 90px;
+  background: #463ea0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin-top: 100px;
+  color: white;
+  border: 0;
+  outline: 1;
+  font-size:12px;
+`
 class MypageSp extends React.Component {
   constructor(props) {
     super(props);
@@ -189,6 +209,7 @@ class MypageSp extends React.Component {
       intro: "",
       goal: "",
       files: "",
+      pImage:"",
     };
     this.tmp = this.state;
   }
@@ -213,7 +234,12 @@ class MypageSp extends React.Component {
     e.preventDefault();
     console.log(e.target.files);
     this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
+    this.state.pImage = "n"
   };
+
+  handleImageDefault = e =>{
+    this.state.pImage = "d"
+  }
 
   componentDidMount() {
     this.getData();
@@ -262,28 +288,37 @@ class MypageSp extends React.Component {
         tel: this.state.tel,
         username: this.state.username,
         enabled: this.state.enabled,
+        photo:this.state.photo,
       };
       console.log(dataList);
       const formData = new FormData();
       formData.append("file", this.state.files);
-  
-      await axios
-        .put("http://localhost:8080/students/modify", dataList, {
+      console.log(formData);
+      console.log(this.state.pImage);
+      if (this.state.pImage === "d"){
+        await axios
+        .post("http://localhost:8080/students/basicImg", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        });
-      await axios
-        .post("http://localhost:8080/students/profileImg", formData, {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });}
+        });}else{
+        await axios
+          .put("http://localhost:8080/students/modify", dataList, {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          });
+        await axios
+          .post("http://localhost:8080/students/profileImg", formData, {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          });
+        };
+      }
         catch(error) {
           console.log(error.response);
         }
-  
-    
   };
 
   render() {
@@ -307,6 +342,10 @@ class MypageSp extends React.Component {
             <Wrapper2>
               <Box>
                 <Text>프로필 사진</Text>
+                <PrfImage>
+                <img src={this.state.photo} width="150px" height="150px"/>
+                <DefaultB onClick={this.handleImageDefault}>기본이미지로 변경</DefaultB>
+                </PrfImage>
                 <InputBoxShort
                   type="file"
                   accept="image/png, image/jpg"
@@ -318,7 +357,7 @@ class MypageSp extends React.Component {
               <Buttonfame>
                 <SaveNref
                   type="submit"
-                  value="확인"
+                  Value="확인"
                   onClick={() => alert("저장이 완료되었습니다.")}
                 >
                   저장하기

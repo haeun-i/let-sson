@@ -13,7 +13,6 @@ const Side = styled.span`
 `;
 
 const CardList = styled.div`
-  
   @media only screen and (max-width: 1350px) {
     text-align: center;
   }
