@@ -96,6 +96,11 @@ public class StudentService {
 
         return studentRepository.save(existingStudent);
     }
+    public String getprofileImg(String tel)
+    {
+        Student student = studentRepository.findByTel(tel);
+        return student.getPhoto();
+    }
 
     @Transactional
     public void addProfileImgWithS3(MultipartFile multipartFile, String basePath,String tel) throws IOException
