@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -32,13 +32,17 @@ const style = {
 };
 
 const SidebarMyPs = () => {
+  const history = useHistory();
   const withdraw = e => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
       axios.delete("http://localhost:8080/students/delete", {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
-      }).then((res) => {       
+      }).then((res) => { 
+        alert("계정이 탈퇴되었습니다.");
+        localStorage.removeItem("token");
+        history.push("/login");      
      })
      .catch((err) => {
        console.log(err.response);
