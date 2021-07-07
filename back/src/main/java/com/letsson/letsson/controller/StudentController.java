@@ -180,6 +180,19 @@ public class StudentController {
 
         return "사진 저장 완료";
     }
+    @ApiOperation(value="profileImg",tags="학생 프로필 이미지 등록")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
+    )
+    @GetMapping("/profileImg")
+    public String getProfileImg(HttpServletRequest request) throws IOException
+    {
+        String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
+
+
+        return studentService.getprofileImg(tel);
+    }
 
     // 초기 이미지로 변경(delete)
     @ApiOperation(value = "basicImg", tags = "학생 프로필 기본 이미지로 변경")

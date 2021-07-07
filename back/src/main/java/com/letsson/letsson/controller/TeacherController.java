@@ -223,6 +223,8 @@ public class TeacherController {
 
     }
 
+
+
     //delete teacher by id
     @DeleteMapping("/delete")
     @ApiOperation(value = "deleteTeacher", tags = "등록 id에 해당하는 선생님 정보 삭제")
