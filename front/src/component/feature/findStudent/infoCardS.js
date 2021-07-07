@@ -6,13 +6,15 @@ import { SidebarContextS } from "../../../page/findStudent";
 
 const Profile = styled.div`
   background-color: #f3f2fc;
-  height: 250px;
-  width: 200px;
+  height: 270px;
+  width: 230px;
   display: inline-block;
   margin-top: 30px;
   margin-left: 30px;
   position: grid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  padding-top: 10px;
 `;
 const Text = styled.div`
   text-align: center;
@@ -34,6 +36,7 @@ const MyName = ({
   intro,
   goal,
   tel,
+  photo,
 }) => {
   const { state, dispatch } = useContext(SidebarContextS);
 
@@ -75,10 +78,12 @@ const MyName = ({
             intro,
             goal,
             tel,
+            photo,
           },
         }}
       >
         <Profile>
+          <img src={photo} width= "150px" height= "150px"/>
           <Text>이름: {name}</Text>
           <Text>과목: {subject}</Text>
           <Text>지역: {region}</Text>
@@ -128,6 +133,7 @@ const InfoCardS = () => {
           intro={whoname.intro}
           goal={whoname.goal}
           tel={whoname.tel}
+          photo = {whoname.photo}
         />
       ))}
     </span>
