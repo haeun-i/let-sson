@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Component
@@ -51,7 +53,9 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService{
 
 
     private String upload(File uploadFile, String dirName) {
-        String fileName = dirName + "/" + uploadFile.getName();
+        SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+        String originalfileName = uploadFile.getName() + "-" + date.format(new Date());
+        String fileName = dirName + "/" + originalfileName;
         String uploadImageUrl = putS3(uploadFile, fileName);
         removeNewFile(uploadFile);
         return uploadImageUrl;

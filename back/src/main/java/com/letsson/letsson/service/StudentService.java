@@ -2,6 +2,7 @@ package com.letsson.letsson.service;
 
 import com.letsson.letsson.model.Student;
 import com.letsson.letsson.model.StudentJoinDto;
+import com.letsson.letsson.model.Teacher;
 import com.letsson.letsson.repository.StudentRepository;
 import com.letsson.letsson.response.ErrorResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,9 @@ public class StudentService {
           return "사용불가한 아이디";
       }
        else {
+           String photo;
+           if(studentJoinDto.isMale()) photo = "https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/Mstudent.png";
+           else photo = "https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/Wstudent.png";
             Student student = Student.builder()
                     .name(studentJoinDto.getName())
                     .is_stu(studentJoinDto.getIs_stu())
@@ -44,6 +48,7 @@ public class StudentService {
                     .tel(studentJoinDto.getTel())
                     .email(studentJoinDto.getEmail())
                     .password(passwordEncoder.encode(studentJoinDto.getPassword()))
+                    .photo(photo)
                     .role("STUDENT")
                     .build();
             studentRepository.save(student);
@@ -91,31 +96,40 @@ public class StudentService {
 
         return studentRepository.save(existingStudent);
     }
+    public String getprofileImg(String tel)
+    {
+        Student student = studentRepository.findByTel(tel);
+        return student.getPhoto();
+    }
 
     @Transactional
     public void addProfileImgWithS3(MultipartFile multipartFile, String basePath,String tel) throws IOException
     {
         Student student = studentRepository.findByTel(tel);
 
-       /* //이전 사진 파일 삭제
-        String beforeFileName = student.getPhoto();
-        if(!beforeFileName.equals("default.png"))
-        {
+        String beforeFileName = student.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/","");
+        if (!beforeFileName.equals("Mstudent.png") && !beforeFileName.equals("Wstudent.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
             amazonS3ClientService.delete(beforeFilePath);
         }
-*/
-        String sourceFileName = multipartFile.getOriginalFilename();
-
-        //현재 날짜, 시간을 기준으로 구별값 첨부 -> 중복 방지
-        int dataTimeInteger = (int)(new Date().getTime()/1000);
-        String fileName = dataTimeInteger+sourceFileName;
-
-        //현재 사진 파일 s3 저장
-        //s3Service.upload(multipartFile, basePath, fileName);
-
-        //student 의 photo 에 fileName기록
         student.setPhoto( amazonS3ClientService.upload(multipartFile, basePath));
+    }
+    @Transactional
+    public void basicImgWithS3(String tel,String basePath)
+    {
+        Student student = studentRepository.findByTel(tel);
+        // teacher에서 사진 이름 얻기
+        String beforeFileName = student.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/","");
+        if (!beforeFileName.equals("Mstudent.png") && !beforeFileName.equals("Wstudent.png")) {
+            String beforeFilePath = basePath + "/" + beforeFileName;
+            amazonS3ClientService.delete(beforeFilePath);
+            if(student.isMale())
+            {
+                student.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/Mstudent.png");
+            }
+            else student.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/Wstudent.png");
+        }
+
     }
 
     //학생 회원 정보 삭제

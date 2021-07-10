@@ -166,7 +166,7 @@ public class StudentController {
 
     }
 
-    @ApiOperation(value="profileImg",tags="해당 학생 프로필 이미지 등록")
+    @ApiOperation(value="profileImg",tags="학생 프로필 이미지 등록")
     @ApiImplicitParams(
             {
                     @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
@@ -176,17 +176,44 @@ public class StudentController {
     {
         String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
         String basePath = "back/student/photo";
-        String fileName = profileImg.getOriginalFilename();
-
-       /* if(profileImg.isEmpty()) return "redirect:/student/modify";
-        if(fileName.equals("stranger.png")||fileName.equals("default.png"))
-        {
-            throw new RuntimeException("Invalid file name");
-        }
-*/
         studentService.addProfileImgWithS3(profileImg,basePath,tel);
 
         return "사진 저장 완료";
+    }
+    @ApiOperation(value="profileImg",tags="학생 프로필 이미지 등록")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name="X-AUTH-TOKEN",value="authorization header",required = true,dataType = "string",paramType = "header")}
+    )
+    @GetMapping("/profileImg")
+    public String getProfileImg(HttpServletRequest request) throws IOException
+    {
+        String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
+
+
+        return studentService.getprofileImg(tel);
+    }
+
+    // 초기 이미지로 변경(delete)
+    @ApiOperation(value = "basicImg", tags = "학생 프로필 기본 이미지로 변경")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "authorization header", required = true, dataType = "string", paramType = "header")}
+    )
+    @PostMapping("/basicImg")
+    public ResponseEntity<? extends BasicResponse> deleteProfileImg(HttpServletRequest request) throws IOException {
+        String tel = jwtTokenProvider.getTel(jwtTokenProvider.resolveToken(request));
+        String basePath = "back/student/photo";
+        try {
+            studentService.basicImgWithS3(tel,basePath);
+            return ResponseEntity.ok().body(new CommonResponse<String>("basic 사진으로 변경"));
+
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse(e.getMessage()));
+        }
+
     }
 
 
