@@ -7,50 +7,51 @@ import axios from "axios";
 import Logotext from "../component/feature/main/logotext";
 
 const Mainbody = styled.div`
-  overflow : hidden;
+  overflow: hidden;
 `;
 
 const Btnspan = styled.span`
-white-space: nowrap;
-@media only screen and (max-width: 1250px) {
-  margin-left : 18vw;
-}`;
+  white-space: nowrap;
+  @media only screen and (max-width: 1250px) {
+    margin-left: 18vw;
+  }
+`;
 
 const Textspan = styled.span`
-white-space: nowrap;
-@media only screen and (max-width: 1250px) {
-  margin-left : 15vw;
-}
-@media only screen and (max-width: 970px) {
-  margin-left : 14vw;
-}
-@media only screen and (max-width: 900px) {
-  margin-left : 13vw;
-}
-@media only screen and (max-width: 850px) {
-  margin-left : 12vw;
-}
-@media only screen and (max-width: 800px) {
-  margin-left : 11vw;
-}
-@media only screen and (max-width: 750px) {
-  margin-left : 10vw;
-}
-@media only screen and (max-width: 700px) {
-  margin-left : 9vw;
-}
-@media only screen and (max-width: 650px) {
-  margin-left : 8vw;
-}
-@media only screen and (max-width: 600px) {
-  margin-left : 7vw;
-}
-@media only screen and (max-width: 550px) {
-  margin-left : 6vw;
-}
-@media only screen and (max-width: 500px) {
-  margin-left : 5vw;
-}
+  white-space: nowrap;
+  @media only screen and (max-width: 1250px) {
+    margin-left: 15vw;
+  }
+  @media only screen and (max-width: 970px) {
+    margin-left: 14vw;
+  }
+  @media only screen and (max-width: 900px) {
+    margin-left: 13vw;
+  }
+  @media only screen and (max-width: 850px) {
+    margin-left: 12vw;
+  }
+  @media only screen and (max-width: 800px) {
+    margin-left: 11vw;
+  }
+  @media only screen and (max-width: 750px) {
+    margin-left: 10vw;
+  }
+  @media only screen and (max-width: 700px) {
+    margin-left: 9vw;
+  }
+  @media only screen and (max-width: 650px) {
+    margin-left: 8vw;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-left: 7vw;
+  }
+  @media only screen and (max-width: 550px) {
+    margin-left: 6vw;
+  }
+  @media only screen and (max-width: 500px) {
+    margin-left: 5vw;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -64,7 +65,7 @@ const Wrapper = styled.div`
 const MainImage = styled.img`
   width: 100%;
   height: 90%;
-  position : relative;
+  position: relative;
 `;
 const Text2_1 = styled.span`
   position: absolute;
@@ -82,11 +83,10 @@ const Text2_1 = styled.span`
   left: 11vw;
 
   @media all and (max-width: 1250px), (max-height: 300px) {
-    display : none;
+    display: none;
   }
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
-
 `;
 const Text2_2 = styled.span`
   position: absolute;
@@ -97,21 +97,24 @@ const Text2_2 = styled.span`
   font-weight: bold;
   font-size: 48px;
   line-height: 70px;
-  left : 40vw;
+  left: 35vw;
   top: 39vh;
   color: #ffeb34;
 
+  @media all and (max-width: 1500px) {
+    left: 40vw;
+  }
   @media all and (max-width: 1250px), (max-height: 300px) {
-    display : none;
+    display: none;
   }
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
 `;
 
 const Text = styled.p`
-position : absolute;
-top: 41vh;
-left : 15vw;
+  position: absolute;
+  top: 41vh;
+  left: 15vw;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -119,38 +122,36 @@ left : 15vw;
   line-height: 35px;
   /* identical to box height */
 
-
   @media only screen and (max-height: 500px) {
-    top : 49vh;
+    top: 49vh;
   }
 
   @media only screen and (max-width: 800px) {
-    top : 53vh;
+    top: 53vh;
   }
 
-  @media only screen and (max-width: 600px),  (max-height : 450px) {
-    display : none
+  @media only screen and (max-width: 600px), (max-height: 450px) {
+    display: none;
   }
 
-  @media only screen and (max-width: 800px) and (max-height : 450px) {
-    top : 59vh;
+  @media only screen and (max-width: 800px) and (max-height: 450px) {
+    top: 59vh;
   }
 
   @media only screen and (max-height: 400px) {
-    display : none;
+    display: none;
   }
 
-  @media all and (max-width: 490px) and (max-height: 500px){
-    display : none;
+  @media all and (max-width: 490px) and (max-height: 500px) {
+    display: none;
   }
-
 
   color: white;
 `;
 
 const Introtext = styled.span`
   margin-left: 18vw;
-  padding-top : 10vh;
+  padding-top: 10vh;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 300;
@@ -162,9 +163,9 @@ const Wrap = styled.div`
 `;
 
 const Teabutton1 = styled.button`
-margin-top : 2vh;
-margin-left : 10vw;
-margin-bottom : 2vh;
+  margin-top: 2vh;
+  margin-left: 10vw;
+  margin-bottom: 2vh;
   width: 20vw;
   background: #373275;
   border: 1px solid #0d00a4;
@@ -218,38 +219,39 @@ class Main extends React.Component {
   //     console.log(error.response);
   //   }
 
-  componentDidMount(){
-    axios.get("http://localhost:8080/users/totalNumber")
-    .then((res) => {       
-       this.setState({person : res.data});
-    })
-    .catch((err) => {
-      console.log(err.response);
-    })
+  componentDidMount() {
+    axios
+      .get("http://localhost:8080/users/totalNumber")
+      .then(res => {
+        this.setState({ person: res.data });
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
   }
 
   render() {
     return (
       <Mainbody>
-            <HeadButton />
-            <MainImage src={mypic} />
-            <Text2_1>"</Text2_1>
-            <Text2_2>"</Text2_2>
-            <Text>
-              {this.state.person}명의 회원이 이 사이트를 이용하고 있습니다.
-            </Text>
-            <Textspan>
-            <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
-            <Logotext></Logotext>
-            </Textspan>
-            <Btnspan>
-            <Link to="/teasign">
-              <Teabutton1>학생 가입</Teabutton1>
-            </Link>
-            <Link to="/stusign">
-              <Teabutton2>선생님 가입</Teabutton2>
-            </Link>
-            </Btnspan>
+        <HeadButton />
+        <MainImage src={mypic} />
+        <Text2_1>"</Text2_1>
+        <Text2_2>"</Text2_2>
+        <Text>
+          {this.state.person}명의 회원이 이 사이트를 이용하고 있습니다.
+        </Text>
+        <Textspan>
+          <Introtext>믿음과 신뢰의 이유 있는 선택, </Introtext>
+          <Logotext></Logotext>
+        </Textspan>
+        <Btnspan>
+          <Link to="/teasign">
+            <Teabutton1>학생 가입</Teabutton1>
+          </Link>
+          <Link to="/stusign">
+            <Teabutton2>선생님 가입</Teabutton2>
+          </Link>
+        </Btnspan>
       </Mainbody>
     );
   }
