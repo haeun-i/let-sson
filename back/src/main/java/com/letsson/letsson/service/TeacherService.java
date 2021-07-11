@@ -107,10 +107,10 @@ public class TeacherService {
         String beforeFileName = teacher.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/","");
         if (!beforeFileName.equals("Mteacher.png") && !beforeFileName.equals("Wteacher.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
-            amazonS3ClientService.delete(beforeFilePath);
+            amazonS3ClientService.deleteFile(beforeFilePath);
         }
 
-        teacher.setPhoto(amazonS3ClientService.upload(multipartFile, basePath));
+        teacher.setPhoto(amazonS3ClientService.upload(multipartFile, basePath,teacher.getId()));
     }
 
     @Transactional
@@ -121,7 +121,7 @@ public class TeacherService {
         String beforeFileName = teacher.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/","");
         if (!beforeFileName.equals("Mteacher.png") && !beforeFileName.equals("Wteacher.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
-            amazonS3ClientService.delete(beforeFilePath);
+            amazonS3ClientService.deleteFile(beforeFilePath);
             if(teacher.isMale())
             {
                 teacher.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/teacher/photo/Mteacher.png");
