@@ -110,19 +110,19 @@ public class StudentService {
         String beforeFileName = student.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/","");
         if (!beforeFileName.equals("Mstudent.png") && !beforeFileName.equals("Wstudent.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
-            amazonS3ClientService.delete(beforeFilePath);
+            amazonS3ClientService.deleteFile(beforeFilePath);
         }
-        student.setPhoto( amazonS3ClientService.upload(multipartFile, basePath));
+        student.setPhoto( amazonS3ClientService.upload(multipartFile, basePath,student.getId()));
     }
     @Transactional
     public void basicImgWithS3(String tel,String basePath)
     {
         Student student = studentRepository.findByTel(tel);
-        // teacher에서 사진 이름 얻기
+        // student에서 사진 이름 얻기
         String beforeFileName = student.getPhoto().replace("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/","");
         if (!beforeFileName.equals("Mstudent.png") && !beforeFileName.equals("Wstudent.png")) {
             String beforeFilePath = basePath + "/" + beforeFileName;
-            amazonS3ClientService.delete(beforeFilePath);
+            amazonS3ClientService.deleteFile(beforeFilePath);
             if(student.isMale())
             {
                 student.setPhoto("https://letsson.s3.ap-northeast-2.amazonaws.com/back/student/photo/Mstudent.png");

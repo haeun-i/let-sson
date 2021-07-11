@@ -5,7 +5,8 @@ spring:
     url : ENC(iScbxuEhpeGFN8iOJ/FQp4Hiz+ANjYy4eX4HfysjH3MnEdt5ZdaC6At7cNIAt1hL290ZdYzlKO2aK/ZUbwNS9NMWHKYS/w4cB/ca/xMfcgvnh0MxGJ0n4avPnxo4OEQXMMZHvu2M9tMt/PVTHNgBbLnoMyZviaVMoEYVrpAoZ/5JK4YUGjUkv6Im+EIQPRb237WV99ts/rba78Cb7zUSijtsgTHbarE4Q8GuURFPM/w=)
     username : ENC(EpONZ6ZLmgNWbOzv1e+h+g==)
     password : ENC(Mvz56tUR267X93Yt+LTgwxdezJQTtbwr)
-    hikari.driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
         ddl-auto: update
@@ -43,7 +44,8 @@ logging:
     root: info
 
 
-
+server:
+  port: ${PORT:8080}
 
 
 
