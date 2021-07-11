@@ -237,8 +237,19 @@ class MypageSp extends React.Component {
     this.state.pImage = "n"
   };
 
-  handleImageDefault = e =>{
+  handleImageDefault = async e =>{
     this.state.pImage = "d"
+    try{
+      await axios
+        .post("http://localhost:8080/students/basicImg",{}, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        window.location.reload();
+      }catch(error){
+        console.log(error.response);
+      }
   }
 
   componentDidMount() {
@@ -297,11 +308,12 @@ class MypageSp extends React.Component {
       console.log(this.state.pImage);
       if (this.state.pImage === "d"){
         await axios
-        .post("http://localhost:8080/students/basicImg", {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });}else{
+          .put("http://localhost:8080/students/modify", dataList, {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          });
+        }else{
         await axios
           .put("http://localhost:8080/students/modify", dataList, {
             headers: {
@@ -315,6 +327,7 @@ class MypageSp extends React.Component {
             },
           });
         };
+        window.location.reload();
       }
         catch(error) {
           console.log(error.response);
@@ -358,7 +371,7 @@ class MypageSp extends React.Component {
                 <SaveNref
                   type="submit"
                   Value="확인"
-                  onClick={() => alert("저장이 완료되었습니다.")}
+                  onSubmit={() => alert("저장이 완료되었습니다.")}
                 >
                   저장하기
                 </SaveNref>

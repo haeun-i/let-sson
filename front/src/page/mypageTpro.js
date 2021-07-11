@@ -169,6 +169,7 @@ const Text = styled.div`
 `;
 
 const InputBoxShort = styled.input`
+  margin-top:20px;
   margin-right: 0;
   width: 100%;
   height: 32px;
@@ -177,6 +178,24 @@ const InputBoxShort = styled.input`
   border: 3px solid #f4f4fc;
   box-sizing: border-box;
 `;
+
+const PrfImage = styled.div`
+  display:flex;
+  flex-direction:row;
+`;
+
+const DefaultB = styled.button`
+  height: 50px;
+  width: 90px;
+  background: #463ea0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin-top: 100px;
+  color: white;
+  border: 0;
+  outline: 1;
+  font-size:12px;
+`
 
 class MypageTp extends React.Component {
   constructor(props) {
@@ -191,6 +210,7 @@ class MypageTp extends React.Component {
       intro: "",
       plan: "",
       files: "",
+      pImage:"",
     };
     this.tmp = this.state;
   }
@@ -241,7 +261,24 @@ class MypageTp extends React.Component {
     e.preventDefault();
     console.log(e.target.files);
     this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
+    this.state.pImage = "n"
   };
+
+  handleImageDefault = async e =>{
+    this.state.pImage = "d"
+    try{
+      await axios
+        .post("http://localhost:8080/teachers/basicImg",{}, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        window.location.reload();
+      }catch(error){
+        console.log(error.response);
+      }
+  }
+
 
   savedataT = async e => {
     try {
@@ -272,10 +309,19 @@ class MypageTp extends React.Component {
         major: this.state.major,
         is_attend: this.state.is_attend,
         prove_image: this.state.prove_image,
+        photo:this.state.photo,
       };
       const formData = new FormData();
       formData.append("file", this.state.files);
-
+      console.log(formData);
+      console.log(this.state.pImage);
+      if (this.state.pImage === "d"){
+      await axios.put("http://localhost:8080/teachers/modify", dataList, {
+        headers: {
+          "X-AUTH-TOKEN": localStorage.getItem("token"),
+        },
+      });
+      }else{
       await axios.put("http://localhost:8080/teachers/modify", dataList, {
         headers: {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -286,6 +332,8 @@ class MypageTp extends React.Component {
           "X-AUTH-TOKEN": localStorage.getItem("token"),
         },
       });
+      };
+      window.location.reload();
     } catch (error) {
       console.log(error.response);
     }
@@ -316,6 +364,11 @@ class MypageTp extends React.Component {
             <Wrapper2>
               <Box>
                 <Text>프로필 사진</Text>
+                <Text>프로필 사진</Text>
+                <PrfImage>
+                <img src={this.state.photo} width="150px" height="150px"/>
+                <DefaultB onClick={this.handleImageDefault}>기본이미지로 변경</DefaultB>
+                </PrfImage>
                 <InputBoxShort
                   type="file"
                   accept="image/png, image/jpg"
