@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/stusign";
 
@@ -30,7 +30,7 @@ const Select = styled.select`
 
 const Stusignregion = () => {
   const [city, setCity] = useState("");
-  const { state, dispatch } = useContext(CounterContext);
+  const {  dispatch } = useContext(CounterContext);
 
   const handleChange = e => {
     dispatch({ type: "setRegion", region: e.currentTarget.value });

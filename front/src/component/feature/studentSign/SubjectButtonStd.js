@@ -25,7 +25,7 @@ const SubjectButtonStd = ({ isclicked, handleclick, subjectName }) => {
       setBackground("white");
       setTextcolor("#463ea0");
     }
-  }, [isclicked, state]);
+  }, [isclicked, state, subjectName]);
 
   const handleChange = e => {
     e.preventDefault();

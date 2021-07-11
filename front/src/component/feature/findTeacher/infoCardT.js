@@ -25,7 +25,6 @@ const Text = styled.div`
 `;
 
 function MyName({
-  key,
   id,
   name,
   university,
@@ -45,7 +44,7 @@ function MyName({
   tel,
   photo,
 }) {
-  const { state, dispatch } = useContext(FilterContextT);
+  const { state,  } = useContext(FilterContextT);
 
   if (parseInt(state.age) > age) {
     return null;
@@ -84,7 +83,7 @@ function MyName({
         }}
       >
         <Profile>
-          <img src={photo} width= "150px" height= "150px"/>
+          <img src={photo} alt="프로필사진" width= "150px" height= "150px"/>
           <Text>이름: {name}</Text>
           <Text>과목: {subject}</Text>
           <Text>지역: {region}</Text>
