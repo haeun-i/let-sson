@@ -101,7 +101,7 @@ function InfoCardT() {
     async function cardData() {
       try {
         const response =  await axios
-              .get("http://localhost:8080/users/teachers", {
+              .get("https://let-sson.herokuapp.com/users/teachers", {
                 headers: {
                   "X-AUTH-TOKEN": localStorage.getItem("token"),
                 },

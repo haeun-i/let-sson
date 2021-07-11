@@ -155,7 +155,7 @@ const TeaLogin = () => {
     console.log(state.passwordT);
 
     await axios
-      .post("http://localhost:8080/teachers/login", {
+      .post("https://let-sson.herokuapp.com/teachers/login", {
         tel: state.telT,
         password: state.passwordT,
       })

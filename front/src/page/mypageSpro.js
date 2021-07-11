@@ -241,6 +241,7 @@ class MypageSp extends React.Component {
   };
 
   handleImageDefault = async e => {
+    e.preventDefault();
     this.setState({ pImage: "d" });
     try {
       await axios.post(
@@ -255,7 +256,7 @@ class MypageSp extends React.Component {
     } catch (error) {
       console.log(error.response);
     }
-    if (this.state.gender === "male") {
+    if (this.state.male === true) {
       this.setState({ photo: boy });
     } else {
       this.setState({ photo: girl });
@@ -323,7 +324,7 @@ class MypageSp extends React.Component {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
-      } else {
+      } else if(this.state.pImage === "n"){
         await axios.put("http://localhost:8080/students/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -338,8 +339,17 @@ class MypageSp extends React.Component {
             },
           }
         );
+        window.location.reload();
       }
-      window.location.reload();
+      else{
+        await axios.put("http://localhost:8080/students/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        window.location.reload();
+      }
+      
     } catch (error) {
       console.log(error.response);
     }

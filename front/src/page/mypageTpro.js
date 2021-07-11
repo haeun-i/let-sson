@@ -269,7 +269,8 @@ class MypageTp extends React.Component {
   };
 
   handleImageDefault = async e => {
-    this.state.pImage = "d";
+    e.preventDefault();
+    this.setState({ pImage: "d" });
     try {
       await axios.post(
         "http://localhost:8080/teachers/basicImg",
@@ -280,11 +281,10 @@ class MypageTp extends React.Component {
           },
         }
       );
-      window.location.reload();
     } catch (error) {
       console.log(error.response);
     }
-    if (this.state.gender === "male") {
+    if (this.state.male === true) {
       this.setState({ photo: man });
     } else {
       this.setState({ photo: woman });
@@ -332,7 +332,8 @@ class MypageTp extends React.Component {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
-      } else {
+      window.location.reload();
+      } else if(this.state.pImage === "n") {
         await axios.put("http://localhost:8080/teachers/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -347,7 +348,17 @@ class MypageTp extends React.Component {
             },
           }
         );
+        window.location.reload();
       }
+      else{
+        await axios.put("http://localhost:8080/teachers/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        window.location.reload();
+      }
+      
     } catch (error) {
       console.log(error.response);
     }
@@ -400,7 +411,7 @@ class MypageTp extends React.Component {
               <Buttonfame>
                 <SaveNref
                   type="submit"
-                  onClick={() => alert("저장이 완료되었습니다.")}
+                  onSubmit={() => alert("저장이 완료되었습니다.")}
                 >
                   저장하기
                 </SaveNref>

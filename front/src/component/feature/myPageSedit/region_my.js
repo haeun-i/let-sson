@@ -39,7 +39,7 @@ const StusignregionMy = () => {
   useEffect(() => {
     const profileData = async () => {
       const dataS = await axios.get(
-        "http://localhost:8080/students/studentInfo",
+        "https://let-sson.herokuapp.com/students/studentInfo",
         {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
