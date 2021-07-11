@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 
 const Box = styled.div`
   padding-top: 10px;
@@ -53,7 +53,7 @@ const TeasignpasswordMy = () => {
         <InputBox
           type="password"
           name="password"
-          value={state.password}
+          value={state.password || ""}
           onChange={handleChange1}
           placeholder="비밀번호"
         ></InputBox>
@@ -62,7 +62,7 @@ const TeasignpasswordMy = () => {
         <InputBox
           type="password"
           name="passcheck"
-          value={state.passcheck}
+          value={state.passcheck || ""}
           onChange={handleChange2}
           placeholder="비밀번호 확인"
         ></InputBox>

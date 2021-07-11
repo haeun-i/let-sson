@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 import axios from "axios";
 
 const Box = styled.div`
@@ -47,7 +47,6 @@ const TeasignregionMy = () => {
         }
       );
       const cityArray = dataS.data.data.region.split(" ");
-      console.log(cityArray);
       setCity(cityArray[0]);
       if (cityArray[2] === undefined) setCity2(cityArray[1]);
       else setCity2(cityArray[1] + " " + cityArray[2]);
@@ -55,11 +54,11 @@ const TeasignregionMy = () => {
     profileData();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setRegion", region: e.currentTarget.value });
   };
 
-  const Change = (e) => {
+  const Change = e => {
     if (e.target.value === "seoul") {
       setCity("서울");
     } else if (e.target.value === "busan") {

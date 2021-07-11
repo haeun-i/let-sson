@@ -28,12 +28,15 @@ const Head = styled.header`
   width: 100%;
   padding: 1rem;
   @media only screen and (max-width: 797px) {
-    height:150px;
-    text-align:center;
-    justify-content:center;
-    align-item:center;
-  
+    height: 150px;
+    text-align: center;
+    justify-content: center;
+    align-item: center;
   }
+`;
+
+const Text = styled.span`
+  font-size: 12px;
 `;
 
 function HeadButtons() {
@@ -64,7 +67,7 @@ function HeadButtons() {
           </button>
         </Link>
       </span>
-      <text>믿음과 신뢰의 이유있는 선택</text>
+      <Text>믿음과 신뢰의 이유있는 선택</Text>
       <HeadButton>
         <span>
           <DropbtnPost />

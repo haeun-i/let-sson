@@ -1,6 +1,4 @@
 import React, { useEffect, useReducer } from "react";
-import { useHistory } from "react-router-dom";
-import HeadButton from "../component/layout/header/header";
 import SidebarMyPt from "../component/shared/myPageT/sidebarMyPt";
 import styled from "styled-components";
 import TeasignnameMy from "../component/feature/myPageTedit/name_my";
@@ -271,7 +269,6 @@ const reducer = (state, action) => {
 
 const MypageTe = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const history = useHistory();
 
   useEffect(() => {
     async function profileData() {

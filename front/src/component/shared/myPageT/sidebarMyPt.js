@@ -26,23 +26,33 @@ const SideB = styled.button`
   margin: 0;
 `;
 
+const Btn = styled.button`
+  font-size: 15px;
+  border: solid 1px #e8e8e8;
+  padding: 10px;
+  width: 150px;
+  height: 36px;
+  margin: 0;
+`;
+
 const SidebarMyP = () => {
-  
   const history = useHistory();
-  const withdraw = (e) => {
+  const withdraw = e => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios.delete("http://localhost:8080/teachers/delete", {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      }).then((res) => {
-        alert("계정이 탈퇴되었습니다."); 
-        localStorage.removeItem("token");
-        history.push("/login");   
-     })
-     .catch((err) => {
-       console.log(err.response);
-     });
+      axios
+        .delete("http://localhost:8080/teachers/delete", {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        })
+        .then(res => {
+          alert("계정이 탈퇴되었습니다.");
+          localStorage.removeItem("token");
+          history.push("/login");
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   };
 
@@ -55,9 +65,9 @@ const SidebarMyP = () => {
         <Link to="/mypaget/edit">
           <SideB>수정하기</SideB>
         </Link>
-        <Link>
-        <SideB onClick={withdraw}>탈퇴하기</SideB>
-        </Link>
+        <span>
+          <Btn onClick={withdraw}>탈퇴하기</Btn>
+        </span>
       </Wrapper>
     </div>
   );

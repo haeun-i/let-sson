@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 
 const Box = styled.div`
   padding-top: 10px;
@@ -45,8 +45,8 @@ const TeasignintroMy = () => {
       <label>
         <InputBox
           type="text"
-          value={state.intro}
-          onChange={(e) =>
+          value={state.intro || ""}
+          onChange={e =>
             dispatch({ type: "setIntro", intro: e.currentTarget.value })
           }
         />

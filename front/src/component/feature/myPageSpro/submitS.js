@@ -56,53 +56,67 @@ class SubmitS extends React.Component {
       <div>
         <Box>
           <Text>
-          <hr color="#0D00A4" width="25px" height="10px"></hr>
+            <hr color="#0D00A4" width="25px" height="10px"></hr>
             {this.props.id} 이름
           </Text>
           <InputBoxShort
             name="name"
-            value={this.props.state.name}
+            value={this.props.state.name || ""}
+            onChange={this.handleChange}
             type="text"
           ></InputBoxShort>
         </Box>
         <Box>
-          <Text><hr color="#0D00A4" width="25px" height="10px"></hr>과목</Text>
+          <Text>
+            <hr color="#0D00A4" width="25px" height="10px"></hr>과목
+          </Text>
           <InputBoxShort
             name="subject"
-            value={this.props.state.subject}
+            value={this.props.state.subject || ""}
+            onChange={this.handleChange}
             type="text"
           ></InputBoxShort>
         </Box>
         <Box>
-          <Text><hr color="#0D00A4" width="25px" height="10px"></hr>지역</Text>
+          <Text>
+            <hr color="#0D00A4" width="25px" height="10px"></hr>지역
+          </Text>
           <InputBoxShort
             name="region"
-            value={this.props.state.region}
+            value={this.props.state.region || ""}
+            onChange={this.handleChange}
             type="text"
           ></InputBoxShort>
         </Box>
         <Box>
-          <Text><hr color="#0D00A4" width="25px" height="10px"></hr>후기</Text>
+          <Text>
+            <hr color="#0D00A4" width="25px" height="10px"></hr>후기
+          </Text>
           <InputBoxShort
             name="review"
-            value={this.props.state.review}
+            value={this.props.state.review || ""}
+            onChange={this.handleChange}
             type="text"
           ></InputBoxShort>
         </Box>
         <Box>
-          <Text><hr color="#0D00A4" width="40px" height="10px"></hr>소개글</Text>
+          <Text>
+            <hr color="#0D00A4" width="40px" height="10px"></hr>소개글
+          </Text>
           <InputBox
             name="intro"
-            value={this.props.state.intro}
+            value={this.props.state.intro || ""}
             onChange={this.handleChange}
             type="text"
           ></InputBox>
         </Box>
         <Box>
-          <Text><hr color="#0D00A4" width="25px" height="10px"></hr>목표</Text>
+          <Text>
+            <hr color="#0D00A4" width="25px" height="10px"></hr>목표
+          </Text>
           <InputBox
             name="goal"
-            value={this.props.state.goal}
+            value={this.props.state.goal || ""}
             onChange={this.handleChange}
             type="text"
           ></InputBox>

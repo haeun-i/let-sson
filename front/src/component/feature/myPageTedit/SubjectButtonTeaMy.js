@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 
 const Button = styled.input`
   background: white;
@@ -25,7 +25,7 @@ const SubjectButtonTeaMy = ({ isclicked, handleclick, subjectName }) => {
       setBackground("white");
       setTextcolor("#010440");
     }
-  }, [isclicked, state]);
+  }, [isclicked, state, subjectName]);
 
   const handleChange = e => {
     e.preventDefault();

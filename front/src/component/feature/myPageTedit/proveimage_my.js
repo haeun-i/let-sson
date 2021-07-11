@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 
 const Box = styled.div`
   padding-top: 10px;
@@ -39,7 +39,7 @@ const TeasignproveMy = () => {
           type="file"
           accept="image/png, image/jpg"
           name="proveimage"
-          value={state.prove_image}
+          value={state.prove_image || ""}
           onChange={handleChange}
         ></input>
       </label>
