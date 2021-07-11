@@ -38,23 +38,36 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService{
         this.bucket = bucket;
     }
 
-    @Override
+   /* @Override
     public void delete(String filename) {
         this.amazonS3.deleteObject(bucket,filename);
     }
-
+*/
     @Override
-    public String upload(MultipartFile multipartFile, String dirName) throws IOException {
+    @Async
+    public void deleteFile(final String keyName) {
+        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!Deleting file with name= " + keyName);
+        final DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucket, keyName);
+        try {
+            amazonS3.deleteObject(deleteObjectRequest);
+            logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!File deleted successfully.");
+        }catch (Exception e)
+        {
+            logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Delete faile" + e.getMessage());
+        }
+    }
+    @Override
+    public String upload(MultipartFile multipartFile, String dirName,Long userid) throws IOException {
         File uploadFile = convert(multipartFile)
                 .orElseThrow(() -> new IllegalArgumentException("MultipartFile -> File로 전환이 실패했습니다."));
 
-        return upload(uploadFile, dirName);
+        return upload(uploadFile, dirName,userid);
     }
 
 
-    private String upload(File uploadFile, String dirName) {
+    private String upload(File uploadFile, String dirName,Long userid) {
         SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-        String originalfileName = uploadFile.getName() + "-" + date.format(new Date());
+        String originalfileName = userid + "profileIMG-" + date.format(new Date())+".JPG";
         String fileName = dirName + "/" + originalfileName;
         String uploadImageUrl = putS3(uploadFile, fileName);
         removeNewFile(uploadFile);

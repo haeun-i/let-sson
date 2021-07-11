@@ -8,11 +8,12 @@ import java.util.Optional;
 
 public interface AmazonS3ClientService {
 
-    String upload(MultipartFile multipartFile, String dirName) throws IOException;
+    String upload(MultipartFile multipartFile, String dirName,Long userid) throws IOException;
 
 
 
-    void delete(String filename);
+    void deleteFile(final String keyName);
+    //void delete(String filename);
 
 
 
