@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import axios from "axios";
 import StarRatingComponent from "react-star-rating-component";
 
-const clickButton = styled.button`
-  border: red;
-`;
+// const clickButton = styled.button`
+//   border: red;
 
+// `;
 class Ratingdropbtn extends React.Component {
   constructor(props) {
     super(props);

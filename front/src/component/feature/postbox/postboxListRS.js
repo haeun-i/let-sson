@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 
 // 학생이 받은 내역 목록
@@ -70,13 +70,13 @@ const Cardelement3 = styled.div`
   color: grey;
 `;
 
-const Cardelement4 = styled.div`
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  width: 20%;
-  text-align: center;
-  flex-grow: 4;
-`;
+// const Cardelement4 = styled.div`
+//   border-left: 1px solid lightgrey;
+//   border-right: 1px solid lightgrey;
+//   width: 20%;
+//   text-align: center;
+//   flex-grow: 4;
+// `;
 
 const Cardbutton = styled.button`
   border: none;
@@ -84,8 +84,8 @@ const Cardbutton = styled.button`
 
 const PostboxListRS = () => {
   const [data, setData] = useState([]);
-  const [connect, setConnect] = useState(false);
-  const history = useHistory();
+  // const [connect, setConnect] = useState(false);
+  // const history = useHistory();
 
   useEffect(() => {
     async function getRecieve() {
@@ -104,24 +104,24 @@ const PostboxListRS = () => {
     getRecieve();
   }, []);
 
-  const deleteSend = tel => {
-    console.log(tel);
+  // const deleteSend = tel => {
+  //   console.log(tel);
 
-    if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
-      axios
-        .delete("http://localhost:8080/teachers/deleteSending", {
-          data: { student_tel: tel },
-          headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
-        })
-        .then(response => {
-          history.go(0);
-          alert("삭제 되었습니다.");
-        })
-        .catch(err => {
-          console.log(err.response);
-        });
-    }
-  };
+  //   if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
+  //     axios
+  //       .delete("http://localhost:8080/teachers/deleteSending", {
+  //         data: { student_tel: tel },
+  //         headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+  //       })
+  //       .then(response => {
+  //         history.go(0);
+  //         alert("삭제 되었습니다.");
+  //       })
+  //       .catch(err => {
+  //         console.log(err.response);
+  //       });
+  //   }
+  // };
 
   return (
     <Container>

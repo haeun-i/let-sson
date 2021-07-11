@@ -38,7 +38,7 @@ const MyName = ({
   tel,
   photo,
 }) => {
-  const { state, dispatch } = useContext(SidebarContextS);
+  const { state, } = useContext(SidebarContextS);
 
   if (
     state.age !== "" &&
@@ -83,7 +83,7 @@ const MyName = ({
         }}
       >
         <Profile>
-          <img src={photo} width= "150px" height= "150px"/>
+          <img src={photo} alt="프로필사진" width= "150px" height= "150px"/>
           <Text>이름: {name}</Text>
           <Text>과목: {subject}</Text>
           <Text>지역: {region}</Text>

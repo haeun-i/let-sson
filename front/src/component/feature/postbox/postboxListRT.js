@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useHistory,  useLocation } from "react-router-dom";
+import { Link, useHistory,   } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
 const Container = styled.div`
@@ -123,21 +123,21 @@ const PostboxListRT = () => {
       });
   };
 
-  const deleteSend = tel => {
-    console.log(tel);
+  // const deleteSend = tel => {
+  //   console.log(tel);
 
-    if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
-      axios
-        .delete("http://localhost:8080/students/deleteSending", {
-          data: { teacher_tel: tel },
-          headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
-        })
-        .then(response => {
-          history.go(0);
-          alert("삭제 되었습니다.");
-        });
-    }
-  };
+  //   if (window.confirm("정말로 받은 신청을 삭제하겠습니까?")) {
+  //     axios
+  //       .delete("http://localhost:8080/students/deleteSending", {
+  //         data: { teacher_tel: tel },
+  //         headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
+  //       })
+  //       .then(response => {
+  //         history.go(0);
+  //         alert("삭제 되었습니다.");
+  //       });
+  //   }
+  // };
 
   return (
     <Container>

@@ -180,7 +180,7 @@ const PostboxListSS = () => {
               <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
                 삭제
               </Cardbutton>
-              {element.state == "체결 완료" && (
+              {element.state === "체결 완료" && (
                 <Ratingdropbtn tel={element.receiver.tel} />
               )}
             </Cardelement4>

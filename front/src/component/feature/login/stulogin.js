@@ -130,7 +130,7 @@ const StuLogin = () => {
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"),
       });
     }
-  }, [state.telS]);
+  }, [dispatch,state.telS]);
 
   const PhoneInput = e => {
     const regex = /^[0-9\b -]{0,13}$/;
