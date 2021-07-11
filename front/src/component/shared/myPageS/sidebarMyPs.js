@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   border: 1px solid white;
   display: flex;
   position: absolute;
-  width: 40%;
+  width: 50%;
   background-color: white;
   height: 36px;
   background: none;
@@ -26,10 +26,14 @@ const SideB = styled.button`
   margin: 0;
 `;
 
-const style = {
-  background: "#8983D2",
-  color: "white",
-};
+const Btn = styled.button`
+  font-size: 15px;
+  border: solid 1px #e8e8e8;
+  padding: 10px;
+  width: 150px;
+  height: 36px;
+  margin: 0;
+`;
 
 const SidebarMyPs = () => {
   const history = useHistory();
@@ -58,9 +62,9 @@ const SidebarMyPs = () => {
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
-        <Link>
-        <SideB onClick={withdraw}>탈퇴하기</SideB>
-        </Link>
+        <span>
+        <Btn onClick={withdraw}>탈퇴하기</Btn>
+        </span>
       </Wrapper>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 import axios from "axios";
 
 const Box = styled.div`

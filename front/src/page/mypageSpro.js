@@ -8,6 +8,8 @@ import axios from "axios";
 import myPback from "./successbackg.jpg";
 import circleImg1 from "./mypage1.jpg";
 import circleImg2 from "./mypage2.jpg";
+import boy from "../Styles/Boy.png";
+import girl from "../Styles/Girl.png";
 
 const Container = styled.div`
   width: 100%;
@@ -142,7 +144,7 @@ const Text2 = styled.div`
   padding-bottom: 50px;
 `;
 const Bar = styled.div`
-  margin-left: 30%;
+  margin-left: 25%;
   margin-right: 50%;
   margin-bottom: 100px;
 `;
@@ -170,7 +172,7 @@ const Text = styled.div`
 `;
 
 const InputBoxShort = styled.input`
-  margin-top:20px;
+  margin-top: 20px;
   margin-right: 0;
   width: 100%;
   height: 32px;
@@ -181,10 +183,9 @@ const InputBoxShort = styled.input`
 `;
 
 const PrfImage = styled.div`
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
 `;
-
 
 const DefaultB = styled.button`
   height: 50px;
@@ -196,8 +197,8 @@ const DefaultB = styled.button`
   color: white;
   border: 0;
   outline: 1;
-  font-size:12px;
-`
+  font-size: 12px;
+`;
 class MypageSp extends React.Component {
   constructor(props) {
     super(props);
@@ -209,7 +210,7 @@ class MypageSp extends React.Component {
       intro: "",
       goal: "",
       files: "",
-      pImage:"",
+      pImage: "",
     };
     this.tmp = this.state;
   }
@@ -234,23 +235,32 @@ class MypageSp extends React.Component {
     e.preventDefault();
     console.log(e.target.files);
     this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
-    this.state.pImage = "n"
+    const imageUrl = URL.createObjectURL(e.target.files[0]);
+    this.setState({ photo: imageUrl });
+    this.setState({ pImage: "n" });
   };
 
-  handleImageDefault = async e =>{
-    this.state.pImage = "d"
-    try{
-      await axios
-        .post("http://localhost:8080/students/basicImg",{}, {
+  handleImageDefault = async e => {
+    this.setState({ pImage: "d" });
+    try {
+      await axios.post(
+        "http://localhost:8080/students/basicImg",
+        {},
+        {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        });
-        window.location.reload();
-      }catch(error){
-        console.log(error.response);
-      }
-  }
+        }
+      );
+    } catch (error) {
+      console.log(error.response);
+    }
+    if (this.state.gender === "male") {
+      this.setState({ photo: boy });
+    } else {
+      this.setState({ photo: girl });
+    }
+  };
 
   componentDidMount() {
     this.getData();
@@ -276,7 +286,8 @@ class MypageSp extends React.Component {
   };
 
   savedataT = async e => {
-    try{e.preventDefault();
+    try {
+      e.preventDefault();
       const dataList = {
         age: parseInt(this.state.age),
         contact: this.state.contact,
@@ -299,39 +310,39 @@ class MypageSp extends React.Component {
         tel: this.state.tel,
         username: this.state.username,
         enabled: this.state.enabled,
-        photo:this.state.photo,
+        photo: this.state.photo,
       };
       console.log(dataList);
       const formData = new FormData();
       formData.append("file", this.state.files);
       console.log(formData);
       console.log(this.state.pImage);
-      if (this.state.pImage === "d"){
-        await axios
-          .put("http://localhost:8080/students/modify", dataList, {
+      if (this.state.pImage === "d") {
+        await axios.put("http://localhost:8080/students/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+      } else {
+        await axios.put("http://localhost:8080/students/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        await axios.post(
+          "http://localhost:8080/students/profileImg",
+          formData,
+          {
             headers: {
               "X-AUTH-TOKEN": localStorage.getItem("token"),
             },
-          });
-        }else{
-        await axios
-          .put("http://localhost:8080/students/modify", dataList, {
-            headers: {
-              "X-AUTH-TOKEN": localStorage.getItem("token"),
-            },
-          });
-        await axios
-          .post("http://localhost:8080/students/profileImg", formData, {
-            headers: {
-              "X-AUTH-TOKEN": localStorage.getItem("token"),
-            },
-          });
-        };
-        window.location.reload();
+          }
+        );
       }
-        catch(error) {
-          console.log(error.response);
-        }
+      window.location.reload();
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   render() {
@@ -356,8 +367,15 @@ class MypageSp extends React.Component {
               <Box>
                 <Text>프로필 사진</Text>
                 <PrfImage>
-                <img src={this.state.photo} width="150px" height="150px"/>
-                <DefaultB onClick={this.handleImageDefault}>기본이미지로 변경</DefaultB>
+                  <img
+                    src={this.state.photo}
+                    width="150px"
+                    height="150px"
+                    alt="profile"
+                  />
+                  <DefaultB onClick={this.handleImageDefault}>
+                    기본이미지로 변경
+                  </DefaultB>
                 </PrfImage>
                 <InputBoxShort
                   type="file"
