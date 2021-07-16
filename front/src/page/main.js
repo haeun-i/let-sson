@@ -54,20 +54,12 @@ const Textspan = styled.span`
   }
 `;
 
-const Wrapper = styled.div`
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-`;
-
 const MainImage = styled.img`
   width: 100%;
   height: 90%;
   position: relative;
 `;
-const Text2_1 = styled.span`
+const Text21 = styled.span`
   position: absolute;
   width: 33px;
   height: 70px;
@@ -88,7 +80,7 @@ const Text2_1 = styled.span`
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
 `;
-const Text2_2 = styled.span`
+const Text22 = styled.span`
   position: absolute;
   width: 33px;
   height: 70px;
@@ -157,9 +149,6 @@ const Introtext = styled.span`
   font-weight: 300;
   font-size: 14px;
   color: #000000;
-`;
-const Wrap = styled.div`
-  background-color: #f6f4f3;
 `;
 
 const Teabutton1 = styled.button`
@@ -235,8 +224,8 @@ class Main extends React.Component {
       <Mainbody>
         <HeadButton />
         <MainImage src={mypic} />
-        <Text2_1>"</Text2_1>
-        <Text2_2>"</Text2_2>
+        <Text21>"</Text21>
+        <Text22>"</Text22>
         <Text>
           {this.state.person}명의 회원이 이 사이트를 이용하고 있습니다.
         </Text>
@@ -245,10 +234,10 @@ class Main extends React.Component {
           <Logotext></Logotext>
         </Textspan>
         <Btnspan>
-          <Link to="/teasign">
+          <Link to="/stusign">
             <Teabutton1>학생 가입</Teabutton1>
           </Link>
-          <Link to="/stusign">
+          <Link to="/teasign">
             <Teabutton2>선생님 가입</Teabutton2>
           </Link>
         </Btnspan>

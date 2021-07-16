@@ -220,7 +220,7 @@ class MypageTp extends React.Component {
   getData = async () => {
     try {
       const dataT = await axios.get(
-        "http://localhost:8080/teachers/teacherInfo",
+        "https://let-sson.herokuapp.com/teachers/teacherInfo",
         {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -273,7 +273,7 @@ class MypageTp extends React.Component {
     this.setState({ pImage: "d" });
     try {
       await axios.post(
-        "http://localhost:8080/teachers/basicImg",
+        "https://let-sson.herokuapp.com/teachers/basicImg",
         {},
         {
           headers: {
@@ -327,20 +327,20 @@ class MypageTp extends React.Component {
       console.log(formData);
       console.log(this.state.pImage);
       if (this.state.pImage === "d") {
-        await axios.put("http://localhost:8080/teachers/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
       window.location.reload();
       } else if(this.state.pImage === "n") {
-        await axios.put("http://localhost:8080/teachers/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
         await axios.post(
-          "http://localhost:8080/teachers/profileImg",
+          "https://let-sson.herokuapp.com/teachers/profileImg",
           formData,
           {
             headers: {
@@ -351,7 +351,7 @@ class MypageTp extends React.Component {
         window.location.reload();
       }
       else{
-        await axios.put("http://localhost:8080/teachers/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },

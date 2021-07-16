@@ -253,7 +253,7 @@ const MypageSe = () => {
     async function profileData() {
       try {
         const dataS = await axios.get(
-          "http://localhost:8080/students/studentInfo",
+          "https://let-sson.herokuapp.com/students/studentInfo",
           {
             headers: {
               "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -297,7 +297,7 @@ const MypageSe = () => {
 
       await axios
         .put(
-          "http://localhost:8080/students/basicModify",
+          "https://let-sson.herokuapp.com/students/basicModify",
           {
             id: state.id,
             name: state.name,

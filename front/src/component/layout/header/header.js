@@ -63,7 +63,7 @@ function HeadButtons() {
       <span className="logoimage">
         <Link to="/">
           <button>
-            <img src={mypic} />
+            <img src={mypic} alt=""/>
           </button>
         </Link>
       </span>

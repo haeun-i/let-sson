@@ -1,23 +1,10 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Button = styled.button`
-background: inherit ; 
-border:none; 
-box-shadow:none; 
-border-radius:0; 
-padding:0; 
-margin : 0;
-overflow:visible; 
-cursor:pointer;
-size : 0;
-`
 
 const DropbtnPost = () => {
 
   const role = localStorage.getItem("role");
-  const history = useHistory();
   
     return (
       <div className="dropdown">

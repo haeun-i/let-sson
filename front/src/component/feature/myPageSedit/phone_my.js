@@ -52,10 +52,10 @@ const StusignphoneMy = () => {
 
   const handleClick = async e => {
     const check1 = await axios.get(
-      `http://localhost:8080/students/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/students/idCheck?tel=${state.tel}`
     );
     const check2 = await axios.get(
-      `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/teachers/idCheck?tel=${state.tel}`
     );
     if (check1.data.confirm === "NO" || check2.data.confirm === "NO") {
       console.log("가입불가");

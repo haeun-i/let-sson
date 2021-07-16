@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom"
 import SubmitS from "../component/feature/myPageSpro/submitS";
 import HeadButtons from "../component/layout/header/header";
 import SidebarMyPs from "../component/shared/myPageS/sidebarMyPs";
@@ -218,7 +217,7 @@ class MypageSp extends React.Component {
   getData = async () => {
     try {
       const dataS = await axios.get(
-        "http://localhost:8080/students/studentInfo",
+        "https://let-sson.herokuapp.com/students/studentInfo",
         {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -245,7 +244,7 @@ class MypageSp extends React.Component {
     this.setState({ pImage: "d" });
     try {
       await axios.post(
-        "http://localhost:8080/students/basicImg",
+        "https://let-sson.herokuapp.com/students/basicImg",
         {},
         {
           headers: {
@@ -319,19 +318,19 @@ class MypageSp extends React.Component {
       console.log(formData);
       console.log(this.state.pImage);
       if (this.state.pImage === "d") {
-        await axios.put("http://localhost:8080/students/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/students/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
       } else if(this.state.pImage === "n"){
-        await axios.put("http://localhost:8080/students/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/students/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
         await axios.post(
-          "http://localhost:8080/students/profileImg",
+          "https://let-sson.herokuapp.com/students/profileImg",
           formData,
           {
             headers: {
@@ -342,7 +341,7 @@ class MypageSp extends React.Component {
         window.location.reload();
       }
       else{
-        await axios.put("http://localhost:8080/students/modify", dataList, {
+        await axios.put("https://let-sson.herokuapp.com/students/modify", dataList, {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
