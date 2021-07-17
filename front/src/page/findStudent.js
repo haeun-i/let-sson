@@ -51,7 +51,11 @@ const reducer = (state, action) => {
       return { ...state, male: action.male, female: action.female };
     case "sortAge":
       return { ...state, age: action.age };
+  
+    default:
   }
+    
+      
 };
 
 const FindStudent = () => {

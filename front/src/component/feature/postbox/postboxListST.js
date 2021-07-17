@@ -89,7 +89,7 @@ const PostboxListST = () => {
     async function getSend() {
       try {
         const dataTSend =  await axios
-              .get("http://localhost:8080/teachers/getAllSending", {
+              .get("https://let-sson.herokuapp.com/teachers/getAllSending", {
                 headers: {
                   "X-AUTH-TOKEN": localStorage.getItem("token"),
                 },
@@ -108,7 +108,7 @@ const PostboxListST = () => {
     if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
       axios
         .delete(
-          `http://localhost:8080/teachers/deleteSending?student_tel=${tel}`,
+          `https://let-sson.herokuapp.com/teachers/deleteSending?student_tel=${tel}`,
           {
             headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
             data: { student_tel: tel },

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FilterContextT } from "../../../../page/findTeacher";
 const CheckageT = () => {
-  const { state, dispatch } = useContext(FilterContextT);
+  const {  dispatch } = useContext(FilterContextT);
 
   const handleChange = e => {
     dispatch({ type: "sortAge", age: e.currentTarget.value });

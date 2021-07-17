@@ -193,7 +193,7 @@ const Stusign = () => {
     } else {
       console.log(state);
       axios
-        .post("http://localhost:8080/students/join", {
+        .post("https://let-sson.herokuapp.com/students/join", {
           name: state.name,
           is_stu: state.is_stu,
           age: parseInt(state.age),

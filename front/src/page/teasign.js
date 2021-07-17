@@ -62,31 +62,6 @@ const SignBtn = styled.input`
   margin-bottom: 30px;
 `;
 
-const Box = styled.div`
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 3vw;
-  margin-top: 30px;
-`;
-
-const Text = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: #463ea0;
-  font-size: 1em;
-`;
-
-const InputBox = styled.input`
-  border: 2px solid #463ea0;
-  margin-right: 0;
-  width: 50vw;
-  padding-bottom: 30px;
-`;
-
 export const CounterContext = React.createContext();
 //
 const INITIAL_STATE = {
@@ -160,7 +135,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const [files, setFiles] = useState(null);
+  const [files, ] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -192,12 +167,12 @@ const Teasign = () => {
     return phoneStat;
   };
 
-  const handleChange = e => {
-    e.preventDefault();
-    console.log(e.target.files);
-    const file = e.target.files[0];
-    setFiles(file);
-  };
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   console.log(e.target.files);
+  //   const file = e.target.files[0];
+  //   setFiles(file);
+  // };
 
   const Signed = async e => {
     e.preventDefault();
@@ -224,7 +199,7 @@ const Teasign = () => {
     } else {
       console.log(state);
       await axios
-        .post("http://localhost:8080/teachers/join", {
+        .post("https://let-sson.herokuapp.com/teachers/join", {
           career : "",
   
           contact: state.contact,
