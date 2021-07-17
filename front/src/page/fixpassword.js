@@ -184,7 +184,8 @@ const reducer = (state, action) => {
       return { ...state, password: action.password };
     case "setCheckpassword":
       return { ...state, checkpassword: action.checkpassword };
-  }
+    default:
+    }
 };
 
 const Fixpassword = () => {
@@ -202,7 +203,7 @@ const Fixpassword = () => {
       console.log(data);
       await axios
         .put(
-          `http://localhost:8080/users/resetPassword/?password=${state.password}&tel=${tel}`
+          `https://let-sson.herokuapp.com/users/resetPassword/?password=${state.password}&tel=${tel}`
         )
         .then(function (response) {
           console.log(response);

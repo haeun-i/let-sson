@@ -87,7 +87,7 @@ const BoxShort = styled.div`
 `;
 
 const PostboxDetailS = props => {
-  const [data, setData] = useState({
+  const [data, ] = useState({
     name: props.location.state.name,
     region: props.location.state.region,
     tel: props.location.state.tel,

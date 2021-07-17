@@ -91,7 +91,7 @@ const PostboxListRS = () => {
     async function getRecieve() {
       try {
         const dataSRecieve =  await axios
-              .get("http://localhost:8080/students/getAllReceiving", {
+              .get("https://let-sson.herokuapp.com/students/getAllReceiving", {
                 headers: {
                   "X-AUTH-TOKEN": localStorage.getItem("token"),
                 },

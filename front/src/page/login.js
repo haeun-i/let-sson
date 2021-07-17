@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
-import axios from "axios";
 import StuLogin from "../component/feature/login/stulogin";
 import TeaLogin from "../component/feature/login/tealogin";
 import mypic from "./login_background.png";
@@ -221,6 +220,7 @@ const reducer = (state, action) => {
       return { ...state, telS: action.telS };
     case "checkPasswordS":
       return { ...state, passwordS: action.passwordS };
+    default:
   }
 };
 

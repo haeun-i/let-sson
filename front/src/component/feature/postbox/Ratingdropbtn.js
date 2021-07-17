@@ -28,7 +28,7 @@ class Ratingdropbtn extends React.Component {
     ) {
       axios
         .put(
-          `http://localhost:8080/students/rating?grade=${this.state.rating}&teacher_tel=${this.props.tel}`,
+          `https://let-sson.herokuapp.com/students/rating?grade=${this.state.rating}&teacher_tel=${this.props.tel}`,
           {
             grade: this.state.rating,
             teacher_tel: this.props.tel,

@@ -184,7 +184,8 @@ const reducer = (state, action) => {
       return { ...state, name: action.name };
     case "setEmail":
       return { ...state, email: action.email };
-  }
+    default:
+    }
 };
 
 const Findid = () => {
@@ -193,9 +194,9 @@ const Findid = () => {
 
   async function confirm(e) {
     e.preventDefault();
-    const data = { name: state.name, email: state.email };
+    
     try {
-      const response = await axios.get("http://localhost:8080/users/findID", {
+      const response = await axios.get("https://let-sson.herokuapp.com/users/findID", {
         params: { name: state.name, email: state.email },
       });
       alert("당신의 아이디는 " + response.data.data + " 입니다.");

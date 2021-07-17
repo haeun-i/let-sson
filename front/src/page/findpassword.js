@@ -185,7 +185,8 @@ const reducer = (state, action) => {
       return { ...state, tel: action.tel };
     case "checkTel":
       return { ...state, tel: action.tel };
-  }
+    default:
+    }
 };
 
 const Findpassword = () => {
@@ -213,7 +214,7 @@ const Findpassword = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:8080/users/findPassword",
+        "https://let-sson.herokuapp.com/users/findPassword",
         {
           params: { name: state.name, tel: state.tel },
         }

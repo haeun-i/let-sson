@@ -88,7 +88,7 @@ const PostboxListRT = () => {
     async function getRecieve() {
       try {
         const dataTRecieve =  await axios
-              .get("http://localhost:8080/teachers/getAllReceiving", {
+              .get("https://let-sson.herokuapp.comhttp://localhost:8080/teachers/getAllReceiving", {
                 headers: {
                   "X-AUTH-TOKEN": localStorage.getItem("token"),
                 },
@@ -104,7 +104,7 @@ const PostboxListRT = () => {
   const connected = tel => {
     axios
       .post(
-        `http://localhost:8080/teachers/makeLetsson?student_tel=${tel}`,
+        `https://let-sson.herokuapp.com/teachers/makeLetsson?student_tel=${tel}`,
         {
           student_tel: tel,
         },
