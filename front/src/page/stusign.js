@@ -38,11 +38,12 @@ const Wrapper = styled.form`
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  width : 100vw;
+  width : 95vw;
   position : absolute;
   border : solid 10px #463ea0;
   margin-left : 0;
   left : 0;
+  top : 20vh;
   }
 `;
 const Body = styled.div`
@@ -220,7 +221,9 @@ const Stusign = () => {
           history.push("/login");
         })
         .catch(err => {
-          alert("가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요.");
+          alert(
+            "가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요."
+          );
           console.log(err.response);
         });
     }

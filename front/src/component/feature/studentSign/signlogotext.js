@@ -7,7 +7,7 @@ const Div = styled.div`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-top: 0;
-    }
+  }
 `;
 const Navypart1 = styled.span`
   position: absolute;
@@ -20,7 +20,6 @@ const Navypart1 = styled.span`
   line-height: 52px;
 
   color: #0d00a4;
-
 
   @media only screen and (max-height: 450px) {
     display: none;
@@ -37,13 +36,12 @@ const Navypart1 = styled.span`
     left: 36vw;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    top : 30vh;
+    top: 15vh;
     left: 31vw;
   }
   @media only screen and (max-height: 700px) {
     margin-top: 20vh;
   }
-
 `;
 
 const Navypart2 = styled.span`
@@ -59,8 +57,8 @@ const Navypart2 = styled.span`
 
   color: #0d00a4;
   @media (min-width: 320px) and (max-width: 480px) {
-    top: 30vh;
-    }
+    top: 15vh;
+  }
 
   @media only screen and (max-height: 450px) {
     display: none;
@@ -89,8 +87,8 @@ const Yellowpart = styled.span`
 
   color: yellow;
   @media (min-width: 320px) and (max-width: 480px) {
-    top: 30vh;
-    }
+    top: 15vh;
+  }
 
   @media only screen and (max-height: 450px) {
     display: none;
