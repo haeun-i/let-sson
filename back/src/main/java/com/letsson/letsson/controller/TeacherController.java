@@ -40,7 +40,7 @@ public class TeacherController {
     private final CustomUserDetailsService customUserDetailsService;
 
 
-    
+
     @PostMapping("/join")
     @ApiOperation(value = "join", tags = "선생님 회원 가입")
     public ResponseEntity<? extends BasicResponse> join(@ApiParam(name = "TeacherJoinDto", value = "등록 선생님 정보", required = true) @RequestBody @Valid TeacherJoinDto teacherJoinDto, BindingResult bindingResult) throws IOException {
