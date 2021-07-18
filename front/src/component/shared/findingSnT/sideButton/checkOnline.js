@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SidebarContextS } from "../../../../page/findStudent";
 
 const CheckOnline = () => {
-  const { state, dispatch } = useContext(SidebarContextS);
+  const {  dispatch } = useContext(SidebarContextS);
 
   const handleChangeC = e => {
     dispatch({ type: "sortContact", contact: true, nonContact: false });

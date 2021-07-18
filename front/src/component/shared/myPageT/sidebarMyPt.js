@@ -21,7 +21,7 @@ const SideB = styled.button`
   font-size: 15px;
   border: solid 1px #e8e8e8;
   padding: 10px;
-  width: 150px;
+  width: 110px;
   height: 36px;
   margin: 0;
 `;
@@ -30,7 +30,7 @@ const Btn = styled.button`
   font-size: 15px;
   border: solid 1px #e8e8e8;
   padding: 10px;
-  width: 150px;
+  width: 110px;
   height: 36px;
   margin: 0;
 `;

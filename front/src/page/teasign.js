@@ -142,7 +142,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  // const [files, setFiles] = useState(null);
+  const [files, ] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -200,8 +200,7 @@ const Teasign = () => {
       console.log(state);
       await axios
         .post("https://let-sson.herokuapp.com/teachers/join", {
-          career: "",
-
+          career : "",
           contact: state.contact,
           edStNum: 0,
 

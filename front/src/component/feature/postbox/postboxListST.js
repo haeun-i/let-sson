@@ -90,6 +90,7 @@ const PostboxListST = () => {
   useEffect(() => {
     async function getSend() {
       try {
+<<<<<<< HEAD
         const dataTSend = await axios.get(
           "https://let-sson.herokuapp.com/teachers/getAllSending",
           {
@@ -98,6 +99,14 @@ const PostboxListST = () => {
             },
           }
         );
+=======
+        const dataTSend =  await axios
+              .get("https://let-sson.herokuapp.com/teachers/getAllSending", {
+                headers: {
+                  "X-AUTH-TOKEN": localStorage.getItem("token"),
+                },
+              });
+>>>>>>> c4160c62613bbe228f2ff016741bb22c52a919c1
         setData(dataTSend.data);
       } catch (error) {
         console.log(error.response);

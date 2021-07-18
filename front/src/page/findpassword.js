@@ -184,7 +184,8 @@ const reducer = (state, action) => {
       return { ...state, tel: action.tel };
     case "checkTel":
       return { ...state, tel: action.tel };
-  }
+    default:
+    }
 };
 
 const Findpassword = () => {

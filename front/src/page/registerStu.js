@@ -46,7 +46,7 @@ const Buttonfame = styled.div`
 
 const Registerstu = props => {
   // history
-  const [data, setData] = useState({
+  const [data, ] = useState({
     id: props.location.state.id,
     name: props.location.state.name,
     subject: props.location.state.subject,

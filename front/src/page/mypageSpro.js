@@ -141,6 +141,8 @@ const Text2 = styled.div`
   margin-right: 60%;
   padding-top: 50px;
   padding-bottom: 50px;
+  width: 200px;
+  
 `;
 const Bar = styled.div`
   margin-left: 25%;
@@ -347,16 +349,15 @@ class MypageSp extends React.Component {
           }
         );
         window.location.reload();
-      } else {
-        await axios.put(
-          "https://let-sson.herokuapp.com/students/modify",
-          dataList,
-          {
-            headers: {
-              "X-AUTH-TOKEN": localStorage.getItem("token"),
-            },
-          }
-        );
+
+      }
+      else{
+        await axios.put("https://let-sson.herokuapp.com/students/modify", dataList, {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        });
+        await alert("저장이 완료되었습니다.")
         window.location.reload();
       }
     } catch (error) {
@@ -408,7 +409,7 @@ class MypageSp extends React.Component {
                 <SaveNref
                   type="submit"
                   Value="확인"
-                  onSubmit={() => alert("저장이 완료되었습니다.")}
+                  onSubmit={async () => {}}
                 >
                   저장하기
                 </SaveNref>

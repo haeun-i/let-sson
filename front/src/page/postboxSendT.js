@@ -7,13 +7,13 @@ import postboxbackg from "./postboxbackg.jpg";
 
 
 const Wrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  background-image: url(${postboxbackg});
-  background-size: cover;
+position: absolute;
+width: 100%;
+height : 100vh;
+flex-direction: column;
+justify-content: center;
+background-image: url(${postboxbackg});
+background-size: cover;
 `;
 
 const Blue = styled.span`

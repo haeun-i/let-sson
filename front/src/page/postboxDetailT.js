@@ -85,7 +85,7 @@ const BoxShort = styled.div`
   box-sizing: border-box;
 `;
 const PostboxDetailT = props => {
-  const [data, setData] = useState({
+  const [data, ] = useState({
     name: props.location.state.name,
     university: props.location.state.university,
     major: props.location.state.major,

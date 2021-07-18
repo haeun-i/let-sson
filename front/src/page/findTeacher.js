@@ -51,6 +51,7 @@ const reducer = (state, action) => {
         contact: action.contact,
         nonContact: action.nonContact,
       };
+      default:
   }
 };
 

@@ -182,7 +182,8 @@ const reducer = (state, action) => {
       return { ...state, password: action.password };
     case "setCheckpassword":
       return { ...state, checkpassword: action.checkpassword };
-  }
+    default:
+    }
 };
 
 const Fixpassword = () => {

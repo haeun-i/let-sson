@@ -45,7 +45,7 @@ const Buttonfame = styled.div`
 `;
 
 const Registertea = props => {
-  const [data, setData] = useState({
+  const [data, ] = useState({
     id: props.location.state.id,
     name: props.location.state.name,
     university: props.location.state.university,

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import CheckageT from "./sideButton/checkAge";
 import CheckgenderT from "./sideButton/checkGender";
 import CheckOnlineT from "./sideButton/checkOnline";
 import CheckpayT from "./sideButton/checkPay";
