@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
@@ -228,6 +228,7 @@ const Teasign = () => {
           history.push("/login");
         })
         .catch(err => {
+          alert("가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요.");
           console.log(err.response);
         });
     }
