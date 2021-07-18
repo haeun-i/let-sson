@@ -37,17 +37,24 @@ const Btn = styled.button`
 
 const SidebarMyPs = () => {
   const history = useHistory();
-  const withdraw = e => {
+
+  const  onclickEHandler = e =>{
+    const name = e.target.name
+    if(name==="delete"){
+      withdraw()
+    }
+  }
+  const withdraw = async () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios
+      await axios
         .delete("https://let-sson.herokuapp.com/students/delete", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
         .then(res => {
-          alert("계정이 탈퇴되었습니다.");
           localStorage.removeItem("token");
+          alert("계정이 탈퇴되었습니다.");
           history.push("/login");
         })
         .catch(err => {
@@ -65,7 +72,7 @@ const SidebarMyPs = () => {
           <SideB>수정하기</SideB>
         </Link>
         <span>
-          <Btn onClick={withdraw}>탈퇴하기</Btn>
+          <Btn name="delete" onClick={onclickEHandler}>탈퇴하기</Btn>
         </span>
       </Wrapper>
     </div>
