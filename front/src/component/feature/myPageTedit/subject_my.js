@@ -24,7 +24,6 @@ const Text = styled.div`
   color: #0d00a4;
 `;
 
-
 const ButtonContainer = styled.div`
   margin-left: 3%;
 `;

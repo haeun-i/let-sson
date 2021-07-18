@@ -29,7 +29,7 @@ const InputBox = styled.input`
 const Teasignemail = () => {
   const { state, dispatch } = useContext(CounterContext);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setEmail", email: e.currentTarget.value });
   };
 

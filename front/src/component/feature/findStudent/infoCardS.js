@@ -38,7 +38,7 @@ const MyName = ({
   tel,
   photo,
 }) => {
-  const { state, } = useContext(SidebarContextS);
+  const { state } = useContext(SidebarContextS);
 
   if (
     state.age !== "" &&
@@ -83,7 +83,7 @@ const MyName = ({
         }}
       >
         <Profile>
-          <img src={photo} alt="프로필사진" width= "150px" height= "150px"/>
+          <img src={photo} alt="프로필사진" width="150px" height="150px" />
           <Text>이름: {name}</Text>
           <Text>과목: {subject}</Text>
           <Text>지역: {region}</Text>
@@ -100,18 +100,20 @@ const InfoCardS = () => {
   useEffect(() => {
     async function cardData() {
       try {
-        const response =  await axios
-              .get("https://let-sson.herokuapp.com/users/students", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const response = await axios.get(
+          "https://let-sson.herokuapp.com/users/students",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(response.data);
         console.log(response);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     cardData();
   }, []);
 
@@ -133,7 +135,7 @@ const InfoCardS = () => {
           intro={whoname.intro}
           goal={whoname.goal}
           tel={whoname.tel}
-          photo = {whoname.photo}
+          photo={whoname.photo}
         />
       ))}
     </span>

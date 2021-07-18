@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useHistory,   } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 받은 내역 목록
 const Container = styled.div`
@@ -83,28 +83,30 @@ const Cardbutton = styled.button`
 const PostboxListRT = () => {
   const [data, setData] = useState([]);
   const history = useHistory();
-  
+
   useEffect(() => {
     async function getRecieve() {
       try {
-        const dataTRecieve =  await axios
-              .get("http://localhost:8080/teachers/getAllReceiving", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const dataTRecieve = await axios.get(
+          "https://let-sson.herokuapp.com/teachers/getAllReceiving",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(dataTRecieve.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     getRecieve();
   }, []);
 
   const connected = tel => {
     axios
       .post(
-        `http://localhost:8080/teachers/makeLetsson?student_tel=${tel}`,
+        `https://let-sson.herokuapp.com/teachers/makeLetsson?student_tel=${tel}`,
         {
           student_tel: tel,
         },
@@ -174,14 +176,8 @@ const PostboxListRT = () => {
             </Cardelement3>
             <Cardelement4>
               <Cardbutton onClick={() => connected(element.sender.tel)}>
-                {element.state === "신청서 제출" && (
-                    <div>진행</div>
-                  )}
-                  {element.state === "체결 완료" && (
-                    <div>
-                      진행중
-                    </div>
-                  )}
+                {element.state === "신청서 제출" && <div>진행</div>}
+                {element.state === "체결 완료" && <div>진행중</div>}
               </Cardbutton>
             </Cardelement4>
           </Card>

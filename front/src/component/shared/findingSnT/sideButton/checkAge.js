@@ -3,7 +3,7 @@ import { SidebarContextS } from "../../../../page/findStudent";
 
 const Checkage = () => {
   const { state, dispatch } = useContext(SidebarContextS);
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "sortAge", age: e.currentTarget.value });
   };
   return (

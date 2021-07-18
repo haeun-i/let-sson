@@ -31,11 +31,11 @@ const InputBox = styled.input`
 const Teasignuni = () => {
   const { state, dispatch } = useContext(CounterContext);
 
-  const handleChange1 = (e) => {
+  const handleChange1 = e => {
     dispatch({ type: "setUniversity", university: e.currentTarget.value });
   };
 
-  const handleChange2 = (e) => {
+  const handleChange2 = e => {
     dispatch({ type: "setMajor", major: e.currentTarget.value });
   };
 

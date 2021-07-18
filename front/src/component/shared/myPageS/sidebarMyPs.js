@@ -39,31 +39,33 @@ const SidebarMyPs = () => {
   const history = useHistory();
   const withdraw = e => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios.delete("https://let-sson.herokuapp.com/students/delete", {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      }).then((res) => { 
-        alert("계정이 탈퇴되었습니다.");
-        localStorage.removeItem("token");
-        history.push("/login");      
-     })
-     .catch((err) => {
-       console.log(err.response);
-     });
+      axios
+        .delete("https://let-sson.herokuapp.com/students/delete", {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        })
+        .then(res => {
+          alert("계정이 탈퇴되었습니다.");
+          localStorage.removeItem("token");
+          history.push("/login");
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   };
   return (
     <div>
       <Wrapper>
         <Link to="/mypages/profile">
-          <SideB >프로필 작성</SideB>
+          <SideB>프로필 작성</SideB>
         </Link>
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
         <span>
-        <Btn onClick={withdraw}>탈퇴하기</Btn>
+          <Btn onClick={withdraw}>탈퇴하기</Btn>
         </span>
       </Wrapper>
     </div>

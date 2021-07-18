@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 
 // 학생이 받은 내역 목록
@@ -90,17 +90,19 @@ const PostboxListRS = () => {
   useEffect(() => {
     async function getRecieve() {
       try {
-        const dataSRecieve =  await axios
-              .get("http://localhost:8080/students/getAllReceiving", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const dataSRecieve = await axios.get(
+          "https://let-sson.herokuapp.com/students/getAllReceiving",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(dataSRecieve.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     getRecieve();
   }, []);
 

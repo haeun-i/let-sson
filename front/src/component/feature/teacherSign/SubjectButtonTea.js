@@ -27,7 +27,7 @@ const SubjectButtonTea = ({ isclicked, handleclick, subjectName }) => {
     }
   }, [isclicked, state, subjectName]);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     e.preventDefault();
     if (isclicked) {
       setBackground("#463ea0");

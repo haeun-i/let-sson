@@ -25,7 +25,6 @@ const Text = styled.div`
   color: #0d00a4;
 `;
 
-
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
@@ -34,10 +33,10 @@ const Btn = styled.div`
 const TeasigngenderMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChangeMale = (e) => {
+  const handleChangeMale = e => {
     dispatch({ type: "setMale", male: true, female: false });
   };
-  const handleChangeFemale = (e) => {
+  const handleChangeFemale = e => {
     dispatch({ type: "setFemale", male: false, female: true });
   };
 

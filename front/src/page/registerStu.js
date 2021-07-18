@@ -61,7 +61,7 @@ const Registerstu = props => {
 
     await axios
       .post(
-        `http://localhost:8080/teachers/sendProfile?student_tel=${data.tel}`,
+        `https://let-sson.herokuapp.com/teachers/sendProfile?student_tel=${data.tel}`,
         {
           student_tel: data.tel,
         },

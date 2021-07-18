@@ -1,4 +1,4 @@
-import React, {  useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/stusign";
 
@@ -28,7 +28,7 @@ const Btn = styled.div`
 `;
 
 const Stusignpropergender = () => {
-  const {  dispatch } = useContext(CounterContext);
+  const { dispatch } = useContext(CounterContext);
 
   const handleChange = e => {
     dispatch({ type: "setPropergender", proper_gender: e.currentTarget.value });

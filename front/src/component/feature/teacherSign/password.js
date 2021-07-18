@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/teasign";
 
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -32,11 +31,11 @@ const InputBox = styled.input`
 
 const Teasignpassword = () => {
   const { state, dispatch } = useContext(CounterContext);
-  const handleChange1 = (e) => {
+  const handleChange1 = e => {
     dispatch({ type: "setPassword", password: e.currentTarget.value });
   };
 
-  const handleChange2 = (e) => {
+  const handleChange2 = e => {
     dispatch({ type: "setPasscheck", passcheck: e.currentTarget.value });
   };
 

@@ -136,7 +136,7 @@ const TeaLogin = () => {
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"),
       });
     }
-  }, [dispatch,state.telT]);
+  }, [dispatch, state.telT]);
 
   const PhoneInput = e => {
     const regex = /^[0-9\b -]{0,13}$/;

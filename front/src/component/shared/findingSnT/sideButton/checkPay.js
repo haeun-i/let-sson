@@ -4,7 +4,7 @@ import { SidebarContextS } from "../../../../page/findStudent";
 const Checkpay = () => {
   const { state, dispatch } = useContext(SidebarContextS);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "sortPay", pay: e.currentTarget.value });
   };
 

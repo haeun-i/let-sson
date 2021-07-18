@@ -32,11 +32,11 @@ const Teasignregion = () => {
   const [city, setCity] = useState("");
   const { dispatch } = useContext(CounterContext);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setRegion", region: e.currentTarget.value });
   };
 
-  const Change = (e) => {
+  const Change = e => {
     if (e.target.value === "seoul") {
       setCity("seoul");
     } else if (e.target.value === "busan") {

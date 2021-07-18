@@ -25,7 +25,6 @@ const Text = styled.div`
   color: #0d00a4;
 `;
 
-
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
@@ -34,10 +33,10 @@ const Btn = styled.div`
 const TeasigncontactMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChangeC = (e) => {
+  const handleChangeC = e => {
     dispatch({ type: "setContact", contact: true, noncontact: false });
   };
-  const handleChangeN = (e) => {
+  const handleChangeN = e => {
     dispatch({ type: "setNoncontact", contact: false, noncontact: true });
   };
 

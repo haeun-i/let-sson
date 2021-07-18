@@ -1,4 +1,4 @@
-import React, {  useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { CounterContext } from "../../../page/stusign";
@@ -28,7 +28,6 @@ const InputBox = styled.input`
   padding-bottom: 30px;
   margin-bottom: 15px;
 `;
-
 
 const Stusignphone = () => {
   const { state, dispatch } = useContext(CounterContext);

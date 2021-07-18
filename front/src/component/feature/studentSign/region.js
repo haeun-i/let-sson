@@ -30,7 +30,7 @@ const Select = styled.select`
 
 const Stusignregion = () => {
   const [city, setCity] = useState("");
-  const {  dispatch } = useContext(CounterContext);
+  const { dispatch } = useContext(CounterContext);
 
   const handleChange = e => {
     dispatch({ type: "setRegion", region: e.currentTarget.value });

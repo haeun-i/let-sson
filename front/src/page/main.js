@@ -210,7 +210,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:8080/users/totalNumber")
+      .get("https://let-sson.herokuapp.com/users/totalNumber")
       .then(res => {
         this.setState({ person: res.data });
       })

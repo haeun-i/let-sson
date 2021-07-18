@@ -33,7 +33,7 @@ const Btn = styled.div`
 const TeasignpayMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setPay", pay: e.currentTarget.value });
   };
 

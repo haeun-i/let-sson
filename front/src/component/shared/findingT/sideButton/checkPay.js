@@ -4,7 +4,7 @@ import { FilterContextT } from "../../../../page/findTeacher";
 const CheckpayT = () => {
   const { state, dispatch } = useContext(FilterContextT);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "sortPay", pay: e.currentTarget.value });
   };
   return (

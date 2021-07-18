@@ -91,17 +91,19 @@ const PostboxListSS = () => {
   useEffect(() => {
     async function getSend() {
       try {
-        const dataSSend =  await axios
-              .get("http://localhost:8080/students/getAllSending", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const dataSSend = await axios.get(
+          "https://let-sson.herokuapp.com/students/getAllSending",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(dataSSend.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     getSend();
   }, []);
 
@@ -111,7 +113,7 @@ const PostboxListSS = () => {
     if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
       axios
         .delete(
-          `http://localhost:8080/students/deleteSending?teacher_tel=${tel}`,
+          `https://let-sson.herokuapp.com/students/deleteSending?teacher_tel=${tel}`,
           {
             headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
             data: { teacher_tel: tel },

@@ -8,7 +8,7 @@ const Body = styled.div`
   background-color: #f5f4f2;
 
   @media only screen and (max-width: 820px) {
-    margin-top : 8vh;
+    margin-top: 8vh;
   }
 `;
 
@@ -38,7 +38,7 @@ const Xbutton = styled.button`
   margin-bottom: 30px;
 
   @media only screen and (max-width: 820px) {
-    display : none;
+    display: none;
   }
 `;
 

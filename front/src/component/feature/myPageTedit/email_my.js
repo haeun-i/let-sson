@@ -39,7 +39,7 @@ const InputBox = styled.input`
 const TeasignemailMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setEmail", email: e.currentTarget.value });
   };
 

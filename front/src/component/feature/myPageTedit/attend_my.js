@@ -25,7 +25,6 @@ const Text = styled.div`
   color: #0d00a4;
 `;
 
-
 const Btn = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
@@ -34,7 +33,7 @@ const Btn = styled.div`
 const TeasignattendMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setIsattend", is_attend: e.currentTarget.value });
   };
 

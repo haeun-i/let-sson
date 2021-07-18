@@ -55,14 +55,14 @@ const Circle = styled.div`
   background-color: #8983d2;
   color: white;
   @media only screen and (max-width: 1004px) {
-    border-radius:0px;
+    border-radius: 0px;
     width: 120px;
     height: 0px;
     color: #8983d2;
-    margin-right:0px;
+    margin-right: 0px;
   }
   @media only screen and (max-height: 785px) {
-    border-radius:0px;
+    border-radius: 0px;
     width: 120px;
     height: 0px;
     color: #8983d2;
@@ -86,13 +86,11 @@ const Letters = styled.div`
   line-height: 26px;
 
   color: #0d00a4;
-  @media only screen and (max-width: 1004px){
-    display:none;
-    
+  @media only screen and (max-width: 1004px) {
+    display: none;
   }
-  @media only screen and (max-height: 785px){
-    display:none;
-
+  @media only screen and (max-height: 785px) {
+    display: none;
   }
 `;
 
@@ -195,9 +193,12 @@ const Findid = () => {
     e.preventDefault();
     const data = { name: state.name, email: state.email };
     try {
-      const response = await axios.get("http://localhost:8080/users/findID", {
-        params: { name: state.name, email: state.email },
-      });
+      const response = await axios.get(
+        "https://let-sson.herokuapp.com/users/findID",
+        {
+          params: { name: state.name, email: state.email },
+        }
+      );
       alert("당신의 아이디는 " + response.data.data + " 입니다.");
       history.push("/login");
     } catch (error) {

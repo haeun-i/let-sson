@@ -327,18 +327,26 @@ class MypageTp extends React.Component {
       console.log(formData);
       console.log(this.state.pImage);
       if (this.state.pImage === "d") {
-        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
-      window.location.reload();
-      } else if(this.state.pImage === "n") {
-        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        window.location.reload();
+      } else if (this.state.pImage === "n") {
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         await axios.post(
           "https://let-sson.herokuapp.com/teachers/profileImg",
           formData,
@@ -349,16 +357,18 @@ class MypageTp extends React.Component {
           }
         );
         window.location.reload();
-      }
-      else{
-        await axios.put("https://let-sson.herokuapp.com/teachers/modify", dataList, {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
+      } else {
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         window.location.reload();
       }
-      
     } catch (error) {
       console.log(error.response);
     }

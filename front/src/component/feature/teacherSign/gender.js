@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/teasign";
 
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -31,11 +30,11 @@ const Btn = styled.div`
 const Teasigngender = () => {
   const { dispatch } = useContext(CounterContext);
 
-  const handleChangeMale = (e) => {
-    dispatch({ type: "setMale", male:true, female:false });
+  const handleChangeMale = e => {
+    dispatch({ type: "setMale", male: true, female: false });
   };
-  const handleChangeFemale = (e) => {
-    dispatch({ type: "setFemale", male:false, female:true });
+  const handleChangeFemale = e => {
+    dispatch({ type: "setFemale", male: false, female: true });
   };
 
   return (

@@ -4,10 +4,10 @@ import { SidebarContextS } from "../../../../page/findStudent";
 const Checkgender = () => {
   const { state, dispatch } = useContext(SidebarContextS);
 
-  const handleChangeM = (e) => {
+  const handleChangeM = e => {
     dispatch({ type: "sortMale", male: true, female: false });
   };
-  const handleChangeW = (e) => {
+  const handleChangeW = e => {
     dispatch({ type: "sortFemale", male: false, female: true });
   };
   return (
