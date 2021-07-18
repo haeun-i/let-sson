@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fd95dc17.chunk.css",
+    "main.js": "/static/js/main.01bb4dd1.chunk.js",
+    "main.js.map": "/static/js/main.01bb4dd1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3ac52451.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3ac52451.js.map",
+    "static/js/2.ff79176e.chunk.js": "/static/js/2.ff79176e.chunk.js",
+    "static/js/2.ff79176e.chunk.js.map": "/static/js/2.ff79176e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.fd95dc17.chunk.css.map": "/static/css/main.fd95dc17.chunk.css.map",
+    "static/js/2.ff79176e.chunk.js.LICENSE.txt": "/static/js/2.ff79176e.chunk.js.LICENSE.txt",
+    "static/media/Boy.94a9be06.png": "/static/media/Boy.94a9be06.png",
+    "static/media/Girl.fe2acc53.png": "/static/media/Girl.fe2acc53.png",
+    "static/media/Man.6487b390.png": "/static/media/Man.6487b390.png",
+    "static/media/Woman.5a93023f.png": "/static/media/Woman.5a93023f.png",
+    "static/media/idpassword.6f727d07.jpg": "/static/media/idpassword.6f727d07.jpg",
+    "static/media/login_background.83977ab0.png": "/static/media/login_background.83977ab0.png",
+    "static/media/main_image.b699fca5.png": "/static/media/main_image.b699fca5.png",
+    "static/media/mypage1.03dc5498.jpg": "/static/media/mypage1.03dc5498.jpg",
+    "static/media/mypage2.ed68ee80.jpg": "/static/media/mypage2.ed68ee80.jpg",
+    "static/media/postboxbackg.e4c319c8.jpg": "/static/media/postboxbackg.e4c319c8.jpg",
+    "static/media/successbackg.3bea04e2.jpg": "/static/media/successbackg.3bea04e2.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ac52451.js",
+    "static/js/2.ff79176e.chunk.js",
+    "static/css/main.fd95dc17.chunk.css",
+    "static/js/main.01bb4dd1.chunk.js"
+  ]
+}
