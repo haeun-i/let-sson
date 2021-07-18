@@ -38,7 +38,7 @@ const Navypart1 = styled.span`
     left: 36vw;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    top: 10vh;
+    top: 0;
     left: 31vw;
   }
   @media only screen and (max-height: 700px) {
@@ -74,7 +74,7 @@ const Navypart2 = styled.span`
     margin-top: 20vh;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    top: 10vh;
+    top: 0;
   }
 `;
 
@@ -104,7 +104,7 @@ const Yellowpart = styled.span`
     margin-top: 20vh;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    top: 10vh;
+    top: 0;
   }
 `;
 

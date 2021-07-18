@@ -157,7 +157,7 @@ const NotlogText = styled.div`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     display: block;
-    margin-top: 0;
+    margin-top: 20vh;
     align-items: center;
     text-align: center;
     margin-left: 20vw;
