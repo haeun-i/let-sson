@@ -94,7 +94,6 @@ const PostboxListRS = () => {
   useEffect(() => {
     async function getRecieve() {
       try {
-<<<<<<< HEAD
         const dataSRecieve = await axios.get(
           "https://let-sson.herokuapp.com/students/getAllReceiving",
           {
@@ -103,14 +102,6 @@ const PostboxListRS = () => {
             },
           }
         );
-=======
-        const dataSRecieve =  await axios
-              .get("https://let-sson.herokuapp.com/students/getAllReceiving", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
->>>>>>> c4160c62613bbe228f2ff016741bb22c52a919c1
         setData(dataSRecieve.data);
       } catch (error) {
         console.log(error.response);
