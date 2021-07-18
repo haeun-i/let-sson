@@ -46,7 +46,7 @@ const Buttonfame = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Wrapper2 = styled.div`
+const Wrapper2 = styled.form`
   width: 50%;
   background: #ffffff;
   border: 1px solid #f3f2fc;
@@ -141,7 +141,7 @@ const Text2 = styled.div`
   margin-right: 60%;
   padding-top: 50px;
   padding-bottom: 50px;
-  width:200px;
+  width: 200px;
 `;
 const Bar = styled.div`
   margin-left: 30%;
@@ -269,14 +269,14 @@ class MypageTp extends React.Component {
     this.setState({ pImage: "n" });
   };
 
-  profileEHandler =async e => {
-    this.call = e.target.name
-   if(this.call === "default"){
-     this.handleImageDefault()
-   }else if(this.call === "alert"){
-     await alert("저장이 완료되었습니다.")
-   }
-   }
+  profileEHandler = async e => {
+    this.call = e.target.name;
+    if (this.call === "default") {
+      this.handleImageDefault();
+    } else if (this.call === "alert") {
+      await alert("저장이 완료되었습니다.");
+    }
+  };
 
   handleImageDefault = async e => {
     e.preventDefault();
@@ -389,7 +389,7 @@ class MypageTp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.savedataT}>
+      <div>
         <HeadButtons />
         <Circle1></Circle1>
         <Circle2></Circle2>
@@ -405,7 +405,7 @@ class MypageTp extends React.Component {
             <SidebarMyPt />
           </Bar>
           <Wrapper>
-            <Wrapper2>
+            <Wrapper2 onSubmit={this.savedataT}>
               <Box>
                 <Text>프로필 사진</Text>
                 <PrfImage>
@@ -443,7 +443,7 @@ class MypageTp extends React.Component {
             </Wrapper2>
           </Wrapper>
         </Container>
-      </form>
+      </div>
     );
   }
 }

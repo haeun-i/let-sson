@@ -46,7 +46,7 @@ const Buttonfame = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Wrapper2 = styled.div`
+const Wrapper2 = styled.form`
   width: 50%;
   background: #ffffff;
   border: 1px solid #f3f2fc;
@@ -376,61 +376,64 @@ class MypageSp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.savedataT}>
-        <HeadButtons />
-        <Circle1></Circle1>
-        <Circle2></Circle2>
-        <Container>
-          <Text1>
-            Better Education<br></br>Better Life
-          </Text1>
-          <Text2>
-            <hr color="#0D00A4" width="45px" height="10px"></hr>
-            <Blue>학생</Blue> 페이지
-          </Text2>
-          <Bar>
-            <SidebarMyPs />
-          </Bar>
-          <Wrapper>
-            <Wrapper2>
-              <Box>
-                <Text>프로필 사진</Text>
-                <PrfImage>
-                  <img
-                    src={this.state.photo}
-                    width="150px"
-                    height="150px"
-                    alt="profile"
-                  />
-                  <DefaultB name="default" onClick={this.profileEHandler}>
-                    기본이미지로 변경
-                  </DefaultB>
-                </PrfImage>
-                <InputBoxShort
-                  type="file"
-                  accept="image/png, image/jpg"
-                  name="proveimage"
-                  onChange={this.handleImage}
-                ></InputBoxShort>
-              </Box>
-              <SubmitS state={this.state} handleChange={this.handleChange} />
-              <Buttonfame>
-                <SaveNref
-                  type="submit"
-                  Value="확인"
-                  name="alert"
-                  onClick={this.profileEHandler}
-                >
-                  저장하기
-                </SaveNref>
-                {/* <SaveNref name="refresh" onClick={this.returning}>
+      <>
+        <div>
+          <HeadButtons />
+          <Circle1></Circle1>
+          <Circle2></Circle2>
+
+          <Container>
+            <Text1>
+              Better Education<br></br>Better Life
+            </Text1>
+            <Text2>
+              <hr color="#0D00A4" width="45px" height="10px"></hr>
+              <Blue>학생</Blue> 페이지
+            </Text2>
+            <Bar>
+              <SidebarMyPs />
+            </Bar>
+            <Wrapper>
+              <Wrapper2 onSubmit={this.savedataT}>
+                <Box>
+                  <Text>프로필 사진</Text>
+                  <PrfImage>
+                    <img
+                      src={this.state.photo}
+                      width="150px"
+                      height="150px"
+                      alt="profile"
+                    />
+                    <DefaultB name="default" onClick={this.profileEHandler}>
+                      기본이미지로 변경
+                    </DefaultB>
+                  </PrfImage>
+                  <InputBoxShort
+                    type="file"
+                    accept="image/png, image/jpg"
+                    name="proveimage"
+                    onChange={this.handleImage}
+                  ></InputBoxShort>
+                </Box>
+                <SubmitS state={this.state} handleChange={this.handleChange} />
+                <Buttonfame>
+                  <SaveNref
+                    type="submit"
+                    Value="확인"
+                    name="alert"
+                    onClick={this.profileEHandler}
+                  >
+                    저장하기
+                  </SaveNref>
+                  {/* <SaveNref name="refresh" onClick={this.returning}>
                   되돌리기
                 </SaveNref> */}
-              </Buttonfame>
-            </Wrapper2>
-          </Wrapper>
-        </Container>
-      </form>
+                </Buttonfame>
+              </Wrapper2>
+            </Wrapper>
+          </Container>
+        </div>
+      </>
     );
   }
 }
