@@ -13,9 +13,9 @@ const Profile = styled.div`
   margin-left: 30px;
   position: grid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  justify-content:space-around;
+  justify-content: space-around;
   text-align: center;
-  padding-top:10px;
+  padding-top: 10px;
 `;
 const Text = styled.div`
   text-align: center;
@@ -25,7 +25,6 @@ const Text = styled.div`
 `;
 
 function MyName({
-  key,
   id,
   name,
   university,
@@ -45,7 +44,7 @@ function MyName({
   tel,
   photo,
 }) {
-  const { state, dispatch } = useContext(FilterContextT);
+  const { state } = useContext(FilterContextT);
 
   if (parseInt(state.age) > age) {
     return null;
@@ -84,7 +83,7 @@ function MyName({
         }}
       >
         <Profile>
-          <img src={photo} width= "150px" height= "150px"/>
+          <img src={photo} alt="프로필사진" width="150px" height="150px" />
           <Text>이름: {name}</Text>
           <Text>과목: {subject}</Text>
           <Text>지역: {region}</Text>
@@ -101,17 +100,19 @@ function InfoCardT() {
   useEffect(() => {
     async function cardData() {
       try {
-        const response =  await axios
-              .get("http://localhost:8080/users/teachers", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const response = await axios.get(
+          "https://let-sson.herokuapp.com/users/teachers",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(response.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     cardData();
   }, []);
 

@@ -33,11 +33,17 @@ const Wrapper = styled.form`
     background-color : white;
 }
 
-@media only screen and (max-width: 820px), (max-height : 700px) {
+@media only screen and (max-height : 700px) {
   margin-top : 35vh;
 }
 
-
+@media (min-width: 320px) and (max-width: 480px) {
+  width : 100vw;
+  position : absolute;
+  border : solid 10px #463ea0;
+  margin-left : 0;
+  left : 0;
+  }
 `;
 const Body = styled.div`
   overflow: auto;
@@ -193,7 +199,7 @@ const Stusign = () => {
     } else {
       console.log(state);
       axios
-        .post("http://localhost:8080/students/join", {
+        .post("https://let-sson.herokuapp.com/students/join", {
           name: state.name,
           is_stu: state.is_stu,
           age: parseInt(state.age),
@@ -214,6 +220,7 @@ const Stusign = () => {
           history.push("/login");
         })
         .catch(err => {
+          alert("가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요.");
           console.log(err.response);
         });
     }

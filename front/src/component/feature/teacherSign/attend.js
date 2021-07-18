@@ -30,7 +30,7 @@ const Btn = styled.div`
 const Teasigncontact = () => {
   const { dispatch } = useContext(CounterContext);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setIsattend", is_attend: e.currentTarget.value });
   };
 

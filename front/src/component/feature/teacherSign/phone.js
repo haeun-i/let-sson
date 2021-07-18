@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/teasign";
 import axios from "axios";
@@ -28,6 +28,11 @@ const InputBox = styled.input`
   margin-bottom: 15px;
 `;
 
+const Btn = styled.button`
+@media (min-width: 320px) and (max-width: 480px) {
+  margin-left : 7vw;
+}
+`;
 
 const Teasignphone = () => {
   const { state, dispatch } = useContext(CounterContext);
@@ -76,7 +81,7 @@ const Teasignphone = () => {
           value={state.tel}
           onChange={handlePress}
         ></InputBox>
-        <button onClick={handleClick}>중복체크</button>
+        <Btn onClick={handleClick}>중복체크</Btn>
       </label>
     </Box>
   );

@@ -1,7 +1,6 @@
-import React, { useReducer, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModifyContextS } from "../../../page/mypageSedit";
-import axios from "axios";
 
 const Box = styled.div`
   padding-top: 10px;

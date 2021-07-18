@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { SidebarContextS } from "../../../../page/findStudent";
 
 const CheckOnline = () => {
-  const { state, dispatch } = useContext(SidebarContextS);
+  const {  dispatch } = useContext(SidebarContextS);
 
-  const handleChangeC = (e) => {
+  const handleChangeC = e => {
     dispatch({ type: "sortContact", contact: true, nonContact: false });
   };
-  const handleChangeNc = (e) => {
+  const handleChangeNc = e => {
     dispatch({ type: "sortNoncontact", contact: false, nonContact: true });
   };
 

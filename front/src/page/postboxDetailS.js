@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 const Body = styled.div`
-
   overflow: auto;
   background-color: #f5f4f2;
 
   @media only screen and (max-width: 820px) {
-    margin-top : 8vh;
+    margin-top: 8vh;
   }
 `;
 
@@ -39,7 +38,7 @@ const Xbutton = styled.button`
   margin-bottom: 30px;
 
   @media only screen and (max-width: 830px) {
-    display : none;
+    display: none;
   }
 `;
 
@@ -87,7 +86,7 @@ const BoxShort = styled.div`
 `;
 
 const PostboxDetailS = props => {
-  const [data, setData] = useState({
+  const [data, ] = useState({
     name: props.location.state.name,
     region: props.location.state.region,
     tel: props.location.state.tel,

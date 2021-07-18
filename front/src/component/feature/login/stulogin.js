@@ -17,6 +17,12 @@ const Log = styled.form`
     position: unset;
     margin-left: 35%;
   }
+  @media (min-width: 481px) and (max-width: 600px) {
+    margin-left: 40%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: 45%;
+  }
 `;
 const LogText1 = styled.div`
   position: absolute;
@@ -93,6 +99,23 @@ const LogBtn = styled.input`
     margin-left: 10vw;
   }
 `;
+const Text = styled.span`
+  font-family: Noto SANS KR;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: 15vw;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  position: absolute;
+  top: 3vh;
+
+  @media only screen and (max-width: 950px) {
+    margin-left: 10vw;
+  }
+  @media only screen and (max-width: 550px) {
+    margin-left: 5vw;
+  }
+`;
 
 const StuLogin = () => {
   const history = useHistory();
@@ -113,7 +136,7 @@ const StuLogin = () => {
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"),
       });
     }
-  }, [state.telS]);
+  }, [dispatch, state.telS]);
 
   const PhoneInput = e => {
     const regex = /^[0-9\b -]{0,13}$/;
@@ -135,7 +158,7 @@ const StuLogin = () => {
     console.log(state.passwordS);
 
     await axios
-      .post("http://localhost:8080/students/login", {
+      .post("https://let-sson.herokuapp.com/students/login", {
         tel: state.telS,
         password: state.passwordS,
       })
@@ -152,32 +175,34 @@ const StuLogin = () => {
   };
 
   return (
-    <Log>
-      <label className="phoneNum">
-        <LogText1>휴대폰번호</LogText1>
+    <div>
+      <Text>학생 로그인</Text>
+      <Log>
+        <label className="phoneNum">
+          <LogText1>휴대폰번호</LogText1>
+          <br></br>
+          <LogInput1
+            type="text"
+            value={state.telS}
+            onChange={PhoneInput}
+            placeholder="010-0000-0000"
+          ></LogInput1>
+        </label>
         <br></br>
-        <LogInput1
-          type="text"
-          value={state.telS}
-          onChange={PhoneInput}
-          placeholder="010-0000-0000"
-        ></LogInput1>
-      </label>
-      <br></br>
-      <label className="password">
-        <LogText2>비밀번호</LogText2>
-        <LogInput2
-          type="password"
-          value={state.passwordS}
-          onChange={PasswordInput}
-          placeholder="8글자 이상"
-        ></LogInput2>
-      </label>
-
-      <LogBtns>
-        <LogBtn type="submit" onClick={StuLoged} value="확인"></LogBtn>
-      </LogBtns>
-    </Log>
+        <label className="password">
+          <LogText2>비밀번호</LogText2>
+          <LogInput2
+            type="password"
+            value={state.passwordS}
+            onChange={PasswordInput}
+            placeholder="8글자 이상"
+          ></LogInput2>
+        </label>
+        <LogBtns>
+          <LogBtn type="submit" onClick={StuLoged} value="확인"></LogBtn>
+        </LogBtns>
+      </Log>
+    </div>
   );
 };
 

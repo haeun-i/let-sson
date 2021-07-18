@@ -42,7 +42,7 @@ const Teasignsubject = () => {
   const [isclicked, setClicked] = useState(false);
 
   const handleclick = () => {
-    setClicked((prestate) => !prestate);
+    setClicked(prestate => !prestate);
   };
 
   return (

@@ -7,15 +7,25 @@ import { LoginContext } from "../../../page/login";
 const Log = styled.form`
   position: absolute;
   background-color: white;
-  width: 200px;
+  width: 20vw;
   height: 180px;
   margin-left: 55%;
   margin-top: 10vh;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 950px) {
-    margin-top: 45vh;
+    margin-top: 30vh;
     margin-left: 35%;
+  }
+  @media only screen and (max-width: 950px) and (max-height: 620px) {
+    margin-top: 20vh;
+    margin-left: 35%;
+  }
+  @media (min-width: 481px) and (max-width: 600px) {
+    margin-left: 40%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: 45%;
   }
 `;
 const LogText1 = styled.span`
@@ -92,19 +102,28 @@ const LogBtn = styled.input`
   @media only screen and (max-width: 650px) {
     margin-left: -18vw;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: -23vw;
+  }
 `;
 
-const Letsson = styled.p`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 2em;
-  line-height: 26px;
+const Text = styled.span`
+  font-family: Noto SANS KR;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: 55vw;
+  text-decoration: underline;
+  position: absolute;
+  top: 3vh;
 
-  top: 39vh;
-  left: 24vw;
-
-  color: #ffffff;
+  @media only screen and (max-width: 950px) {
+    margin-top: 60vh;
+    margin-left: 10vw;
+  }
+  @media only screen and (max-width: 550px) {
+    margin-top: 60vh;
+    margin-left: 5vw;
+  }
 `;
 
 const TeaLogin = () => {
@@ -126,7 +145,7 @@ const TeaLogin = () => {
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"),
       });
     }
-  }, [state.telT]);
+  }, [dispatch, state.telT]);
 
   const PhoneInput = e => {
     const regex = /^[0-9\b -]{0,13}$/;
@@ -145,7 +164,7 @@ const TeaLogin = () => {
     console.log(state.passwordT);
 
     await axios
-      .post("http://localhost:8080/teachers/login", {
+      .post("https://let-sson.herokuapp.com/teachers/login", {
         tel: state.telT,
         password: state.passwordT,
       })
@@ -162,31 +181,34 @@ const TeaLogin = () => {
   };
 
   return (
-    <Log>
-      <label className="phoneNum">
-        <LogText1>휴대폰번호</LogText1>
-        <LogInput1
-          type="text"
-          value={state.telT}
-          onChange={PhoneInput}
-          placeholder="010-0000-0000"
-        ></LogInput1>
-      </label>
-      <br></br>
-      <label className="password">
-        <LogText2>비밀번호</LogText2>
-        <LogInput2
-          type="password"
-          value={state.passwordT}
-          onChange={PasswordInput}
-          placeholder="8글자 이상"
-        ></LogInput2>
-      </label>
+    <div>
+      <Text>선생님 로그인</Text>
+      <Log>
+        <label className="phoneNum">
+          <LogText1>휴대폰번호</LogText1>
+          <LogInput1
+            type="text"
+            value={state.telT}
+            onChange={PhoneInput}
+            placeholder="010-0000-0000"
+          ></LogInput1>
+        </label>
+        <br></br>
+        <label className="password">
+          <LogText2>비밀번호</LogText2>
+          <LogInput2
+            type="password"
+            value={state.passwordT}
+            onChange={PasswordInput}
+            placeholder="8글자 이상"
+          ></LogInput2>
+        </label>
 
-      <LogBtns>
-        <LogBtn type="submit" onClick={TeaLoged} value="확인"></LogBtn>
-      </LogBtns>
-    </Log>
+        <LogBtns>
+          <LogBtn type="submit" onClick={TeaLoged} value="확인"></LogBtn>
+        </LogBtns>
+      </Log>
+    </div>
   );
 };
 

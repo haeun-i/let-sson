@@ -1,8 +1,4 @@
 import React, { useReducer, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import HeadButton from "../component/layout/header/header";
-import HeadSaveNrefs from "../component/layout/header/header";
-import SidebarMyPt from "../component/shared/myPageT/sidebarMyPt";
 import StusignageMy from "../component/feature/myPageSedit/age_my";
 import StusigncontactMy from "../component/feature/myPageSedit/contact_my";
 import StusignpayMy from "../component/feature/myPageSedit/pay_my";
@@ -154,44 +150,14 @@ const Text2 = styled.div`
   margin-right: 60%;
   padding-top: 50px;
   padding-bottom: 50px;
+  width: 200px;
 `;
 const Bar = styled.div`
-  margin-left: 30%;
+  margin-left: 25%;
   margin-right: 50%;
   margin-bottom: 100px;
 `;
 
-const Box = styled.div`
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 5%;
-  margin-right: 7%;
-  background: #ffffff;
-  margin-top: 10px;
-`;
-
-const Text = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 20px;
-  color: #0d00a4;
-`;
-
-const InputBoxShort = styled.input`
-  margin-right: 0;
-  width: 100%;
-  height: 32px;
-  padding-bottom: 0px;
-  background-color: #f4f4fc;
-  border: 3px solid #f4f4fc;
-  box-sizing: border-box;
-`;
 export const ModifyContextS = React.createContext();
 
 const INITIAL_STATE = {
@@ -283,13 +249,12 @@ const reducer = (state, action) => {
 
 const MypageSe = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const history = useHistory();
 
   useEffect(() => {
     async function profileData() {
       try {
         const dataS = await axios.get(
-          "http://localhost:8080/students/studentInfo",
+          "https://let-sson.herokuapp.com/students/studentInfo",
           {
             headers: {
               "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -333,7 +298,7 @@ const MypageSe = () => {
 
       await axios
         .put(
-          "http://localhost:8080/students/basicModify",
+          "https://let-sson.herokuapp.com/students/basicModify",
           {
             id: state.id,
             name: state.name,

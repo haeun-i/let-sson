@@ -5,50 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 보낸 내역 목록
 
-const Circle1 = styled.div`
-  position: absolute;
-  background-position: center;
-  background-size: cover;
-  margin-top: 25%;
-  margin-left: 79%;
-  text-align: center;
-  line-height: 200px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-
-  font-weight: bold;
-  font-weight: bold;
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  background-color: #8983d2;
-  color: white;
-`;
-
-const Circle2 = styled.div`
-  position: absolute;
-  background-position: center;
-  background-size: cover;
-  margin-top: 10%;
-  margin-left: 9%;
-  text-align: center;
-  line-height: 200px;
-  box-shadow: -90px -90px #f3f2fc;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  background-color: #8983d2;
-  color: white;
-`;
-
 const Container = styled.div`
   width: 100%;
   /* 1rem = 16px */
@@ -56,7 +12,10 @@ const Container = styled.div`
   padding-top: 10%;
   background-image: url(${postboxbackg});
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0); ;
+  background-color: rgba(0, 0, 0, 0); 
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding-top : 15%;
+  }
 `;
 
 const CardList = styled.ul`
@@ -131,17 +90,19 @@ const PostboxListST = () => {
   useEffect(() => {
     async function getSend() {
       try {
-        const dataTSend =  await axios
-              .get("http://localhost:8080/teachers/getAllSending", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const dataTSend = await axios.get(
+          "https://let-sson.herokuapp.com/teachers/getAllSending",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(dataTSend.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     getSend();
   }, []);
 
@@ -151,7 +112,7 @@ const PostboxListST = () => {
     if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
       axios
         .delete(
-          `http://localhost:8080/teachers/deleteSending?student_tel=${tel}`,
+          `https://let-sson.herokuapp.com/teachers/deleteSending?student_tel=${tel}`,
           {
             headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
             data: { student_tel: tel },
@@ -180,7 +141,6 @@ const PostboxListST = () => {
                   state: {
                     name: element.receiver.name,
                     period: element.receiver.period,
-                    name: element.receiver.name,
                     region: element.receiver.region,
                     tel: element.receiver.tel,
                     intro: element.receiver.intro,

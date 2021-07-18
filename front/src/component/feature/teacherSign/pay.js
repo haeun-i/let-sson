@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/teasign";
 
-
 const Box = styled.div`
   padding-top: 10px;
   padding-bottom: 20px;
@@ -31,7 +30,7 @@ const Btn = styled.div`
 const Teasignpay = () => {
   const { dispatch } = useContext(CounterContext);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setPay", pay: e.currentTarget.value });
   };
 

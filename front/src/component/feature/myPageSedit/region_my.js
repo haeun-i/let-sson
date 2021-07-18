@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextS } from "../../../page/mypageSedit";
+import { ModifyContextS } from "../../../page/mypageSedit";
 import axios from "axios";
 
 const Box = styled.div`
@@ -39,7 +39,7 @@ const StusignregionMy = () => {
   useEffect(() => {
     const profileData = async () => {
       const dataS = await axios.get(
-        "http://localhost:8080/students/studentInfo",
+        "https://let-sson.herokuapp.com/students/studentInfo",
         {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),

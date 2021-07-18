@@ -37,7 +37,7 @@ const Teasignintro = () => {
         <InputBox
           type="text"
           value={state.intro}
-          onChange={(e) =>
+          onChange={e =>
             dispatch({ type: "setIntro", intro: e.currentTarget.value })
           }
         />

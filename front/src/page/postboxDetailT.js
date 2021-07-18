@@ -8,7 +8,7 @@ const Body = styled.div`
   background-color: #f5f4f2;
 
   @media only screen and (max-width: 820px) {
-    margin-top : 8vh;
+    margin-top: 8vh;
   }
 `;
 
@@ -38,7 +38,7 @@ const Xbutton = styled.button`
   margin-bottom: 30px;
 
   @media only screen and (max-width: 820px) {
-    display : none;
+    display: none;
   }
 `;
 
@@ -85,7 +85,7 @@ const BoxShort = styled.div`
   box-sizing: border-box;
 `;
 const PostboxDetailT = props => {
-  const [data, setData] = useState({
+  const [data, ] = useState({
     name: props.location.state.name,
     university: props.location.state.university,
     major: props.location.state.major,

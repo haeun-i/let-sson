@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
+import { ModifyContextT } from "../../../page/mypageTedit";
 import axios from "axios";
 
 const Box = styled.div`
@@ -39,7 +39,7 @@ const InputBox = styled.input`
 
 const TeasignphoneMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
-  const handlePress = (e) => {
+  const handlePress = e => {
     const regex = /^[0-9\b -]{0,13}$/;
     if (regex.test(e.target.value)) {
       dispatch({
@@ -49,12 +49,12 @@ const TeasignphoneMy = () => {
     }
   };
 
-  const handleClick = async (e) => {
+  const handleClick = async e => {
     const check1 = await axios.get(
-      `http://localhost:8080/students/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/students/idCheck?tel=${state.tel}`
     );
     const check2 = await axios.get(
-      `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/teachers/idCheck?tel=${state.tel}`
     );
     if (check1.data.confirm === "NO" || check2.data.confirm === "NO") {
       console.log("가입불가");

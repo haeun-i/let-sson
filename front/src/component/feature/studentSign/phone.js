@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { CounterContext } from "../../../page/stusign";
@@ -30,7 +30,9 @@ const InputBox = styled.input`
 `;
 
 const Btn = styled.button`
-  width : 50px;
+@media (min-width: 320px) and (max-width: 480px) {
+  margin-left : 7vw;
+}
 `;
 
 const Stusignphone = () => {
@@ -80,7 +82,7 @@ const Stusignphone = () => {
           value={state.tel}
           onChange={handlePress}
         ></InputBox>
-        <button onClick={handleClick}>중복체크</button>
+        <Btn onClick={handleClick}>중복체크</Btn>
       </label>
     </Box>
   );

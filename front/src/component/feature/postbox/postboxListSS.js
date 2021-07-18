@@ -15,7 +15,10 @@ const Container = styled.div`
   padding-top: 10%;
   background-image: url(${postboxbackg});
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0); ;
+  background-color: rgba(0, 0, 0, 0); 
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding-top : 20%;
+  }
 `;
 
 const CardList = styled.ul`
@@ -91,17 +94,19 @@ const PostboxListSS = () => {
   useEffect(() => {
     async function getSend() {
       try {
-        const dataSSend =  await axios
-              .get("http://localhost:8080/students/getAllSending", {
-                headers: {
-                  "X-AUTH-TOKEN": localStorage.getItem("token"),
-                },
-              });
+        const dataSSend = await axios.get(
+          "https://let-sson.herokuapp.com/students/getAllSending",
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         setData(dataSSend.data);
       } catch (error) {
         console.log(error.response);
       }
-    };
+    }
     getSend();
   }, []);
 
@@ -111,7 +116,7 @@ const PostboxListSS = () => {
     if (window.confirm("정말로 신청을 취소하시겠습니까?")) {
       axios
         .delete(
-          `http://localhost:8080/students/deleteSending?teacher_tel=${tel}`,
+          `https://let-sson.herokuapp.com/students/deleteSending?teacher_tel=${tel}`,
           {
             headers: { "X-AUTH-TOKEN": localStorage.getItem("token") },
             data: { teacher_tel: tel },
@@ -180,7 +185,7 @@ const PostboxListSS = () => {
               <Cardbutton onClick={() => deleteSend(element.receiver.tel)}>
                 삭제
               </Cardbutton>
-              {element.state == "체결 완료" && (
+              {element.state === "체결 완료" && (
                 <Ratingdropbtn tel={element.receiver.tel} />
               )}
             </Cardelement4>

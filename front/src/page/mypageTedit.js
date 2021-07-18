@@ -1,6 +1,4 @@
 import React, { useEffect, useReducer } from "react";
-import { useHistory } from "react-router-dom";
-import HeadButton from "../component/layout/header/header";
 import SidebarMyPt from "../component/shared/myPageT/sidebarMyPt";
 import styled from "styled-components";
 import TeasignnameMy from "../component/feature/myPageTedit/name_my";
@@ -271,13 +269,12 @@ const reducer = (state, action) => {
 
 const MypageTe = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const history = useHistory();
 
   useEffect(() => {
     async function profileData() {
       try {
         const dataT = await axios.get(
-          "http://localhost:8080/teachers/teacherInfo",
+          "https://let-sson.herokuapp.com/teachers/teacherInfo",
           {
             headers: {
               "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -346,7 +343,7 @@ const MypageTe = () => {
     } else {
       await axios
         .put(
-          "http://localhost:8080/teachers/basicModify",
+          "https://let-sson.herokuapp.com/teachers/basicModify",
           {
             iD: parseInt(state.id, 10),
             name: state.name,

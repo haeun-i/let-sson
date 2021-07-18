@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   border: 1px solid white;
   display: flex;
   position: absolute;
-  width: 40%;
+  width: 49%;
   background-color: white;
   height: 36px;
   background: none;
@@ -21,46 +21,59 @@ const SideB = styled.button`
   font-size: 15px;
   border: solid 1px #e8e8e8;
   padding: 10px;
-  width: 150px;
+  width: 120px;
   height: 36px;
   margin: 0;
 `;
 
-const style = {
-  background: "#8983D2",
-  color: "white",
-};
+const Btn = styled.button`
+  font-size: 15px;
+  border: solid 1px #e8e8e8;
+  padding: 10px;
+  width: 120px;
+  height: 36px;
+  margin: 0;
+`;
 
 const SidebarMyPs = () => {
   const history = useHistory();
-  const withdraw = e => {
+
+  const  onclickEHandler = e =>{
+    const name = e.target.name
+    if(name==="delete"){
+      withdraw()
+    }
+  }
+  const withdraw = async () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios.delete("http://localhost:8080/students/delete", {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      }).then((res) => { 
-        alert("계정이 탈퇴되었습니다.");
-        localStorage.removeItem("token");
-        history.push("/login");      
-     })
-     .catch((err) => {
-       console.log(err.response);
-     });
+      await axios
+        .delete("https://let-sson.herokuapp.com/students/delete", {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        })
+        .then(res => {
+          localStorage.removeItem("token");
+          alert("계정이 탈퇴되었습니다.");
+          history.push("/login");
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
     }
   };
   return (
     <div>
       <Wrapper>
         <Link to="/mypages/profile">
-          <SideB >프로필 작성</SideB>
+          <SideB>프로필 작성</SideB>
         </Link>
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
-        <Link>
-        <SideB onClick={withdraw}>탈퇴하기</SideB>
-        </Link>
+        <span>
+          <Btn name="delete" onClick={onclickEHandler}>탈퇴하기</Btn>
+        </span>
       </Wrapper>
     </div>
   );

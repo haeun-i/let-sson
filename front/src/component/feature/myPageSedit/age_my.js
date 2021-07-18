@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModifyContextS } from "../../../page/mypageSedit";
 

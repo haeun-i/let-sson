@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../../../page/stusign";
 const Box = styled.div`

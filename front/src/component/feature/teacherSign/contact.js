@@ -30,11 +30,11 @@ const Btn = styled.div`
 const Teasigncontact = () => {
   const { dispatch } = useContext(CounterContext);
 
-  const handleChangeC = (e) => {
-    dispatch({ type: "setContact", contact: true, noncontact:false });
+  const handleChangeC = e => {
+    dispatch({ type: "setContact", contact: true, noncontact: false });
   };
-  const handleChangeN = (e) => {
-    dispatch({ type: "setNoncontact", contact: false, noncontact:true });
+  const handleChangeN = e => {
+    dispatch({ type: "setNoncontact", contact: false, noncontact: true });
   };
 
   return (

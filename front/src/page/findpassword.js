@@ -55,14 +55,14 @@ const Circle = styled.div`
   background-color: #8983d2;
   color: white;
   @media only screen and (max-width: 1004px) {
-    border-radius:0px;
+    border-radius: 0px;
     width: 200px;
     height: 0px;
     color: #8983d2;
-    margin-right:0px;
+    margin-right: 0px;
   }
   @media only screen and (max-height: 785px) {
-    border-radius:0px;
+    border-radius: 0px;
     width: 200px;
     height: 0px;
     color: #8983d2;
@@ -86,12 +86,11 @@ const Letters = styled.div`
   line-height: 26px;
 
   color: #0d00a4;
-  @media only screen and (max-width: 1004px){
-    display:none;
-    
+  @media only screen and (max-width: 1004px) {
+    display: none;
   }
-  @media only screen and (max-height: 785px){
-    display:none;
+  @media only screen and (max-height: 785px) {
+    display: none;
   }
 `;
 
@@ -136,8 +135,8 @@ const LogText1 = styled.span`
   /* identical to box height */
   color: #02001e;
   @media only screen and (max-width: 805px) {
-    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :70px;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right: 70px;
   }
 `;
 const LogText2 = styled.span`
@@ -155,8 +154,8 @@ const LogText2 = styled.span`
 
   color: #02001e;
   @media only screen and (max-width: 805px) {
-    margin-left:${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
-    margin-right :10px;
+    margin-left: ${props => (props.span ? (props.span / 12) * 100 : "12.5")}%;
+    margin-right: 10px;
   }
 `;
 const FindInput = styled.input`
@@ -185,7 +184,8 @@ const reducer = (state, action) => {
       return { ...state, tel: action.tel };
     case "checkTel":
       return { ...state, tel: action.tel };
-  }
+    default:
+    }
 };
 
 const Findpassword = () => {
@@ -213,7 +213,7 @@ const Findpassword = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:8080/users/findPassword",
+        "https://let-sson.herokuapp.com/users/findPassword",
         {
           params: { name: state.name, tel: state.tel },
         }

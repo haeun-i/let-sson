@@ -46,7 +46,7 @@ const Buttonfame = styled.div`
 
 const Registerstu = props => {
   // history
-  const [data, setData] = useState({
+  const [data, ] = useState({
     id: props.location.state.id,
     name: props.location.state.name,
     subject: props.location.state.subject,
@@ -61,7 +61,7 @@ const Registerstu = props => {
 
     await axios
       .post(
-        `http://localhost:8080/teachers/sendProfile?student_tel=${data.tel}`,
+        `https://let-sson.herokuapp.com/teachers/sendProfile?student_tel=${data.tel}`,
         {
           student_tel: data.tel,
         },

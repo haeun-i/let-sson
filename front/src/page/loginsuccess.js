@@ -47,9 +47,12 @@ const SuccessText = styled.div`
     margin-top:${props => (props.span ? (props.span / 12) * 100 : "1")}%;
     
   }
+  
   @media only screen and (max-width: 645px) {
-    margin-left:${props => (props.span ? (props.span / 12) * 100 : "70")}%;
-    
+  position: relative;   
+  width:300px;
+  margin-left:0px;
+  padding-bottom:10px;
   }
 `;
 

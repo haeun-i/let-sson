@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { FilterContextT } from "../../../../page/findTeacher";
 
 const CheckOnlineT = () => {
-  const { state, dispatch } = useContext(FilterContextT);
+  const {  dispatch } = useContext(FilterContextT);
 
-  const handleChangeC = (e) => {
+  const handleChangeC = e => {
     dispatch({ type: "sortContact", contact: true, nonContact: false });
   };
-  const handleChangeNc = (e) => {
+  const handleChangeNc = e => {
     dispatch({ type: "sortNoncontact", contact: false, nonContact: true });
   };
   return (

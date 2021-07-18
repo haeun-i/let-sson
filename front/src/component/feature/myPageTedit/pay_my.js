@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ModifyContext, ModifyContextT } from "../../../page/mypageTedit";
-import { CounterContext } from "../../../page/teasign";
+import { ModifyContextT } from "../../../page/mypageTedit";
 
 const Box = styled.div`
   padding-top: 10px;
@@ -34,7 +33,7 @@ const Btn = styled.div`
 const TeasignpayMy = () => {
   const { state, dispatch } = useContext(ModifyContextT);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     dispatch({ type: "setPay", pay: e.currentTarget.value });
   };
 

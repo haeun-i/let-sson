@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModifyContextS } from "../../../page/mypageSedit";
 
@@ -38,7 +38,7 @@ const InputBox = styled.input`
 
 const StusignpasswordMy = () => {
   const { state, dispatch } = useContext(ModifyContextS);
-  const [pass, setPass] = useState("");
+
   const handleChange1 = e => {
     dispatch({ type: "setPassword", password: e.currentTarget.value });
   };

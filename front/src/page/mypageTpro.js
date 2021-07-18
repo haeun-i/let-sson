@@ -7,6 +7,8 @@ import axios from "axios";
 import myPback from "./successbackg.jpg";
 import circleImg1 from "./mypage1.jpg";
 import circleImg2 from "./mypage2.jpg";
+import man from "../Styles/Man.png";
+import woman from "../Styles/Woman.png";
 
 const Container = styled.div`
   width: 100%;
@@ -139,6 +141,7 @@ const Text2 = styled.div`
   margin-right: 60%;
   padding-top: 50px;
   padding-bottom: 50px;
+  width:200px;
 `;
 const Bar = styled.div`
   margin-left: 30%;
@@ -169,6 +172,7 @@ const Text = styled.div`
 `;
 
 const InputBoxShort = styled.input`
+  margin-top: 20px;
   margin-right: 0;
   width: 100%;
   height: 32px;
@@ -176,6 +180,24 @@ const InputBoxShort = styled.input`
   background-color: #f4f4fc;
   border: 3px solid #f4f4fc;
   box-sizing: border-box;
+`;
+
+const PrfImage = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const DefaultB = styled.button`
+  height: 50px;
+  width: 90px;
+  background: #463ea0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin-top: 100px;
+  color: white;
+  border: 0;
+  outline: 1;
+  font-size: 12px;
 `;
 
 class MypageTp extends React.Component {
@@ -191,6 +213,7 @@ class MypageTp extends React.Component {
       intro: "",
       plan: "",
       files: "",
+      pImage: "",
     };
     this.tmp = this.state;
   }
@@ -198,7 +221,7 @@ class MypageTp extends React.Component {
   getData = async () => {
     try {
       const dataT = await axios.get(
-        "http://localhost:8080/teachers/teacherInfo",
+        "https://let-sson.herokuapp.com/teachers/teacherInfo",
         {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
@@ -241,6 +264,41 @@ class MypageTp extends React.Component {
     e.preventDefault();
     console.log(e.target.files);
     this.setState(prevState => ({ ...prevState, files: e.target.files[0] }));
+    const imageUrl = URL.createObjectURL(e.target.files[0]);
+    this.setState({ photo: imageUrl });
+    this.setState({ pImage: "n" });
+  };
+
+  profileEHandler =async e => {
+    this.call = e.target.name
+   if(this.call === "default"){
+     this.handleImageDefault()
+   }else if(this.call === "alert"){
+     await alert("저장이 완료되었습니다.")
+   }
+   }
+
+  handleImageDefault = async e => {
+    e.preventDefault();
+    this.setState({ pImage: "d" });
+    try {
+      await axios.post(
+        "https://let-sson.herokuapp.com/teachers/basicImg",
+        {},
+        {
+          headers: {
+            "X-AUTH-TOKEN": localStorage.getItem("token"),
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error.response);
+    }
+    if (this.state.male === true) {
+      this.setState({ photo: man });
+    } else {
+      this.setState({ photo: woman });
+    }
   };
 
   savedataT = async e => {
@@ -275,17 +333,51 @@ class MypageTp extends React.Component {
       };
       const formData = new FormData();
       formData.append("file", this.state.files);
-
-      await axios.put("http://localhost:8080/teachers/modify", dataList, {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      });
-      await axios.post("http://localhost:8080/teachers/profileImg", formData, {
-        headers: {
-          "X-AUTH-TOKEN": localStorage.getItem("token"),
-        },
-      });
+      console.log(formData);
+      console.log(this.state.pImage);
+      if (this.state.pImage === "d") {
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        window.location.reload();
+      } else if (this.state.pImage === "n") {
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        await axios.post(
+          "https://let-sson.herokuapp.com/teachers/profileImg",
+          formData,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        window.location.reload();
+      } else {
+        await axios.put(
+          "https://let-sson.herokuapp.com/teachers/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error.response);
     }
@@ -316,6 +408,17 @@ class MypageTp extends React.Component {
             <Wrapper2>
               <Box>
                 <Text>프로필 사진</Text>
+                <PrfImage>
+                  <img
+                    src={this.state.photo}
+                    width="150px"
+                    height="150px"
+                    alt="profile"
+                  />
+                  <DefaultB onClick={this.profileEHandler}>
+                    기본이미지로 변경
+                  </DefaultB>
+                </PrfImage>
                 <InputBoxShort
                   type="file"
                   accept="image/png, image/jpg"
@@ -327,7 +430,9 @@ class MypageTp extends React.Component {
               <Buttonfame>
                 <SaveNref
                   type="submit"
-                  onClick={() => alert("저장이 완료되었습니다.")}
+                  Value="확인"
+                  name="alert"
+                  onClick={this.profileEHandler}
                 >
                   저장하기
                 </SaveNref>
