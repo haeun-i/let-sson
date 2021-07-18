@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
@@ -38,11 +38,12 @@ margin-top : 35vh;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-width : 100vw;
+width : 95vw;
 position : absolute;
 border : solid 10px #463ea0;
 margin-left : 0;
 left : 0;
+top : 20vh;
 }
 `;
 const Body = styled.div`
@@ -142,7 +143,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  // const [files, Setstate ] = useState(null);
+  // const [files, ] = useState(null);
   const history = useHistory();
 
   useEffect(() => {

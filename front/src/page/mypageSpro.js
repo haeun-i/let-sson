@@ -46,7 +46,7 @@ const Buttonfame = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Wrapper2 = styled.div`
+const Wrapper2 = styled.form`
   width: 50%;
   background: #ffffff;
   border: 1px solid #f3f2fc;
@@ -142,7 +142,6 @@ const Text2 = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
   width: 200px;
-  
 `;
 const Bar = styled.div`
   margin-left: 25%;
@@ -241,14 +240,14 @@ class MypageSp extends React.Component {
     this.setState({ pImage: "n" });
   };
 
-   profileEHandler =async e => {
-     this.call = e.target.name
-    if(this.call === "default"){
-      this.handleImageDefault()
-    }else if(this.call === "alert"){
-      await alert("저장이 완료되었습니다.")
+  profileEHandler = async e => {
+    this.call = e.target.name;
+    if (this.call === "default") {
+      this.handleImageDefault();
+    } else if (this.call === "alert") {
+      await alert("저장이 완료되었습니다.");
     }
-    }
+  };
 
   handleImageDefault = async e => {
     e.preventDefault();
@@ -358,14 +357,16 @@ class MypageSp extends React.Component {
           }
         );
         window.location.reload();
-
-      }
-      else{
-        await axios.put("https://let-sson.herokuapp.com/students/modify", dataList, {
-          headers: {
-            "X-AUTH-TOKEN": localStorage.getItem("token"),
-          },
-        });
+      } else {
+        await axios.put(
+          "https://let-sson.herokuapp.com/students/modify",
+          dataList,
+          {
+            headers: {
+              "X-AUTH-TOKEN": localStorage.getItem("token"),
+            },
+          }
+        );
         window.location.reload();
       }
     } catch (error) {
@@ -375,61 +376,64 @@ class MypageSp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.savedataT}>
-        <HeadButtons />
-        <Circle1></Circle1>
-        <Circle2></Circle2>
-        <Container>
-          <Text1>
-            Better Education<br></br>Better Life
-          </Text1>
-          <Text2>
-            <hr color="#0D00A4" width="45px" height="10px"></hr>
-            <Blue>학생</Blue> 페이지
-          </Text2>
-          <Bar>
-            <SidebarMyPs />
-          </Bar>
-          <Wrapper>
-            <Wrapper2>
-              <Box>
-                <Text>프로필 사진</Text>
-                <PrfImage>
-                  <img
-                    src={this.state.photo}
-                    width="150px"
-                    height="150px"
-                    alt="profile"
-                  />
-                  <DefaultB name="default" onClick={this.profileEHandler}>
-                    기본이미지로 변경
-                  </DefaultB>
-                </PrfImage>
-                <InputBoxShort
-                  type="file"
-                  accept="image/png, image/jpg"
-                  name="proveimage"
-                  onChange={this.handleImage}
-                ></InputBoxShort>
-              </Box>
-              <SubmitS state={this.state} handleChange={this.handleChange} />
-              <Buttonfame>
-                <SaveNref
-                  type="submit"
-                  Value="확인"
-                  name="alert"
-                  onClick={this.profileEHandler}
-                >
-                  저장하기
-                </SaveNref>
-                {/* <SaveNref name="refresh" onClick={this.returning}>
+      <>
+        <div>
+          <HeadButtons />
+          <Circle1></Circle1>
+          <Circle2></Circle2>
+
+          <Container>
+            <Text1>
+              Better Education<br></br>Better Life
+            </Text1>
+            <Text2>
+              <hr color="#0D00A4" width="45px" height="10px"></hr>
+              <Blue>학생</Blue> 페이지
+            </Text2>
+            <Bar>
+              <SidebarMyPs />
+            </Bar>
+            <Wrapper>
+              <Wrapper2 onSubmit={this.savedataT}>
+                <Box>
+                  <Text>프로필 사진</Text>
+                  <PrfImage>
+                    <img
+                      src={this.state.photo}
+                      width="150px"
+                      height="150px"
+                      alt="profile"
+                    />
+                    <DefaultB name="default" onClick={this.profileEHandler}>
+                      기본이미지로 변경
+                    </DefaultB>
+                  </PrfImage>
+                  <InputBoxShort
+                    type="file"
+                    accept="image/png, image/jpg"
+                    name="proveimage"
+                    onChange={this.handleImage}
+                  ></InputBoxShort>
+                </Box>
+                <SubmitS state={this.state} handleChange={this.handleChange} />
+                <Buttonfame>
+                  <SaveNref
+                    type="submit"
+                    Value="확인"
+                    name="alert"
+                    onClick={this.profileEHandler}
+                  >
+                    저장하기
+                  </SaveNref>
+                  {/* <SaveNref name="refresh" onClick={this.returning}>
                   되돌리기
                 </SaveNref> */}
-              </Buttonfame>
-            </Wrapper2>
-          </Wrapper>
-        </Container>
-      </form>
+                </Buttonfame>
+              </Wrapper2>
+            </Wrapper>
+          </Container>
+        </div>
+      </>
     );
   }
 }

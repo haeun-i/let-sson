@@ -5,16 +5,13 @@ import styled from "styled-components";
 import StuLogin from "../component/feature/login/stulogin";
 import TeaLogin from "../component/feature/login/tealogin";
 import mypic from "./login_background.png";
-
 const Wrapper = styled.img`
   margin-top: 10px;
   width: 100vw;
-  height: 100vh;
-
+  height: 100%;
   @media (min-width: 320px) and (max-width: 480px) {
-    display : none;
-    }
-
+    display: none;
+  }
 `;
 
 const Logindiv = styled.div`
@@ -55,8 +52,8 @@ const Logindiv = styled.div`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-top: 0;
+    top: 20vh;
   }
-
 `;
 
 const Logintext = styled.p`
@@ -131,16 +128,16 @@ const Line1 = styled.span`
 `;
 
 const Logline = styled.span`
-position: absolute;
-width: 20vw;
-left: 35%;
-top: 33vh;
-border: 1px solid #000000;
-transform: rotate(-90deg);
+  position: absolute;
+  width: 20vw;
+  left: 35%;
+  top: 33vh;
+  border: 1px solid #000000;
+  transform: rotate(-90deg);
 
-@media only screen and (max-width: 1200px) {
-  display: none;
-}
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const NotlogText = styled.div`
@@ -165,7 +162,6 @@ const NotlogText = styled.div`
     text-align: center;
     margin-left: 20vw;
   }
-
 `;
 
 const NotlogBtn1 = styled.button`
@@ -189,7 +185,6 @@ const NotlogBtn1 = styled.button`
   @media (min-width: 320px) and (max-width: 480px) {
     margin-left: 15vw;
   }
-
 `;
 
 const NotlogBtn2 = styled.button`
@@ -209,7 +204,7 @@ const NotlogBtn2 = styled.button`
   }
   @media only screen and (max-width: 580px) {
     margin-left: 60vw;
-  }  
+  }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-left: 45vw;
   }

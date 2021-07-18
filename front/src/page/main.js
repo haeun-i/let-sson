@@ -59,8 +59,8 @@ const MainImage = styled.img`
   height: 73vh;
   position: relative;
   @media (min-width: 320px) and (max-width: 480px) {
-    height : 40vh;
-    }
+    height: 45vh;
+  }
 `;
 const Text21 = styled.span`
   position: absolute;
@@ -153,9 +153,12 @@ const Introtext = styled.span`
   font-size: 12px;
   color: #000000;
 
-  @media (min-width: 320px) and (max-width: 480px) {
-    margin-left: auto;
-    }
+  @media (min-width: 320px) and (max-width: 400px) {
+    margin-left: 5vw;
+  }
+  @media (min-width: 401px) and (max-width: 480px) {
+    margin-left: 7vw;
+  }
 `;
 
 const Teabutton1 = styled.button`
@@ -174,12 +177,12 @@ const Teabutton1 = styled.button`
   font-size: 1em;
   line-height: 35px;
 
-      @media (min-width: 320px) and (max-width: 480px) {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 40vw;
-        }
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+  }
 
   color: #ffffff;
 `;
@@ -202,8 +205,8 @@ const Teabutton2 = styled.button`
     margin-left: auto;
     margin-right: auto;
     width: 40vw;
-    margin-bottom :2vh;
-    }
+    margin-bottom: 2vh;
+  }
   color: #ffffff;
 `;
 
