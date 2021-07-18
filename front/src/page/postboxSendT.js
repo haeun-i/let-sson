@@ -5,49 +5,6 @@ import PostboxListST from "../component/feature/postbox/postboxListST";
 import postboxbackg from "./postboxbackg.jpg";
 // 선생이 보낸 내역
 
-const Circle1 = styled.div`
-  position: absolute;
-  background-position: center;
-  background-size: cover;
-  margin-top: 25%;
-  margin-left: 79%;
-  text-align: center;
-  line-height: 200px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-
-  font-weight: bold;
-  font-weight: bold;
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  background-color: #8983d2;
-  color: white;
-`;
-
-const Circle2 = styled.div`
-  position: absolute;
-  background-position: center;
-  background-size: cover;
-  margin-top: 10%;
-  margin-left: 9%;
-  text-align: center;
-  line-height: 200px;
-  box-shadow: -90px -90px #f3f2fc;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  background-color: #8983d2;
-  color: white;
-`;
 
 const Wrapper = styled.div`
   position: absolute;

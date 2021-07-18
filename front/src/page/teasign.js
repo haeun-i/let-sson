@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
@@ -19,22 +19,31 @@ import { AuthEmail, AuthPhone } from "../component/shared/auth";
 import Signlogotext from "../component/feature/studentSign/signlogotext";
 
 const Wrapper = styled.form`
-  left: 20vw;
-  top: 35vh;
-  width: 60vw;
-  padding-top: 30px;
-  margin-bottom: 30px;
-  border-top: solid 20px #463ea0;
-  border-left: solid 40px #463ea0;
-  border-right: solid 40px #463ea0;
-  border-bottom: solid 20px #463ea0;
-  margin-top: 10%;
-  margin-left: 20%;
-  background-color: white;
+left: 20vw;
+top: 35vh;
+width: 60vw;
+padding-top: 30px;
+margin-bottom: 30px;
+border-top: solid 20px #463ea0;
+border-left: solid 40px #463ea0;
+border-right: solid 40px #463ea0;
+border-bottom: solid 20px #463ea0;
+margin-top : 10%;
+margin-left : 20%;
+background-color : white;
+}
 
-  @media only screen and (max-width: 820px), (max-height: 700px) {
-    margin-top: 35vh;
-  }
+@media only screen and (max-height : 700px) {
+margin-top : 35vh;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+width : 100vw;
+position : absolute;
+border : solid 10px #463ea0;
+margin-left : 0;
+left : 0;
+}
 `;
 const Body = styled.div`
   overflow: auto;
@@ -60,33 +69,8 @@ const SignBtn = styled.input`
   margin-bottom: 30px;
 `;
 
-const Box = styled.div`
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 3vw;
-  margin-top: 30px;
-`;
-
-const Text = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: #463ea0;
-  font-size: 1em;
-`;
-
-const InputBox = styled.input`
-  border: 2px solid #463ea0;
-  margin-right: 0;
-  width: 50vw;
-  padding-bottom: 30px;
-`;
-
 export const CounterContext = React.createContext();
-//
+
 const INITIAL_STATE = {
   name: "",
   male: "",
@@ -158,7 +142,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const [files, setFiles] = useState(null);
+  // const [files, setFiles] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -190,17 +174,10 @@ const Teasign = () => {
     return phoneStat;
   };
 
-  const handleChange = e => {
-    e.preventDefault();
-    console.log(e.target.files);
-    const file = e.target.files[0];
-    setFiles(file);
-  };
-
   const Signed = async e => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", files);
+    // const formData = new FormData();
+    // formData.append("file", files);
 
     if (
       state.name === "" ||

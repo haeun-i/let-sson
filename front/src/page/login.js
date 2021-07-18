@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
 import styled from "styled-components";
-import axios from "axios";
 import StuLogin from "../component/feature/login/stulogin";
 import TeaLogin from "../component/feature/login/tealogin";
 import mypic from "./login_background.png";
@@ -11,6 +10,11 @@ const Wrapper = styled.img`
   margin-top: 10px;
   width: 100vw;
   height: 100vh;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    display : none;
+    }
+
 `;
 
 const Logindiv = styled.div`
@@ -22,16 +26,14 @@ const Logindiv = styled.div`
   }
   top: 34vh;
   left: 10vw;
-
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(180, 180, 180, 0.25);
   border-radius: 3px;
-
   @media screen and (max-height: 490px) {
     margin-top: 20vh;
   }
   @media screen and (max-width: 791px) {
-    margin-top: 20vh;
+    margin-top: 15vh;
   }
   @media screen and (max-width: 791px) and (max-height: 480px) {
     margin-top: 25vh;
@@ -51,27 +53,28 @@ const Logindiv = styled.div`
   @media screen and (max-height: 350px) {
     display: none;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-top: 0;
+  }
+
 `;
 
 const Logintext = styled.p`
   position: absolute;
-
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
   font-size: 1em;
   /* identical to box height */
-
   left: 14vw;
   margin-left: 3vh;
   top: 23vh;
   color: #02001e;
-
   @media screen and (max-height: 490px) {
     margin-top: 20vh;
   }
   @media screen and (max-width: 791px) {
-    margin-top: 20vh;
+    margin-top: 15vh;
   }
   @media screen and (max-width: 791px) and (max-height: 480px) {
     margin-top: 25vh;
@@ -101,12 +104,11 @@ const Line1 = styled.span`
   transform: rotate(-90deg);
   left: 11vw;
   top: 26.5vh;
-
   @media screen and (max-height: 490px) {
     margin-top: 20vh;
   }
   @media screen and (max-width: 791px) {
-    margin-top: 20vh;
+    margin-top: 13vh;
   }
   @media screen and (max-width: 791px) and (max-height: 480px) {
     margin-top: 25vh;
@@ -129,16 +131,16 @@ const Line1 = styled.span`
 `;
 
 const Logline = styled.span`
-  position: absolute;
-  width: 18vw;
-  left: 35%;
-  top: 35vh;
-  border: 1px solid #000000;
-  transform: rotate(-90deg);
+position: absolute;
+width: 20vw;
+left: 35%;
+top: 33vh;
+border: 1px solid #000000;
+transform: rotate(-90deg);
 
-  @media only screen and (max-width: 1200px) {
-    display: none;
-  }
+@media only screen and (max-width: 1200px) {
+  display: none;
+}
 `;
 
 const NotlogText = styled.div`
@@ -156,6 +158,14 @@ const NotlogText = styled.div`
   @media only screen and (max-width: 580px) {
     margin-left: 5vw;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: block;
+    margin-top: 0;
+    align-items: center;
+    text-align: center;
+    margin-left: 20vw;
+  }
+
 `;
 
 const NotlogBtn1 = styled.button`
@@ -166,7 +176,6 @@ const NotlogBtn1 = styled.button`
   height: 10px;
   text-decoration: underline #010440;
   text-underline-position: under;
-
   @media only screen and (max-width: 950px) {
     margin-left: 38vw;
     margin-top: 8vh;
@@ -177,6 +186,10 @@ const NotlogBtn1 = styled.button`
   @media only screen and (max-width: 580px) {
     margin-left: 41vw;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: 15vw;
+  }
+
 `;
 
 const NotlogBtn2 = styled.button`
@@ -187,7 +200,6 @@ const NotlogBtn2 = styled.button`
   height: 10px;
   text-decoration: underline #010440;
   text-underline-position: under;
-
   @media only screen and (max-width: 950px) {
     margin-left: 50vw;
     margin-top: 8vh;
@@ -197,6 +209,9 @@ const NotlogBtn2 = styled.button`
   }
   @media only screen and (max-width: 580px) {
     margin-left: 60vw;
+  }  
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: 45vw;
   }
 `;
 
@@ -221,6 +236,7 @@ const reducer = (state, action) => {
       return { ...state, telS: action.telS };
     case "checkPasswordS":
       return { ...state, passwordS: action.passwordS };
+    default:
   }
 };
 

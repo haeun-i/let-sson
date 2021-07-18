@@ -12,14 +12,14 @@ const Mainbody = styled.div`
 
 const Btnspan = styled.span`
   white-space: nowrap;
-  @media only screen and (max-width: 1250px) {
+  @media only screen and (max-width: 1260px) {
     margin-left: 18vw;
   }
 `;
 
 const Textspan = styled.span`
   white-space: nowrap;
-  @media only screen and (max-width: 1250px) {
+  @media only screen and (max-width: 1260px) {
     margin-left: 15vw;
   }
   @media only screen and (max-width: 970px) {
@@ -56,8 +56,11 @@ const Textspan = styled.span`
 
 const MainImage = styled.img`
   width: 100%;
-  height: 90%;
+  height: 73vh;
   position: relative;
+  @media (min-width: 320px) and (max-width: 480px) {
+    height : 40vh;
+    }
 `;
 const Text21 = styled.span`
   position: absolute;
@@ -147,8 +150,12 @@ const Introtext = styled.span`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   color: #000000;
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: auto;
+    }
 `;
 
 const Teabutton1 = styled.button`
@@ -166,7 +173,13 @@ const Teabutton1 = styled.button`
   font-weight: bold;
   font-size: 1em;
   line-height: 35px;
-  /* identical to box height */
+
+      @media (min-width: 320px) and (max-width: 480px) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40vw;
+        }
 
   color: #ffffff;
 `;
@@ -184,6 +197,13 @@ const Teabutton2 = styled.button`
   font-size: 1em;
   line-height: 35px;
 
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+    margin-bottom :2vh;
+    }
   color: #ffffff;
 `;
 

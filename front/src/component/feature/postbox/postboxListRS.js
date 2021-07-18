@@ -13,7 +13,10 @@ const Container = styled.div`
   padding-top: 10%;
   background-image: url(${postboxbackg});
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0); ;
+  background-color: rgba(0, 0, 0, 0);
+  @media (min-width: 320px) and (max-width: 480px) {
+    padding-top : 15%;
+  }
 `;
 
 const CardList = styled.ul`
@@ -29,6 +32,7 @@ const CardList = styled.ul`
   @media only screen and (max-width: 680px) {
     margin-top: 10%;
   }
+  
 `;
 
 const Card = styled.li`

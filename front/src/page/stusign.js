@@ -33,11 +33,17 @@ const Wrapper = styled.form`
     background-color : white;
 }
 
-@media only screen and (max-width: 820px), (max-height : 700px) {
+@media only screen and (max-height : 700px) {
   margin-top : 35vh;
 }
 
-
+@media (min-width: 320px) and (max-width: 480px) {
+  width : 100vw;
+  position : absolute;
+  border : solid 10px #463ea0;
+  margin-left : 0;
+  left : 0;
+  }
 `;
 const Body = styled.div`
   overflow: auto;

@@ -5,6 +5,9 @@ const Div = styled.div`
   @media only screen and (max-width: 820px), (max-height: 700px) {
     margin-top: 15vh;
   }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-top: 0;
+    }
 `;
 const Navypart1 = styled.span`
   position: absolute;
@@ -17,6 +20,8 @@ const Navypart1 = styled.span`
   line-height: 52px;
 
   color: #0d00a4;
+
+
   @media only screen and (max-height: 450px) {
     display: none;
   }
@@ -31,9 +36,14 @@ const Navypart1 = styled.span`
   @media only screen and (max-width: 610px) {
     left: 36vw;
   }
-  @media only screen and (max-width: 820px), (max-height: 700px) {
+  @media (min-width: 320px) and (max-width: 480px) {
+    top : 30vh;
+    left: 31vw;
+  }
+  @media only screen and (max-height: 700px) {
     margin-top: 20vh;
   }
+
 `;
 
 const Navypart2 = styled.span`
@@ -48,6 +58,10 @@ const Navypart2 = styled.span`
   line-height: 52px;
 
   color: #0d00a4;
+  @media (min-width: 320px) and (max-width: 480px) {
+    top: 30vh;
+    }
+
   @media only screen and (max-height: 450px) {
     display: none;
   }
@@ -58,7 +72,7 @@ const Navypart2 = styled.span`
     left: 47vw;
   }
 
-  @media only screen and (max-width: 820px), (max-height: 700px) {
+  @media only screen and (max-height: 700px) {
     margin-top: 20vh;
   }
 `;
@@ -74,6 +88,10 @@ const Yellowpart = styled.span`
   line-height: 52px;
 
   color: yellow;
+  @media (min-width: 320px) and (max-width: 480px) {
+    top: 30vh;
+    }
+
   @media only screen and (max-height: 450px) {
     display: none;
   }
@@ -83,7 +101,7 @@ const Yellowpart = styled.span`
   @media only screen and (max-width: 750px) {
     left: 45.5vw;
   }
-  @media only screen and (max-width: 820px), (max-height: 700px) {
+  @media only screen and (max-height: 700px) {
     margin-top: 20vh;
   }
 `;

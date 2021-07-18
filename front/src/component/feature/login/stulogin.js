@@ -17,6 +17,12 @@ const Log = styled.form`
     position: unset;
     margin-left: 35%;
   }
+  @media (min-width: 481px) and (max-width: 600px) {
+    margin-left: 40%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-left: 45%;
+  }
 `;
 const LogText1 = styled.div`
   position: absolute;
