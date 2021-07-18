@@ -32,7 +32,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/teachers")
-@CrossOrigin(origins = "http://localhost:3000")
 public class TeacherPostboxController {
     private final JwtTokenProvider jwtTokenProvider;
     private final TeacherPostboxService teacherPostboxService;

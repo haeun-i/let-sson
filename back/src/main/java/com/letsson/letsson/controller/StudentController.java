@@ -29,7 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+/*@CrossOrigin(origins = "http://localhost:3000")*/
 public class StudentController {
     private final JwtTokenProvider jwtTokenProvider;
     private final CustomUserDetailsService customUserDetailsService;
