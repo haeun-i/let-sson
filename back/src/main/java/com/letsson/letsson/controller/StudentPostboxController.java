@@ -31,7 +31,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/students")
-@CrossOrigin(origins = "http://localhost:3000")
 public class StudentPostboxController {
    private final StudentService studentService;
    private final TeacherService teacherService;
