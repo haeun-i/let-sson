@@ -33,12 +33,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/teachers")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
 public class TeacherController {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final TeacherService teacherService;
     private final CustomUserDetailsService customUserDetailsService;
+
 
 
     @PostMapping("/join")

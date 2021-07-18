@@ -39,30 +39,34 @@ const Btn = styled.button`
 const SidebarMyPs = () => {
   const history = useHistory();
 
-  const  onclickEHandler = e =>{
-    const name = e.target.name
-    if(name==="delete"){
-      withdraw()
+  const onclickEHandler = async e => {
+    try {
+      await withdraw();
+    } catch (error) {
+      alert("aslkjdlaskjlkasjlk");
+      console.log(error);
     }
-  }
+    localStorage.removeItem("token");
+    alert("계정이 탈퇴되었습니다.");
+    history.push("/login");
+  };
+
   const withdraw = async () => {
-    if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      await axios
-        .delete("https://let-sson.herokuapp.com/students/delete", {
+    const isOk = window.confirm("정말로 탈퇴하시겠습니까?");
+    if (isOk) {
+      try {
+        await axios.delete("https://let-sson.herokuapp.com/students/delete", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
-        })
-        .then(res => {
-          localStorage.removeItem("token");
-          alert("계정이 탈퇴되었습니다.");
-          history.push("/login");
-        })
-        .catch(err => {
-          console.log(err.response);
         });
+      } catch (error) {
+        alert("실패!!!");
+        console.error(error.message);
+      }
     }
   };
+
   return (
     <div>
       <Wrapper>
@@ -72,9 +76,7 @@ const SidebarMyPs = () => {
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
-        <span>
-          <Btn name="delete" onClick={onclickEHandler}>탈퇴하기</Btn>
-        </span>
+        <Btn onClick={onclickEHandler}>탈퇴하기</Btn>
       </Wrapper>
     </div>
   );
