@@ -46,15 +46,15 @@ const SidebarMyPs = () => {
   };
   const withdraw = () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-      axios
+      await axios
         .delete("https://let-sson.herokuapp.com/students/delete", {
           headers: {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         })
         .then(res => {
-          alert("계정이 탈퇴되었습니다.");
           localStorage.removeItem("token");
+          alert("계정이 탈퇴되었습니다.");
           history.push("/login");
         })
         .catch(err => {

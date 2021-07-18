@@ -269,6 +269,15 @@ class MypageTp extends React.Component {
     this.setState({ pImage: "n" });
   };
 
+  profileEHandler =async e => {
+    this.call = e.target.name
+   if(this.call === "default"){
+     this.handleImageDefault()
+   }else if(this.call === "alert"){
+     await alert("저장이 완료되었습니다.")
+   }
+   }
+
   handleImageDefault = async e => {
     e.preventDefault();
     this.setState({ pImage: "d" });
@@ -406,7 +415,7 @@ class MypageTp extends React.Component {
                     height="150px"
                     alt="profile"
                   />
-                  <DefaultB onClick={this.handleImageDefault}>
+                  <DefaultB onClick={this.profileEHandler}>
                     기본이미지로 변경
                   </DefaultB>
                 </PrfImage>
@@ -421,7 +430,9 @@ class MypageTp extends React.Component {
               <Buttonfame>
                 <SaveNref
                   type="submit"
-                  onSubmit={() => alert("저장이 완료되었습니다.")}
+                  Value="확인"
+                  name="alert"
+                  onClick={this.profileEHandler}
                 >
                   저장하기
                 </SaveNref>
