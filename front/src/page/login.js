@@ -184,6 +184,8 @@ const NotlogBtn1 = styled.button`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-left: 15vw;
+    margin-bottom: 5vh;
+    height: 5vh;
   }
 `;
 
@@ -207,6 +209,8 @@ const NotlogBtn2 = styled.button`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-left: 45vw;
+    margin-bottom: 5vh;
+    height: 5vh;
   }
 `;
 

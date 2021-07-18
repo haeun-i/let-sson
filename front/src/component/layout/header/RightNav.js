@@ -30,7 +30,8 @@ const Btn = styled.button`
   background-color: #0d2538;
   color: white;
   margin-left: 0;
-  height: 2vh;
+  height: 4vh;
+  padding: 10px;
 `;
 const RightNav = ({ open }) => {
   const user = localStorage.getItem("token");
