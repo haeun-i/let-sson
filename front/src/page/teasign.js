@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import HeadButton from "../component/layout/header/header";
@@ -143,7 +143,7 @@ const reducer = (state, action) => {
 
 const Teasign = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const [files] = useState(null);
+  // const [files, ] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -201,7 +201,7 @@ const Teasign = () => {
       console.log(state);
       await axios
         .post("https://let-sson.herokuapp.com/teachers/join", {
-          career: "",
+          career : "",
           contact: state.contact,
           edStNum: 0,
 
@@ -229,9 +229,7 @@ const Teasign = () => {
           history.push("/login");
         })
         .catch(err => {
-          alert(
-            "가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요."
-          );
+          alert("가입에 실패하였습니다. 아이디 중복체크 및 필수정보 기입 여부를 재확인해주세요.");
           console.log(err.response);
         });
     }

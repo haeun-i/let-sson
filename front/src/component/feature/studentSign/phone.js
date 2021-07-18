@@ -55,10 +55,10 @@ const Stusignphone = () => {
   const handleClick = async e => {
     e.preventDefault();
     const check1 = await axios.get(
-      `http://localhost:8080/students/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/students/idCheck?tel=${state.tel}`
     );
     const check2 = await axios.get(
-      `http://localhost:8080/teachers/idCheck?tel=${state.tel}`
+      `https://let-sson.herokuapp.com/teachers/idCheck?tel=${state.tel}`
     );
     if (
       check1.data.confirm === "사용가능한 아이디입니다." &&

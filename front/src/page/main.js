@@ -153,8 +153,11 @@ const Introtext = styled.span`
   font-size: 12px;
   color: #000000;
 
-  @media (min-width: 320px) and (max-width: 480px) {
-    margin-left: auto;
+  @media (min-width: 320px) and (max-width: 400px) {
+    margin-left: 5vw;
+  }
+  @media (min-width: 401px) and (max-width: 480px) {
+    margin-left: 7vw;
   }
 `;
 
