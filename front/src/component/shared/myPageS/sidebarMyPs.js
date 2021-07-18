@@ -37,7 +37,14 @@ const Btn = styled.button`
 
 const SidebarMyPs = () => {
   const history = useHistory();
-  const withdraw = e => {
+
+  const  onclickEHandler = e =>{
+    const name = e.target.name
+    if(name==="delete"){
+      withdraw()
+    }
+  }
+  const withdraw = () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
       axios
         .delete("https://let-sson.herokuapp.com/students/delete", {
@@ -65,7 +72,7 @@ const SidebarMyPs = () => {
           <SideB>수정하기</SideB>
         </Link>
         <span>
-          <Btn onClick={withdraw}>탈퇴하기</Btn>
+          <Btn name="delete" onClick={onclickEHandler}>탈퇴하기</Btn>
         </span>
       </Wrapper>
     </div>

@@ -241,6 +241,15 @@ class MypageSp extends React.Component {
     this.setState({ pImage: "n" });
   };
 
+   profileEHandler =async e => {
+     this.call = e.target.name
+    if(this.call === "default"){
+      this.handleImageDefault()
+    }else if(this.call === "alert"){
+      await alert("저장이 완료되었습니다.")
+    }
+    }
+
   handleImageDefault = async e => {
     e.preventDefault();
     this.setState({ pImage: "d" });
@@ -357,7 +366,6 @@ class MypageSp extends React.Component {
             "X-AUTH-TOKEN": localStorage.getItem("token"),
           },
         });
-        await alert("저장이 완료되었습니다.")
         window.location.reload();
       }
     } catch (error) {
@@ -393,7 +401,7 @@ class MypageSp extends React.Component {
                     height="150px"
                     alt="profile"
                   />
-                  <DefaultB onClick={this.handleImageDefault}>
+                  <DefaultB name="default" onClick={this.profileEHandler}>
                     기본이미지로 변경
                   </DefaultB>
                 </PrfImage>
@@ -409,7 +417,8 @@ class MypageSp extends React.Component {
                 <SaveNref
                   type="submit"
                   Value="확인"
-                  onSubmit={async () => {}}
+                  name="alert"
+                  onClick={this.profileEHandler}
                 >
                   저장하기
                 </SaveNref>
