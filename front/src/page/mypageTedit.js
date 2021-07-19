@@ -148,6 +148,7 @@ const Text2 = styled.div`
   margin-right: 60%;
   padding-top: 50px;
   padding-bottom: 50px;
+  width:200px;
 `;
 const Bar = styled.div`
   margin-left: 30%;

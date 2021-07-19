@@ -8,7 +8,8 @@ const Wrapper = styled.div`
   border: 1px solid white;
   display: flex;
   position: absolute;
-  width: 49%;
+  width: 45%;
+
   background-color: white;
   height: 36px;
   background: none;
@@ -21,7 +22,7 @@ const SideB = styled.button`
   font-size: 15px;
   border: solid 1px #e8e8e8;
   padding: 10px;
-  width: 120px;
+  width: 110px;
   height: 36px;
   margin: 0;
 `;
@@ -30,7 +31,7 @@ const Btn = styled.button`
   font-size: 15px;
   border: solid 1px #e8e8e8;
   padding: 10px;
-  width: 120px;
+  width: 110px;
   height: 36px;
   margin: 0;
 `;
@@ -75,7 +76,9 @@ const SidebarMyPs = () => {
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
+        <span>
         <Btn onClick={onclickEHandler}>탈퇴하기</Btn>
+        </span>
       </Wrapper>
     </div>
   );

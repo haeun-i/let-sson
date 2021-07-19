@@ -54,8 +54,6 @@ const reducer = (state, action) => {
   
     default:
   }
-    
-      
 };
 
 const FindStudent = () => {
