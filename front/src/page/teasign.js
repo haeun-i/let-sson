@@ -43,7 +43,7 @@ position : absolute;
 border : solid 10px #463ea0;
 margin-left : 0;
 left : 0;
-top : 15vh;
+top : 5vh;
 }
 `;
 const Body = styled.div`

@@ -17,10 +17,7 @@ const Wrapper = styled.img`
 const Logindiv = styled.div`
   position: absolute;
   width: 80vw;
-  height: 70%;
-  @media only screen and (max-width: 950px) {
-    height: 140%;
-  }
+
   top: 34vh;
   left: 10vw;
   background: #ffffff;
@@ -186,6 +183,7 @@ const NotlogBtn1 = styled.button`
     margin-left: 15vw;
     margin-bottom: 5vh;
     height: 5vh;
+    top : 150%;
   }
 `;
 
@@ -211,6 +209,8 @@ const NotlogBtn2 = styled.button`
     margin-left: 45vw;
     margin-bottom: 5vh;
     height: 5vh;
+    top : 150%;
+
   }
 `;
 

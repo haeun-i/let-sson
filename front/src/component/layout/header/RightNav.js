@@ -30,7 +30,7 @@ const Btn = styled.button`
   background-color: #0d2538;
   color: white;
   margin-left: 0;
-  height: 4vh;
+  height: 4.5vh;
   padding: 10px;
 `;
 const RightNav = ({ open }) => {
