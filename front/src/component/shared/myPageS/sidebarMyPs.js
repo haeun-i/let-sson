@@ -8,8 +8,8 @@ const Wrapper = styled.div`
   border: 1px solid white;
   display: flex;
   position: absolute;
-  width: 40%;
-  margin-left:10px;
+  width: 45%;
+
   background-color: white;
   height: 36px;
   background: none;
@@ -76,7 +76,9 @@ const SidebarMyPs = () => {
         <Link to="/mypages/edit">
           <SideB>수정하기</SideB>
         </Link>
+        <span>
         <Btn onClick={onclickEHandler}>탈퇴하기</Btn>
+        </span>
       </Wrapper>
     </div>
   );
