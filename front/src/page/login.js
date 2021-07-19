@@ -17,7 +17,10 @@ const Wrapper = styled.img`
 const Logindiv = styled.div`
   position: absolute;
   width: 80vw;
-
+  height: 70%;
+  @media only screen and (max-width: 950px) {
+    height: 140%;
+  }
   top: 34vh;
   left: 10vw;
   background: #ffffff;
@@ -50,6 +53,7 @@ const Logindiv = styled.div`
   @media (min-width: 320px) and (max-width: 480px) {
     margin-top: 0;
     top: 20vh;
+    height : 160%;
   }
 `;
 
@@ -131,7 +135,6 @@ const Logline = styled.span`
   top: 33vh;
   border: 1px solid #000000;
   transform: rotate(-90deg);
-
   @media only screen and (max-width: 1200px) {
     display: none;
   }
@@ -154,7 +157,7 @@ const NotlogText = styled.div`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     display: block;
-    margin-top: 20vh;
+    margin-top: 8vh;
     align-items: center;
     text-align: center;
     margin-left: 20vw;
@@ -180,10 +183,9 @@ const NotlogBtn1 = styled.button`
     margin-left: 41vw;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    margin-left: 15vw;
-    margin-bottom: 5vh;
-    height: 5vh;
-    top : 150%;
+    margin-top: 13vh;
+    height : 3vh;
+    margin-left: 12vw;
   }
 `;
 
@@ -207,10 +209,8 @@ const NotlogBtn2 = styled.button`
   }
   @media (min-width: 320px) and (max-width: 480px) {
     margin-left: 45vw;
-    margin-bottom: 5vh;
-    height: 5vh;
-    top : 150%;
-
+    margin-top: 13vh;
+    height : 3vh;
   }
 `;
 

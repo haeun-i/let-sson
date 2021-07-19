@@ -19,32 +19,32 @@ import { AuthEmail, AuthPhone } from "../component/shared/auth";
 import Signlogotext from "../component/feature/studentSign/signlogotext";
 
 const Wrapper = styled.form`
-left: 20vw;
-top: 35vh;
-width: 60vw;
-padding-top: 30px;
-margin-bottom: 30px;
-border-top: solid 20px #463ea0;
-border-left: solid 40px #463ea0;
-border-right: solid 40px #463ea0;
-border-bottom: solid 20px #463ea0;
-margin-top : 10%;
-margin-left : 20%;
-background-color : white;
+    left: 20vw;
+    top: 35vh;
+    width: 60vw;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    border-top: solid 20px #463ea0;
+    border-left: solid 40px #463ea0;
+    border-right: solid 40px #463ea0;
+    border-bottom: solid 20px #463ea0;
+    margin-top : 10%;
+    margin-left : 20%;
+    background-color : white;
 }
 
 @media only screen and (max-height : 700px) {
-margin-top : 35vh;
+  margin-top : 35vh;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-width : 95vw;
-position : absolute;
-border : solid 10px #463ea0;
-margin-left : 0;
-left : 0;
-top : 5vh;
-}
+  width : 95vw;
+  position : absolute;
+  border : solid 10px #463ea0;
+  margin-left : 0;
+  left : 0;
+  top : 0;
+  }
 `;
 const Body = styled.div`
   overflow: auto;
